@@ -39,6 +39,16 @@ QuickCheck by Nick Smallbone.)
 It is not easy to test IO. But Programmers would write typical usage
 with doctest.
 
+## Curent state
+
+Give a short survey on the test coverage of existing libraries.
+
+ - process
+ - HUnit
+ - QuickCheck
+ - Parsec (should we cover attoparsec, aeson?)
+ - base
+
 ## Tests not suitable with doctest
 
 Following tests would not be suitable with doctest
