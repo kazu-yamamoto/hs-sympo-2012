@@ -107,3 +107,6 @@ The authors integrated QuickCheck into doctest. (version 0.7)
  - We do not get source locations for failing tests.  Doctest solves this.  For
    Hspec/QuickCheck/HUnit something like JHC's `SRCLOC_ANNOTATE` pragma could
    help.
+
+ - Are more high-lever approaches to BDD, akin to Ruby's Cucumber, applicable
+   to Haskell?  (Observation: Cucumber's approach is tightly tied to OO)
