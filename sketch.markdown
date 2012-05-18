@@ -1,4 +1,6 @@
-## Purpose of paper
+> http://www.haskell.org/haskell-symposium/2012/
+
+## Purpose of the paper
 
 Encourage Haskllers to write usage/examples/properties in their
 libraries with doctest/QuickCheck.
@@ -95,4 +97,13 @@ The authors integrated QuickCheck into doctest. (version 0.7)
 
    - How to translate open lambda terms to close lambda terms.
 
+## Open problems / Future work
 
+ - Bridging the gap between HUnit and QuickCheck
+
+ - Feedback for failing QuickCheck properties is not always as useful as it
+   could be -> combinators that use QuickCheck's Result type could help
+
+ - We do not get source locations for failing tests.  Doctest solves this.  For
+   Hspec/QuickCheck/HUnit something like JHC's `SRCLOC_ANNOTATE` pragma could
+   help.
