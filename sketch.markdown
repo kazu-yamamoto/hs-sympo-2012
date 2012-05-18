@@ -1,15 +1,15 @@
-* Purpose of paper
+## Purpose of paper
 
 Encourage Haskllers to write usage/examples/properties in their
 libraries with doctest/QuickCheck.
 
-* Contribution
+## Contribution
 
-1) Introduced doctest from Python community to Haskell community
-2) Integrated doctest and QuickCheck
-3) Show best current practice of design/documentation/tests
+1. Introduced doctest from Python community to Haskell community
+1. Integrated doctest and QuickCheck
+1. Show best current practice of design/documentation/tests
 
-* Background
+## Background
 
 Haskellers tend to depend on its strong type system too much. They
 tend to just show signatures as documentation instead of writing
@@ -24,7 +24,7 @@ Haskellers should write more tests. Since writing test is not fun, we
 should have a system which makes writing tests fun. doctest developed
 in Python community would be one solution.
 
-* Observation
+## Observation
 
 There are two kinds of program in Haskell, pure and IO.
 
@@ -37,7 +37,7 @@ QuickCheck by Nick Smallbone.)
 It is not easy to test IO. But Programmers would write typical usage
 with doctest.
 
-* Tests not suitable with doctest
+## Tests not suitable with doctest
 
 Following tests would not be suitable with doctest
 
@@ -47,19 +47,19 @@ Following tests would not be suitable with doctest
 
 So, test frameworks are still necessary. A good candidates is hspec.
 
-* Integrating multiple test suites
+## Integrating multiple test suites
 
 Now we can specify multiple test suites with Cabal. So, both doctest
 and hspec can be integrated with Cabal.
 
-* Syntax
+## Syntax
 
 Open lambda terms are supported. Type can be specified with expression
 type-signature.
 
     sort (xs :: [Int]) == sort (sort xs)
 
-* Best current practive on design
+## Best current practive on design
 
 Firt, we write a signature and leave the function undefined.
 
@@ -81,7 +81,7 @@ Then write its document with properties:
 
 Then implement it and run tests with doctest.
 
-* Implementation status
+## Implementation status
 
 Nick Smallbone improved QuickCheck so that boolean property is tested
 just once. (version 2.4.3 ?)
