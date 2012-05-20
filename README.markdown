@@ -57,6 +57,8 @@ Give a short survey on the test coverage of existing libraries.
 Following tests would not be suitable with doctest
 
   - Unusual usage of pure program
+    > What would be _unusual usage_ be?  Can you come up with an example?
+
   - Property test which is not useful for readers
   - Unit tests for IO which cannot be executed in doctest
 
