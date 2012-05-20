@@ -57,10 +57,15 @@ Give a short survey on the test coverage of existing libraries.
 Following tests would not be suitable with doctest
 
   - Unusual usage of pure program
-    > What would be _unusual usage_ be?  Can you come up with an example?
+    > @kazu: What would be _unusual usage_ here?  Can you come up with an
+    > example?
 
   - Property test which is not useful for readers
+
   - Unit tests for IO which cannot be executed in doctest
+    > @kazu: I think unit tests that require setup code do not work well, yet.
+    > But I plan to add support for _setup code_ to doctest.  What did you have
+    > in mind?
 
 So, test frameworks are still necessary. A good candidates is hspec.
 
