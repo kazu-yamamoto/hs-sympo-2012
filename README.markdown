@@ -60,7 +60,10 @@ Following tests would not be suitable with doctest
     > @kazu: What would be _unusual usage_ here?  Can you come up with an
     > example?
 
-  - Property test which is not useful for readers
+  - Properties and examples (unit tests) that are not useful user
+    documentatation
+    > @kazu: I think this applies to both properties and unit tests.  So I
+    > adapted this.
 
   - Unit tests for IO which cannot be executed in doctest
     > @kazu: I think unit tests that require setup code do not work well, yet.
