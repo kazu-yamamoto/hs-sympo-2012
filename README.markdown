@@ -84,9 +84,9 @@ type-signature.
 
     sort (xs :: [Int]) == sort (sort xs)
 
-## Best current practive on design
+## Best current practice on design
 
-Firt, we write a signature and leave the function undefined.
+First, we write a signature and leave the function undefined.
 
     fromList :: Ord a => [a] -> Set a
     fromList = undefined
