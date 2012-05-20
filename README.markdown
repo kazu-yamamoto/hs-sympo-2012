@@ -43,6 +43,9 @@ with doctest.
 
 Give a short survey on the test coverage of existing libraries.
 
+> Let's pick some libraries from the Haskell Platform.  If it is hard to do HPC
+> coverage for `base`, we cas skip it.
+
  - process
  - HUnit
  - QuickCheck
