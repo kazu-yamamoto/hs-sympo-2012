@@ -15,7 +15,7 @@ libraries with doctest/QuickCheck.
 
 Haskellers tend to depend on its strong type system too much. They
 tend to just show signatures as documentation instead of writing
-tyical usage or examples. They tend not to write tests at all. This is
+typical usage or examples. They tend not to write tests at all. This is
 probably because programming is fun but writing tests is not fun.
 
 The strong type system ensures that program does not contain errors
