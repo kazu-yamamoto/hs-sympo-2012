@@ -70,7 +70,7 @@ maybe:
 
 Following tests would not be suitable with doctest
 
-  - Unusual usage of pure program
+  1. Unusual usage of pure program
 
     > @kazu: What would be _unusual usage_ here?  Can you come up with an
     > example?
@@ -78,12 +78,15 @@ Following tests would not be suitable with doctest
     > @sol: e.g. minimun [].
     > Should we document an error happens in this case?
 
-  - Properties and examples (unit tests) that are not useful user
+    > @kazu maybe.  If the author thinks it is useful documentation, he can use
+    > doctest, otherwise hspec.  So I think it is the same as (2.).
+
+  2. Properties and examples (unit tests) that are not useful user
     documentatation
     > @kazu: I think this applies to both properties and unit tests.  So I
     > adapted this.
 
-  - Unit tests for IO which cannot be executed in doctest
+  3. Unit tests for IO which cannot be executed in doctest
     > @kazu: I think unit tests that require setup code do not work well, yet.
     > But I plan to add support for _setup code_ to doctest.  What did you have
     > in mind?
