@@ -1,5 +1,11 @@
 > http://www.haskell.org/haskell-symposium/2012/
 
+## Title: TBD
+
+Author: Simon HENGEL and Kazuhiko YAMAMOTO
+
+> @sol: Simon should be the first author because Simon did much more work than Kazu
+
 ## Purpose of the paper
 
 Encourage Haskllers to write usage/examples/properties in their
