@@ -58,6 +58,8 @@ Give a short survey on the test coverage of existing libraries.
  - Parsec (should we cover attoparsec, aeson?)
  - base
 
+> Kazu would like to add container and bytestring because they provide many pure APIs.
+
 ## Tests not suitable with doctest
 
 Following tests would not be suitable with doctest
