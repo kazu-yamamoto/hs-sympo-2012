@@ -163,6 +163,6 @@ The authors integrated QuickCheck into doctest. (version 0.7)
    assertion test, QuickCheck is a tool for property test, and doctest
    is a tool for unit test.
 
-   > @kazu: Yes, I mostly agree.  But I'd use /example/ instead of /assertion
-   > test/.  We already uses this in doctest.  And it is used in the BDD world
+   > @kazu: Yes, I mostly agree.  But I'd use _example_ instead of _assertion
+   > test_.  We already use this in doctest.  And it is used in the BDD world
    > (RSpec, etc.).
