@@ -141,3 +141,12 @@ The authors integrated QuickCheck into doctest. (version 0.7)
 
  - Are more high-lever approaches to BDD, akin to Ruby's Cucumber, applicable
    to Haskell?  (Observation: Cucumber's approach is tightly tied to OO)
+
+## Terminology discussion
+
+ - "unit test" has two meanings: one is test tools inspired by JUnit
+   (e.g. hunit), the other is a test for a solo library which will be
+   tested with join test, and so on). Kazu would take the second one
+   and use assertion test for first one. So, HUnit is a tool for
+   assertion test, QuickCheck is a tool for property test, and doctest
+   is a tool for unit test.
