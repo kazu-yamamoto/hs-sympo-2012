@@ -88,7 +88,7 @@ Following tests would not be suitable with doctest
     > But I plan to add support for _setup code_ to doctest.  What did you have
     > in mind?
 
-    > @sol: If ways for setup and tear-down are provided, 
+    > @sol: If ways for setup and tear-down are provided,
     > we can put more tests in haddock than now.
 
 So, test frameworks are still necessary. A good candidates is hspec.
@@ -128,7 +128,21 @@ Haddock comment.
     fromList :: Ord a => [a] -> Set a
     fromList = undefined
 
-Use hspec for Properties that are not useful user documentation.
+Use hspec for properties and examples that are not useful user documentation.
+
+    main = hspecX $ do
+      describe "fromList" $ do
+
+        it "" $
+          fromList [5,3,5] == fromList [5,3]
+
+        it "creates an empty set when given an empty list" $
+          empty == fromList []
+
+        it "creates a singleton set, when given a list with one element" $ property $
+          \x -> singleton (x :: Char) == fromList [x]
+
+> Can we come up with a better hspec example here?
 
 ## Implementation status
 
