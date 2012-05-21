@@ -111,7 +111,10 @@ First, we write a signature and leave the function undefined.
     fromList :: Ord a => [a] -> Set a
     fromList = undefined
 
-Then write its document with properties:
+Then think about properties and examples the function should satisfy.
+
+Include properties and examples, that are useful user documentation, in a
+Haddock comment.
 
     {-| Creating a set from a list. O(N log N)
 
@@ -124,7 +127,7 @@ Then write its document with properties:
     fromList :: Ord a => [a] -> Set a
     fromList = undefined
 
-Then implement it and run tests with doctest.
+Use hspec for Properties that are not useful user documentation.
 
 ## Implementation status
 
