@@ -133,7 +133,7 @@ Use hspec for properties and examples that are not useful user documentation.
     main = hspecX $ do
       describe "fromList" $ do
 
-        it "" $
+        it "ignores duplicate elements" $
           fromList [5,3,5] == fromList [5,3]
 
         it "creates an empty set when given an empty list" $
