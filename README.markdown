@@ -65,8 +65,12 @@ Give a short survey on the test coverage of existing libraries.
 Following tests would not be suitable with doctest
 
   - Unusual usage of pure program
+
     > @kazu: What would be _unusual usage_ here?  Can you come up with an
     > example?
+
+    > @sol: e.g. Data.Map.minimun Data.Map.empty
+    > Should we document an error happens in this case?
 
   - Properties and examples (unit tests) that are not useful user
     documentatation
@@ -77,6 +81,9 @@ Following tests would not be suitable with doctest
     > @kazu: I think unit tests that require setup code do not work well, yet.
     > But I plan to add support for _setup code_ to doctest.  What did you have
     > in mind?
+
+    > @sol: If ways for setup and tear-down are provided, 
+    > we can put more tests in haddock than now.
 
 So, test frameworks are still necessary. A good candidates is hspec.
 
