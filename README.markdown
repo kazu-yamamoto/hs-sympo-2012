@@ -69,7 +69,7 @@ Following tests would not be suitable with doctest
     > @kazu: What would be _unusual usage_ here?  Can you come up with an
     > example?
 
-    > @sol: e.g. Data.Map.minimun Data.Map.empty
+    > @sol: e.g. minimun [].
     > Should we document an error happens in this case?
 
   - Properties and examples (unit tests) that are not useful user
