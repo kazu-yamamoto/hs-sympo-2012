@@ -54,13 +54,16 @@ Give a short survey on the test coverage of existing libraries.
 > Let's pick some libraries from the Haskell Platform.  If it is hard to do HPC
 > coverage for `base`, we can skip it.
 
- - process
+ - bytestring
+ - containers
  - HUnit
+ - Parsec
+ - process
  - QuickCheck
- - Parsec (should we cover attoparsec, aeson?)
- - base
 
-> Kazu would like to add container and bytestring because they provide many pure APIs.
+maybe:
+
+ - base
 
 ## Tests not suitable with doctest
 
