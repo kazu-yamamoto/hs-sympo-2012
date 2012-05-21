@@ -7,7 +7,7 @@ Author: Simon HENGEL and Kazuhiko YAMAMOTO
 > @sol: Simon should be the first author because Simon did much more work than Kazu
 
 > @kazu: I don't agree.  So far Kazu did most work on the paper, and it is his
-> idea.  So I insist that Kazu is named first!
+> idea.  So I insist that Kazu is named first ;)
 
 ## Purpose of the paper
 

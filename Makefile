@@ -1,9 +1,15 @@
+.PHONY: paper.pdf
 
-paper.pdf: paper.tex main.tex
+paper.pdf: paper.tex
 	pdflatex $< && pdflatex $<
 
-main.tex: README.markdown
-	pandoc $^ -o $@
+watch:
+	# This requires watchr.  Install it with e.g.
+	#
+	#   gem install watchr --user
+	#
+	# see: https://github.com/mynyml/watchr
+	watchr -e "watch('paper.tex') {system 'make'};"
 
 clean:
-	-rm -f main.tex paper.aux paper.log paper.pdf
+	-rm -f paper.aux paper.log paper.pdf
