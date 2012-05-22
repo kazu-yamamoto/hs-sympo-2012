@@ -36,23 +36,26 @@
 \copyrightyear{2005} 
 \copyrightdata{[to be supplied]} 
 
-\titlebanner{banner above paper title}        % These are ignored unless
+\titlebanner{A draft paper to be submitted to Haskell Symposium 2012}
 \preprintfooter{short description of paper}   % 'preprint' option specified.
 
-\title{Title Text}
-\subtitle{Subtitle Text, if any}
+\title{Behavior Driven Development in Haskell}
+%\subtitle{Subtitle Text, if any}
 
-\authorinfo{Name1}
-           {Affiliation1}
-           {Email1}
-\authorinfo{Name2\and Name3}
-           {Affiliation2/3}
-           {Email2/3}
+\authorinfo{Simon HENGEL}
+           {TBD: Affiliation}
+           {TBD: Email}
+\authorinfo{Trystan SPANGLER}
+           {TBD: Affiliation}
+           {TBD: Email}
+\authorinfo{Kazuhiko YAMAMOTO}
+           {IIJ Innovation Institute Inc.}
+           {kazu@iij.ad.jp}
 
 \maketitle
 
 \begin{abstract}
-This is the text of the abstract.
+TBD: This is the text of the abstract.
 \end{abstract}
 
 \category{CR-number}{subcategory}{third-level}
@@ -61,20 +64,48 @@ This is the text of the abstract.
 term1, term2
 
 \keywords
-keyword1, keyword2
+software design, documentation, automatic test
 
 \section{Introduction}
 
 The text of the paper begins here.
 
-\appendix
-\section{Appendix Title}
+The contribution of this paper is as follows:
 
-This is the text of the appendix, if you need one.
+\begin{itemize}
+\item Introduced doctest from Python community to Haskell community
+\item Introduced *spec from Ruby community to Haskell community
+\item Integrated doctest and QuickCheck
+\item Show best current practice of design/documentation/tests
+\end{itemize}
+
+\section{Observation}
+
+Should talk about equation property.
+
+\section{Solution}
+
+Note: Kazu defines functions without signatures if they are simple enough.
+And their signatures are automatically inserted by IDE (like ghc-mod) later.
+
+\section{Implementation}
+
+\subsection{doctest}
+
+\subsection{doctest and QuickCheck}
+
+\subsection{hspec}
+
+\section{Conclusion}
+
+%% \appendix
+%% \section{Appendix Title}
+
+%% This is the text of the appendix, if you need one.
 
 \acks
 
-Acknowledgments, if needed.
+TBD: Acknowledgments, if needed.
 
 % We recommend abbrvnat bibliography style.
 
