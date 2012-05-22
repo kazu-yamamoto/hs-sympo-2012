@@ -37,19 +37,6 @@ Haskellers should write more tests. Since writing test is not fun, we
 should have a system which makes writing tests fun. doctest developed
 in Python community would be one solution.
 
-## Observation
-
-There are two kinds of program in Haskell, pure and IO.
-
-It is not difficult to test pure code and to find invariants
-(properties).  Programmers would write typical usage and properties in
-document with doctest. So, it is important to integrate doctest and
-QuickCheck.  (Equation type of property is now nicely integrated in
-QuickCheck by Nick Smallbone.)
-
-It is not easy to test IO. But Programmers would write typical usage
-with doctest.
-
 ## Current state
 
 Give a short survey on the test coverage of existing libraries.
@@ -68,42 +55,41 @@ maybe:
 
  - base
 
-## Tests not suitable with doctest
+## Tests suitable with doctest
+
+  1. Examples and properties that are useful for users
+
+Note: there are two kinds of program in Haskell, pure and IO.
+
+It is not difficult to test pure code and to find invariants
+(properties). Programmers would write typical examples and properties
+in document with doctest. So, it is important to integrate doctest and
+QuickCheck. (Equation type of property is now nicely integrated in
+QuickCheck by Nick Smallbone.)
+
+It is not easy to test IO. But Programmers would write typical example
+with doctest.
+
+## Tests not suitable with hspec
 
 Following tests would not be suitable with doctest
 
-  1. Unusual usage of pure program
+  1. Examples and properties that are not useful for users
 
-    > @kazu: What would be _unusual usage_ here?  Can you come up with an
-    > example?
+    > e.g. unused cases of partial functions, coner cases reported in a bug track system
 
-    > @sol: e.g. minimun [].
-    > Should we document an error happens in this case?
+  2. Example tests for IO which cannot be executed in doctest
 
-    > @kazu maybe.  If the author thinks it is useful documentation, he can use
-    > doctest, otherwise hspec.  So I think it is the same as (2.).
+    > note: doctest will implement setup an dtear-down
 
-  2. Properties and examples (unit tests) that are not useful user
-    documentatation
-    > @kazu: I think this applies to both properties and unit tests.  So I
-    > adapted this.
-
-  3. Unit tests for IO which cannot be executed in doctest
-    > @kazu: I think unit tests that require setup code do not work well, yet.
-    > But I plan to add support for _setup code_ to doctest.  What did you have
-    > in mind?
-
-    > @sol: If ways for setup and tear-down are provided,
-    > we can put more tests in haddock than now.
-
-So, test frameworks are still necessary. A good candidates is hspec.
+For this kind of documents and tests, we use hspec.
 
 ## Integrating multiple test suites
 
 Now we can specify multiple test suites with Cabal. So, both doctest
 and hspec can be integrated with Cabal.
 
-## Syntax
+## Syntax of properties in doctest
 
 Open lambda terms are supported. Type can be specified with expression
 type-signature.
