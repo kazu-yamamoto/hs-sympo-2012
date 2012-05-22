@@ -79,14 +79,30 @@ The contribution of this paper is as follows:
 \item Show best current practice of design/documentation/tests
 \end{itemize}
 
+\section{Terminology}
+
+\begin{description}
+\item[unit test] TBD
+\item[example] TBD
+\item[property] TBD
+\item[behavior] TBD
+\item[documentation] Text written in Haskell comments and parsed by Haddock
+\end{description}
+
 \section{Observation}
 
 Should talk about equation property.
 
 \section{Solution}
 
-Note: Kazu defines functions without signatures if they are simple enough.
-And their signatures are automatically inserted by IDE (like ghc-mod) later.
+The authors are not fundamentalist.
+If functions to be defined are simple enough,
+we might implement them first withtout signatures.
+And their signatures can be automatically
+inserted by IDE (like ghc-mod) later
+if Haskell compilers can infer correctly.
+Also, we can cut and paste typical examples and their results
+from Haskell interpreters to their document.
 
 \section{Implementation}
 
