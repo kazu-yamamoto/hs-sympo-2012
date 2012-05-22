@@ -2,6 +2,12 @@
 
 ## Title: TBD
 
+We can decide title at the last moment but let's enumerates candidates:
+
+1. Integration of QuickCheck and doctest
+1. Design Driven Development in Haskell
+1. Best Current Practice for Design, Documentation and Test in Haskell
+
 Author: Simon HENGEL and Kazuhiko YAMAMOTO
 
 > @sol: Simon should be the first author because Simon did much more work than Kazu
