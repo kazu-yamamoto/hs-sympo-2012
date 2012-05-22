@@ -1,6 +1,6 @@
 > http://www.haskell.org/haskell-symposium/2012/
 
-## Title: TBD
+## Title: Behavior Driven Development in Haskell
 
 We can decide title at the last moment but let's enumerates candidates:
 
@@ -9,21 +9,17 @@ We can decide title at the last moment but let's enumerates candidates:
 1. Best Current Practice for Design, Documentation and Test in Haskell
 1. Behavior Driven Development in Haskell
 
-Author: Simon HENGEL and Kazuhiko YAMAMOTO
-
-> @sol: Simon should be the first author because Simon did much more work than Kazu
-
-> @kazu: I don't agree.  So far Kazu did most work on the paper, and it is his
-> idea.  So I insist that Kazu is named first ;)
+Author: Simon HENGEL, Trystan SPANGLER and Kazuhiko YAMAMOTO
 
 ## Purpose of the paper
 
 Encourage Haskllers to write usage/examples/properties in their
-libraries with doctest/QuickCheck.
+libraries with doctest/QuickCheck/hspec.
 
 ## Contribution
 
 1. Introduced doctest from Python community to Haskell community
+1. Introduced *spec from Ruby community to Haskell community
 1. Integrated doctest and QuickCheck
 1. Show best current practice of design/documentation/tests
 
