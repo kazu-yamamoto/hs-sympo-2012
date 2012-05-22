@@ -7,7 +7,7 @@ We can decide title at the last moment but let's enumerates candidates:
 1. Integration of QuickCheck and doctest
 1. Design Driven Development in Haskell
 1. Best Current Practice for Design, Documentation and Test in Haskell
-1. How we document Haskell code - Cherry-picking from Ruby and Python
+1. Behavior Driven Development in Haskell
 
 Author: Simon HENGEL and Kazuhiko YAMAMOTO
 
