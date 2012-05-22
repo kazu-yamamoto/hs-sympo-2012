@@ -36,8 +36,9 @@ updated Sun Feb 29 01:53:38 2004).
 
 ## html
 
-TODO: Not sure where the repository is.
+    darcs get http://code.haskell.org/html/
 
+Repository contains no tests.
 
 ## HUnit
 
