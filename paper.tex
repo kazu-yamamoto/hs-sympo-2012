@@ -56,6 +56,8 @@
 
 \begin{abstract}
 
+TBD: Asbtract will be written at the final moment.
+
 State the problem.
 
 Say why it’s an interesting problem.
@@ -78,12 +80,41 @@ software design, documentation, automatic test
 
 %%%% Describe the problem.
 
-TBD: Strong type system.
+One of the best features of Haskell is its strong type system, 
+which ensures no type errors in programs if they can be complied.
+Thanks to this, programs written in Haskell have less bugs
+than other programming languages which do not provide such strong type systems.
 
-TBD: Tend not to write tests
+Unfortunately, the strong type system of Haskell does not guarantee
+no value errors.
+Haskellers is, however, apt to rely on the strong type system too much.
+They tend to write less test programs than programmers of other
+programming languages.
 
-The purpose of this paper is to
-encourage Haskllers to write documentation, which can be used for testing, in their libraries.
+This also means that typical usage examples cannot be found from test programs.
+We agree that type signatures are good abstract document but
+there are many functions whose behaviors cannot be guessed from
+their names and type signatures.
+
+Why do we dislike to write test programs?
+It is probably because writing test programs is not fun.
+To encourage Haskellers to write more test programs
+to detect value errors,
+we need a scheme to make writing test programs fun.
+
+For this purpose,
+we brought design methods from other programming language communities and
+integrated them with a Haskell-original test method.
+In particular, we introduced {\tt doctest} and
+integrated with QuickCheck. 
+We also implemented {\tt hspec} with QuickCheck enabled.
+
+In our method, the text for design takes role of documentation and
+is used as test cases. 
+This method would motivate Haskellers
+bacause it has a kill-three-birds-with-one-stone aspect.
+
+%The purpose of this paper is to encourage Haskllers to write documentation, which can be used for testing, in their libraries.
 
 %%%% State your contributions.
 
@@ -142,6 +173,8 @@ from Haskell interpreters to their document.
 \section{Implementation}
 
 \subsection{doctest}
+
+how to handle error cases.
 
 \subsection{doctest and QuickCheck}
 
