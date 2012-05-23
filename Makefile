@@ -1,7 +1,7 @@
 .PHONY: paper.pdf
 
 paper.pdf: paper.tex
-	pdflatex $< && pdflatex $<
+	pdflatex -halt-on-error $<
 
 watch:
 	# This requires watchr.  Install it with e.g.
