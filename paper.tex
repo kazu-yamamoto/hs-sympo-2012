@@ -88,9 +88,7 @@ Unfortunately, the strong type system of Haskell does not guarantee
 no value errors.
 Haskellers is, however, apt to rely on the strong type system too much.
 They tend to write less test programs than programmers of other
-programming languages.
-
-TBD: we need evidence to support above.
+programming languages. TBD: we need evidence to support this.
 
 This also means that typical usage examples cannot be found from test programs.
 We agree that type signatures are good abstract document but
@@ -199,7 +197,7 @@ True
 \end{verbatim}
 \end{quote}
 
-We can see the equation as a boolean property for {\tt null} and {\tt empty} and
+We can see the equation as a no-parameter property for {\tt null} and {\tt empty} and
 can say that there are potentially demands to show properties with Haddock annotation.
 To our experience, it is not difficult to find properties for pure functions.
 We believe that Haskellers should show properties of pure functions
@@ -207,14 +205,12 @@ in documentation.
 
 But there is no annotation syntax to describe properties in Haddock.
 Even if a prefix keyword for properties is defined, 
-we have no agreement on how to describe non-boolean properties: e.g. how to specify types of funcation parameters. And we don't have automatic test mechanism to use properties in documentation.
-
-Note that QuickCheck 2.3 or earlier tests a boolean property 100 times though just one test is enough. (should got to appendix?)
+we have no agreement on how to describe parameterized properties: e.g. how to specify types of funcation parameters. And we don't have automatic test mechanism to use properties in documentation.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Internal documentation}
 
-There are some examples and properties which are not useful for users but useful for developers. One example is a corner case registered in a bug track system. We don't have a mechanism to integrate design, documentation and tests.
+There are some examples and properties which are not useful for users but useful for developers. One example is a corner case registered in a bug track system. TBD: setup-teardown. We don't have a mechanism to integrate design, documentation and tests.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Solution}
@@ -226,9 +222,10 @@ To specify visible behavior, we propose to use {\tt doctest} integrated with Qui
 
 To execute examples in haddock annotations, we introduced {\tt doctest} from Python community and implemented it in Haskell.
 
+TBD: command and library. 
 TBD: talk about exception.
 
-To specify properties in haddock annotations, we propose a new syntax. In this paper, we use the {\tt prop>} prefix. We can write the boolean equation as follows:
+To specify properties in haddock annotations, we propose a new syntax. In this paper, we use the {\tt prop>} prefix. We can write the no-parameter equation as follows:
 
 \begin{quote}
 \begin{verbatim}
@@ -236,7 +233,9 @@ prop> Data.Map.null (empty) == True
 \end{verbatim}
 \end{quote}
 
-\noindent talk about how to specify non-boolean properties.
+\noindent Of course, we allowed parameterized properties by
+using closed lambda terms.
+Type signatures can be specified for each parameter:
 
 \begin{quote}
 \begin{verbatim}
@@ -244,13 +243,17 @@ prop> \xs -> sort xs == sort (sort (xs::[Int]))
 \end{verbatim}
 \end{quote}
 
-\noindent talk about open lambda term.
+\noindent Since the right hand side of {\tt ->} is verbose as documentation,
+open lambda terms are also allowed:
 
 \begin{quote}
 \begin{verbatim}
 prop> sort xs == sort (sort (xs::[Int]))
 \end{verbatim}
 \end{quote}
+
+\noindent To test properties in haddock annotations, we extended doctest to handle
+them with QuickCheck.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Internal behavior}
@@ -340,17 +343,27 @@ And others?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 
-%% \appendix
-%% \section{Appendix Title}
+\appendix
 
-%% This is the text of the appendix, if you need one.
+\section{Package Survey}
+
+TBD
+
+\section{Improving QuickCheck}
+
+Since no-parameter properties has no parameters, it is enough to test them
+just one.
+However, QuickCheck 2.3 or earlier tests no-parameter properties 100 times.
+More precisely, the evaluation results are memorized and they are
+compared with {\tt True} 100 times.
+This will be fixed in the next release of QuickCheck.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \acks
 
 We would like to thank
-Nick Smallbone for having improved QuickCheck so that boolean property is tested
-just once.
+Nick Smallbone for having improved QuickCheck so that no-parameter properties are tested just once.
 We are grateful to David Waern and Simon Marlow
 for introducing the property syntax to Haddock.
 
