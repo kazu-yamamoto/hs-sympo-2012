@@ -313,6 +313,68 @@ if Haskell compilers can infer correctly.
 Also, we can cut and paste typical examples and their results
 from Haskell interpreters to their document.
 
+\subsection{Combining multiple specs}
+
+\begin{quote}
+\emph{This is optional, so we can skip it, if necessary.}
+\end{quote}
+
+\begin{itemize}
+\item We create a spec file for each source file
+\item By convention, spec files end in Spec.hs
+\end{itemize}
+
+\noindent If we have a source tree like so:
+
+\begin{quote}
+\begin{verbatim}
+src/Foo.hs
+src/Foo/Bar.hs
+src/Baz.hs
+\end{verbatim}
+\end{quote}
+
+\noindent We would end up with the following spec files.
+
+\begin{quote}
+\begin{verbatim}
+test/FooSpec.hs
+test/Foo/BarSpec.hs
+test/BazSpec.hs
+\end{verbatim}
+\end{quote}
+
+\begin{itemize}
+\item We still want to combine those specs into a single spec.
+\item By convention we put the combined spec into test/Spec.hs
+\end{itemize}
+
+\begin{quote}
+\begin{verbatim}
+import Test.Hspec.Monadic
+
+import qualified FooSpec
+import qualified Foo.BarSpec
+import qualified BazSpec
+
+main :: IO ()
+main = hspecX $ do
+  describe "Foo"     FooSpec.spec
+  describe "Foo.Bar" Foo.BarSpec.spec
+  describe "Baz"     BazSpec.spec
+\end{verbatim}
+\end{quote}
+
+\begin{itemize}
+\item We use a preprocessor (http://hackage.haskell.org/package/hspec-discover) to automatically generate this boilerplate.
+\end{itemize}
+
+\begin{quote}
+\begin{verbatim}
+{-# OPTIONS_GHC -F -pgmF hspec-discover #-}
+\end{verbatim}
+\end{quote}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Implementation}
 
