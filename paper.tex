@@ -190,7 +190,7 @@ For example, the {\tt container} packages has the following code block annotatio
 \end{verbatim}
 \end{quote}
 
-\noindent Some Haskellers like this kind of equations and dislike to write it with the example annotation as follow:
+\noindent Some Haskellers like this kind of equations and dislike to write it with the example annotation as follows:
 
 \begin{quote}
 \begin{verbatim}
@@ -224,11 +224,33 @@ To specify visible behavior, we propose to use {\tt doctest} integrated with Qui
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Visible behavior}
 
-talk about doctest.
+To execute examples in haddock annotations, we introduced {\tt doctest} from Python community and implemented it in Haskell.
 
-talk about the {\tt prop>} syntax.
+TBD: talk about exception.
 
-talk about how to specify non-boolean properties.
+To specify properties in haddock annotations, we propose a new syntax. In this paper, we use the {\tt prop>} prefix. We can write the boolean equation as follows:
+
+\begin{quote}
+\begin{verbatim}
+prop> Data.Map.null (empty) == True
+\end{verbatim}
+\end{quote}
+
+\noindent talk about how to specify non-boolean properties.
+
+\begin{quote}
+\begin{verbatim}
+prop> \xs -> sort xs == sort (sort (xs::[Int]))
+\end{verbatim}
+\end{quote}
+
+\noindent talk about open lambda term.
+
+\begin{quote}
+\begin{verbatim}
+prop> sort xs == sort (sort (xs::[Int]))
+\end{verbatim}
+\end{quote}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Internal behavior}
