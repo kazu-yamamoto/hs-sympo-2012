@@ -91,6 +91,8 @@ Haskellers is, however, apt to rely on the strong type system too much.
 They tend to write less test programs than programmers of other
 programming languages.
 
+TBD: we need evidence to support above.
+
 This also means that typical usage examples cannot be found from test programs.
 We agree that type signatures are good abstract document but
 there are many functions whose behaviors cannot be guessed from
@@ -100,7 +102,7 @@ Why do we dislike to write test programs?
 It is probably because writing test programs is not fun.
 To encourage Haskellers to write more test programs
 to detect value errors,
-we need a scheme to make writing test programs fun.
+we need a scheme to make writing test programs more interesting.
 
 For this purpose,
 we brought design methods from other programming language communities and
@@ -109,8 +111,8 @@ In particular, we introduced {\tt doctest} and
 integrated with QuickCheck. 
 We also implemented {\tt hspec} with QuickCheck enabled.
 
-In our method, the text for design takes role of documentation and
-is used as test cases. 
+In our method, design specification takes role of documentation for users and
+is used as test cases by its developer. 
 This method would motivate Haskellers
 bacause it has a kill-three-birds-with-one-stone aspect.
 
@@ -130,22 +132,74 @@ integrated it with QuickCheck (Section XXX)
 
 \section{Terminology}
 
+The definitions of words used in this paper is as follows:
+
 \begin{description}
-\item[unit test] TBD
-\item[example] TBD
-\item[property] TBD
-\item[behavior] TBD
-\item[documentation] Text written in Haskell comments and parsed by Haddock
+\item[unit test] tests for individual programs or libraries.
+\item[example] Typical usage of functions.
+\item[property] Invariants which functions have.
+\item[behavior] How do functions behave for users. Behavior can be shown by using both example and property.
+\item[design] TBD
+\item[documentation] Explanation of functions.
 \end{description}
 
 \section{Observation}
 
-Haddock example and doctest.
+We insist that examples and properties, which are useful for users, should be
+documented.
+So, let us first observe Haddock, the documentation system of Haskell. Haddock defines annotation syntax in Haskell's comment.
 
-Should talk about equation property. (e.g. container)
-Quickcheck.
+\subsection{Example annotation}
 
-pure vs IO.
+We can specify examples with the annotation syntax {\tt >>>}.
+The following is an example of how to use the {\tt length} function
+for lists.
+
+\begin{quote}
+\begin{verbatim}
+> length []
+0
+\end{verbatim}
+\end{quote}
+
+\noindent We can write this by copy-and-pasting from an interpreter.
+It's worth explaining that we can specify operation sequences:
+
+\begin{quote}
+\begin{verbatim}
+> writeFile "tmpfile" "Hello"
+> readFile "tmpfile"
+"Hello"
+\end{verbatim}
+\end{quote}
+
+\noindent But example annotations are useful for users but 
+it is not used as test case from the developer point of view (before we implemented {\tt doctest}).
+
+\subsection{Property annotation}
+
+The {\tt container} packages has equation properties:
+
+\begin{quote}
+\begin{verbatim}
+>>> Data.Map.null (empty) == True
+\end{verbatim}
+\end{quote}
+
+It is written in code blocks ({\tt >}).
+This cannot be used as test case.
+
+Equation property is tested 100 times.
+
+Quickcheck property should be able to be specified.
+
+To our experience, it is not difficult to find properties for pure functions.
+We believe that Haskellers should show properties of pure functions
+in documentation.
+
+\subsection{Internal documentation}
+
+not useful for users
 
 \section{Solution}
 
@@ -205,7 +259,7 @@ We would like to thank
 Nick Smallbone for having improved QuickCheck so that boolean property is tested
 just once.
 We are grateful to David Waern and Simon Marlow
-for introducing the property syntax to haddock.
+for introducing the property syntax to Haddock.
 
 
 % We recommend abbrvnat bibliography style.
