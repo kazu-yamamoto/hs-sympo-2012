@@ -157,7 +157,7 @@ for lists.
 
 \begin{quote}
 \begin{verbatim}
-> length []
+>>> length []
 0
 \end{verbatim}
 \end{quote}
@@ -167,8 +167,8 @@ It's worth explaining that we can specify operation sequences:
 
 \begin{quote}
 \begin{verbatim}
-> writeFile "tmpfile" "Hello"
-> readFile "tmpfile"
+>>> writeFile "tmpfile" "Hello"
+>>> readFile "tmpfile"
 "Hello"
 \end{verbatim}
 \end{quote}
@@ -178,12 +178,12 @@ it is not used as test case from the developer point of view (before we implemen
 
 \subsection{Property annotation}
 
-Haddock also provides code block annotations indicated wwith ({\tt >}).
+Haddock also provides code block annotations indicated with ({\tt >}).
 For example, the {\tt container} packages has the following code block annotation:
 
 \begin{quote}
 \begin{verbatim}
->>> Data.Map.null (empty) == True
+> Data.Map.null (empty) == True
 \end{verbatim}
 \end{quote}
 
@@ -191,7 +191,7 @@ For example, the {\tt container} packages has the following code block annotatio
 
 \begin{quote}
 \begin{verbatim}
-> Data.Map.null (empty)
+>>> Data.Map.null (empty)
 True
 \end{verbatim}
 \end{quote}
