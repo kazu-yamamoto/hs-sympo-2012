@@ -55,7 +55,15 @@
 \maketitle
 
 \begin{abstract}
-TBD: This is the text of the abstract.
+
+State the problem.
+
+Say why it’s an interesting problem.
+
+Say what your solution achieves.
+
+Say what follows from your solution.
+
 \end{abstract}
 
 \category{TBD:CR-number}{subcategory}{third-level}
@@ -68,13 +76,25 @@ software design, documentation, automatic test
 
 \section{Introduction}
 
+%%%% Describe the problem.
+
+TBD: Strong type system.
+
+TBD: Tend not to write tests
+
+The purpose of this paper is to
+encourage Haskllers to write documentation, which can be used for testing, in their libraries.
+
+%%%% State your contributions.
+
 The contribution of this paper is as follows:
 
 \begin{itemize}
-\item Introduced doctest from Python community to Haskell community
-\item Introduced *spec from Ruby community to Haskell community
-\item Integrated doctest and QuickCheck
-\item Show best current practice of design/documentation/tests
+\item Introduced {\tt doctest} from Python community to Haskell community
+and integrated it with QuickCheck (Section XXX)
+\item Introduced {\tt hspec} from Ruby community to Haskell community and
+integrated it with QuickCheck (Section XXX)
+\item Show best current practice of design/documentation/tests (Section XXX)
 \end{itemize}
 
 \section{Terminology}
@@ -89,9 +109,26 @@ The contribution of this paper is as follows:
 
 \section{Observation}
 
-Should talk about equation property.
+Haddock example and doctest.
+
+Should talk about equation property. (e.g. container)
+Quickcheck.
+
+pure vs IO.
 
 \section{Solution}
+
+FIRST convey the idea.
+
+\subsection{Tests suitable with doctest}
+
+\subsection{Tests suitable with hspec}
+
+\subsection{Integrating multiple test suites}
+
+\section{Best current practice}
+
+undefined.
 
 The authors are not fundamentalist.
 If functions to be defined are simple enough,
@@ -109,6 +146,18 @@ from Haskell interpreters to their document.
 \subsection{doctest and QuickCheck}
 
 \subsection{hspec}
+
+\section{Related work}
+
+literate programming.
+
+hunit.
+
+test-framework.
+
+smallCheck.
+
+And others?
 
 \section{Conclusion}
 
