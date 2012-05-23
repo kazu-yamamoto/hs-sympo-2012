@@ -52,7 +52,7 @@ QuickCheck by Nick Smallbone.)
 It is not easy to test IO. But Programmers would write typical example
 with doctest.
 
-## Tests not suitable with hspec
+## Tests suitable with hspec
 
 Following tests would not be suitable with doctest
 
