@@ -178,7 +178,8 @@ it is not used as test case from the developer point of view (before we implemen
 
 \subsection{Property annotation}
 
-The {\tt container} packages has equation properties:
+Haddock also provides code block annotations indicated wwith ({\tt >}).
+For example, the {\tt container} packages has the following code block annotation:
 
 \begin{quote}
 \begin{verbatim}
@@ -186,8 +187,20 @@ The {\tt container} packages has equation properties:
 \end{verbatim}
 \end{quote}
 
-It is written in code blocks ({\tt >}).
-This cannot be used as test case.
+\noindent Some Haskellers like this kind of equations and dislike to write it with the example annotation as follow:
+
+\begin{quote}
+\begin{verbatim}
+> Data.Map.null (empty)
+True
+\end{verbatim}
+\end{quote}
+
+We can see the equation as a boolean property for {\tt null} and {\tt empty} and
+can say that there are potentially demands to show properties with Haddock annotation.
+But there is no annotation syntax to describe properties in Haddock.
+Even if property annotation syntax is defined, 
+we have no agreement on how to describe non-boolean properties: e.g. how to specify types of funcation parameters.
 
 Equation property is tested 100 times.
 
