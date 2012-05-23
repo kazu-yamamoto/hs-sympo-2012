@@ -37,24 +37,6 @@ Haskellers should write more tests. Since writing test is not fun, we
 should have a system which makes writing tests fun. doctest developed
 in Python community would be one solution.
 
-## Current state
-
-Give a short survey on the test coverage of existing libraries.
-
-> Let's pick some libraries from the Haskell Platform.  If it is hard to do HPC
-> coverage for `base`, we can skip it.
-
- - bytestring
- - containers
- - HUnit
- - Parsec
- - process
- - QuickCheck
-
-maybe:
-
- - base
-
 ## Tests suitable with doctest
 
   1. Examples and properties that are useful for users
