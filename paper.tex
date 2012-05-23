@@ -68,14 +68,13 @@ Say what follows from your solution.
 
 \end{abstract}
 
-\category{TBD:CR-number}{subcategory}{third-level}
+\category{D.2.2}{Software Engineering}{Testing tools}
 
-\terms
-TBD
+\terms Languages, Design, Verification
 
-\keywords
-software design, documentation, automatic test
+\keywords Haddock, QuickCheck, doctest, hspec
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
 %%%% Describe the problem.
@@ -130,6 +129,7 @@ integrated it with QuickCheck (Section XXX)
 \item Show best current practice of design/documentation/tests (Section XXX)
 \end{itemize}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Terminology}
 
 The definitions of words used in this paper is as follows:
@@ -143,12 +143,14 @@ The definitions of words used in this paper is as follows:
 \item[documentation] Explanation of functions.
 \end{description}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Observation}
 
 We insist that examples and properties, which are useful for users, should be
 documented.
 So, let us first observe Haddock, the documentation system of Haskell. Haddock defines annotation syntax in Haskell's comment.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Example annotation}
 
 We can specify examples with the annotation syntax {\tt >>>}.
@@ -176,6 +178,7 @@ It's worth explaining that we can specify operation sequences:
 \noindent Example annotations are useful for users but 
 it is not used as test case from the developer point of view (before we implemented {\tt doctest}).
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Property annotation}
 
 Haddock also provides code block annotations indicated with ({\tt >}).
@@ -198,32 +201,80 @@ True
 
 We can see the equation as a boolean property for {\tt null} and {\tt empty} and
 can say that there are potentially demands to show properties with Haddock annotation.
-But there is no annotation syntax to describe properties in Haddock.
-Even if property annotation syntax is defined, 
-we have no agreement on how to describe non-boolean properties: e.g. how to specify types of funcation parameters.
-
-Equation property is tested 100 times.
-
-Quickcheck property should be able to be specified.
-
 To our experience, it is not difficult to find properties for pure functions.
 We believe that Haskellers should show properties of pure functions
 in documentation.
 
+But there is no annotation syntax to describe properties in Haddock.
+Even if a prefix keyword for properties is defined, 
+we have no agreement on how to describe non-boolean properties: e.g. how to specify types of funcation parameters. And we don't have automatic test mechanism to use properties in documentation.
+
+Note that QuickCheck 2.3 or earlier tests a boolean property 100 times though just one test is enough. (should got to appendix?)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Internal documentation}
 
-not useful for users
+There are some examples and properties which are not useful for users but useful for developers. One example is a corner case registered in a bug track system. We don't have a mechanism to integrate design, documentation and tests.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Solution}
 
-FIRST convey the idea.
+To specify visible behavior, we propose to use {\tt doctest} integrated with QuickCheck. To describe internal behavior, we propose to use {\tt hspec} aslo integrated with QuickCheck.
 
-\subsection{Tests suitable with doctest}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Visible behavior}
 
-\subsection{Tests suitable with hspec}
+talk about doctest.
 
+talk about the {\tt prop>} syntax.
+
+talk about how to specify non-boolean properties.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Internal behavior}
+
+TBD: talk about hspec.
+
+\begin{quote}
+\begin{verbatim}
+TBD: Example
+\end{verbatim}
+\end{quote}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Integrating multiple test suites}
 
+TBD: talk about Cabal.
+
+\begin{quote}
+\begin{verbatim}
+TBD: Example
+Test-Suite spec
+  Main-Is: Spec.hs
+  Type: exitcode-stdio-1.0
+  ...
+
+Test-Suite doctests
+  Main-Is: doctests.hs
+  Type: exitcode-stdio-1.0
+  ...
+\end{verbatim}
+\end{quote}
+
+\begin{quote}
+\begin{verbatim}
+TBD: Spec.hs comes here
+\end{verbatim}
+\end{quote}
+
+\begin{quote}
+\begin{verbatim}
+TBD: doctest.hs comes here
+\end{verbatim}
+\end{quote}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Best current practice}
 
 undefined.
@@ -237,16 +288,21 @@ if Haskell compilers can infer correctly.
 Also, we can cut and paste typical examples and their results
 from Haskell interpreters to their document.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Implementation}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{doctest}
 
 how to handle error cases.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{doctest and QuickCheck}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{hspec}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Related work}
 
 literate programming.
@@ -259,6 +315,7 @@ smallCheck.
 
 And others?
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 
 %% \appendix
@@ -266,6 +323,7 @@ And others?
 
 %% This is the text of the appendix, if you need one.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \acks
 
 We would like to thank
