@@ -132,7 +132,7 @@ integrated it with QuickCheck
 \noindent Our {\tt doctest} implementation 
 can be used for design, documentation and automatic testing.
 We hope that this kill-three-birds-with-one-stone aspect 
-motives Haskellers to write test code.
+motivates Haskellers to write test code.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Terminology}
@@ -162,20 +162,29 @@ a tool of TDD.
 Before our work, there is no BDD tool commonly used in Haskell community.
 
 BDD tools used in other programming language communities are
-mainly based on example test. When we bring them to
+mainly based on example test
+and do not support property test.
+To our experience, it is not difficult to find properties for 
+pure Haskell functions.
+So, when we bring BDD tools to
 Haskell community, we should integrate them with properties test.
 
 We can categorize behaviors into two types: visible behaviors
 and internal behaviors.
-Visible behaviors are those which are useful for for both developers and users.
+Visible behaviors are those which are useful for both developers and users.
 By contrast, internal behaviors are those which are usefull only for developers.
 Behavior for a corner case registered in a bug track system is
 a good example of internal behaviors.
 
 BDD tools should be treat both of them and provide functionality
 to disclose visible behaviors as documentation for users.
+If we can archive this, BDD tools can be used for
+triple purpose: design, documentation and automatic testing.
 
-TBD: doctest and comments
+A good candidate for this is {\tt doctest} in Python community.
+It extends Python's documentation strings so that they
+can contain examples. 
+Examples can be tested by the Python interpreter.
 
 The standard documentation mechanism for Haskell is
 Haddock~\cite{haddock}.
@@ -197,10 +206,10 @@ null (Bin {}) = False
 \end{verbatim}
 \end{quote}
 
-Haddock version 2.7.2 or earlier does not provide annotation syntax 
-for examples and properties.
-
 TBD: code block cannot show results. properties should be distinguished from examples.
+
+TBD: Haddock version 2.7.2 or earlier does not provide annotation syntax 
+for examples and properties.
 
 Here are summary of the problems:
 
