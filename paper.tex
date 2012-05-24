@@ -353,7 +353,69 @@ TBD.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Best current practice}
 
-undefined. (The placeholders library provide better keyword such as {\tt notImplemented} and {\tt todo})
+First, we write a signature and leave the definition of the function undefined.
+
+\begin{quote}
+\begin{verbatim}
+rev :: [a] -> [a]
+rev = undefined
+\end{verbatim}
+\end{quote}
+
+\noindent Note that the placeholders library provide better keyword such as {\tt notImplemented} and {\tt todo}. Next we wrote documentation.
+
+\begin{quote}
+\begin{verbatim}
+-- |
+-- 'rev' @xs@ returns the elements of @xs@
+-- in rev order. @xs@ must be finite.
+-- 
+-- >>> rev [1,2,3]
+-- [3,2,1]
+--
+-- prop> rev [] == rev []
+-- prop> rev (xs ++ ys) == rev ys ++ rev (xs::[Int])
+-- prop> rev (rev xs) == (xs::[Int])
+
+rev :: [a] -> [a]
+rev = undefined
+\end{verbatim}
+\end{quote}
+
+
+\begin{figure*}
+\begin{verbatim}
+  describe "rev" $ do
+    it "return the first element in the last" $ property $
+        \xs -> not (null xs) ==> head (rev xs) == last (xs :: [Int])
+
+    it "return the last element in the first" $ property $
+        \xs -> not (null xs) ==> last (rev xs) == head (xs :: [Int])
+\end{verbatim}
+\end{figure*}
+
+\noindent We should run test in order to find errors in Haddock annotation.
+Then we implement the function.
+
+\begin{quote}
+\begin{verbatim}
+-- |
+-- 'rev' @xs@ returns the elements of @xs@
+-- in rev order. @xs@ must be finite.
+-- 
+-- >>> rev [1,2,3]
+-- [3,2,1]
+--
+-- prop> rev [] == rev []
+-- prop> rev (xs ++ ys) == rev ys ++ rev (xs::[Int])
+-- prop> rev (rev xs) == (xs::[Int])
+
+rev :: [a] -> [a]
+rev = foldl (flip (:)) []
+\end{verbatim}
+\end{quote}
+
+\noindent And test.
 
 The authors are not fundamentalist.
 If functions to be defined are simple enough,
