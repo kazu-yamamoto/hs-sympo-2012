@@ -165,6 +165,7 @@ Haddock provides code block annotations indicated with ({\tt >}).
 For example, the {\tt container} packages has the following code block annotation:
 
 \begin{quote}
+\small
 \begin{verbatim}
 -- | /O(1)/. Is the map empty?
 --
@@ -205,6 +206,7 @@ In this paper, we use {\tt >>>} which is the same as Python's one.
 Here is an example:
 
 \begin{quote}
+\small
 \begin{verbatim}
 >>> length []
 0
@@ -215,6 +217,7 @@ Here is an example:
 It's worth explaining that we can specify operation sequences:
 
 \begin{quote}
+\small
 \begin{verbatim}
 >>> writeFile "tmpfile" "Hello"
 >>> readFile "tmpfile"
@@ -225,6 +228,7 @@ It's worth explaining that we can specify operation sequences:
 \noindent Also, we can show exceptions.
 
 \begin{quote}
+\small
 \begin{verbatim}
 >>> head []
 *** Exception: Prelude.head: empty list
@@ -234,6 +238,7 @@ It's worth explaining that we can specify operation sequences:
 To specify properties in Haddock annotations, we also propose a new syntax. In this paper, we use the {\tt prop>} prefix. We can write the no-parameter equation as follows:
 
 \begin{quote}
+\small
 \begin{verbatim}
 prop> Data.Map.null empty == True
 \end{verbatim}
@@ -244,6 +249,7 @@ using closed lambda terms.
 Type signatures can be specified for each parameter:
 
 \begin{quote}
+\small
 \begin{verbatim}
 prop> \xs -> sort xs == sort (sort (xs::[Int]))
 \end{verbatim}
@@ -253,6 +259,7 @@ prop> \xs -> sort xs == sort (sort (xs::[Int]))
 open lambda terms are also allowed:
 
 \begin{quote}
+\small
 \begin{verbatim}
 prop> sort xs == sort (sort (xs::[Int]))
 \end{verbatim}
@@ -260,7 +267,7 @@ prop> sort xs == sort (sort (xs::[Int]))
 
 Examples and properties in Haddock annotations are automatically
 tested by the {\tt doctest} command. We also provided a library
-to do this job. Its implementation will discussed in Section XXX.
+to do this job. Its implementation will discussed in Section~\ref{sec:doctest}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Internal behavior}
@@ -268,6 +275,7 @@ to do this job. Its implementation will discussed in Section XXX.
 TBD: talk about hspec.
 
 \begin{quote}
+\small
 \begin{verbatim}
 TBD: Example
 \end{verbatim}
@@ -279,6 +287,7 @@ TBD: Example
 TBD: talk about Cabal.
 
 \begin{quote}
+\small
 \begin{verbatim}
 TBD: Example
 Test-Suite spec
@@ -294,12 +303,14 @@ Test-Suite doctests
 \end{quote}
 
 \begin{quote}
+\small
 \begin{verbatim}
 TBD: Spec.hs comes here
 \end{verbatim}
 \end{quote}
 
 \begin{quote}
+\small
 \begin{verbatim}
 TBD: doctest.hs comes here
 \end{verbatim}
@@ -331,6 +342,7 @@ no-parameter properties are tested just once in its source repository.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{doctest}
+\label{sec:doctest}
 
 TBD(@sol): how to obtain examples and properties from Haddock annotations.
 Old version uses Haddock API but now uses GHC API directly. Why?
@@ -341,9 +353,32 @@ TBD(@sol): Old version executes one GHCi for each function examples.
 But new version executes one GHCI per module.
 Drastic speed up. Do We need a graph for execution time?
 
-TBD: how to handle error cases.
+Since test is done by comparing result string in Haddock notation
+and result string from GHCi, exceptions can be handled.
 
-TBD: how to integrate QuickCheck.
+To test properties, we also uses GHCi. 
+The `quickCheck'' string is prepended to each property
+and GHCi evaluates it.
+Success or failures is decided according to result string from GHCi.
+
+If properties contain free variables,
+we need to add lambda abstraction prefix before prepending
+the `quickCheck'' string.
+To check if properties contain free variables, 
+we also use GHCi for easy implementation at this moment.
+GHCi reports free variables if found:
+
+\begin{quote}
+\small
+\begin{verbatim}
+Prelude Data.List> sort xs == sort (sort (xs::[Int]))
+<interactive>:1:6: Not in scope: `xs'
+<interactive>:1:24: Not in scope: `xs'
+\end{verbatim}
+\end{quote}
+
+\noindent In this case, we should prepend the ``\verb|\xs -> |" string
+to the property.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{hspec}
@@ -356,6 +391,7 @@ TBD.
 First, we write a signature and leave the definition of the function undefined.
 
 \begin{quote}
+\small
 \begin{verbatim}
 rev :: [a] -> [a]
 rev = undefined
@@ -365,6 +401,7 @@ rev = undefined
 \noindent Note that the placeholders library provide better keyword such as {\tt notImplemented} and {\tt todo}. Next we wrote documentation.
 
 \begin{quote}
+\small
 \begin{verbatim}
 -- |
 -- 'rev' @xs@ returns the elements of @xs@
@@ -384,6 +421,7 @@ rev = undefined
 
 
 \begin{figure*}
+\small
 \begin{verbatim}
   describe "rev" $ do
     it "return the first element in the last" $ property $
@@ -398,6 +436,7 @@ rev = undefined
 Then we implement the function.
 
 \begin{quote}
+\small
 \begin{verbatim}
 -- |
 -- 'rev' @xs@ returns the elements of @xs@
@@ -440,6 +479,7 @@ from Haskell interpreters to their document.
 \noindent If we have a source tree like so:
 
 \begin{quote}
+\small
 \begin{verbatim}
 src/Foo.hs
 src/Foo/Bar.hs
@@ -450,6 +490,7 @@ src/Baz.hs
 \noindent We would end up with the following spec files.
 
 \begin{quote}
+\small
 \begin{verbatim}
 test/FooSpec.hs
 test/Foo/BarSpec.hs
@@ -463,6 +504,7 @@ test/BazSpec.hs
 \end{itemize}
 
 \begin{quote}
+\small
 \begin{verbatim}
 import Test.Hspec.Monadic
 
@@ -483,6 +525,7 @@ main = hspecX $ do
 \end{itemize}
 
 \begin{quote}
+\small
 \begin{verbatim}
 {-# OPTIONS_GHC -F -pgmF hspec-discover #-}
 \end{verbatim}
