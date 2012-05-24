@@ -116,9 +116,10 @@ we need a scheme to make writing test code more interesting.
 For this purpose,
 we brought design methods from other programming language communities and
 integrated them with a Haskell-original test method.
-In particular, we introduced {\tt doctest} and
-integrated with QuickCheck. 
-We also implemented {\tt hspec} with QuickCheck enabled.
+In particular, we introduced {\tt doctest}~\cite{doctest} and
+integrated with QuickCheck~\cite{quickcheck}. 
+We also implemented {\tt hspec} inspired by rspec~\cite{rspec} 
+and integrated with QuickCheck.
 
 In our method, design specification takes role of documentation for users and
 is used as test cases by its developer. 
@@ -155,12 +156,15 @@ The definitions of words used in this paper is as follows:
 \item[documentation] Explanation of functions.
 \end{description}
 
+TBD: behavior would not be a proper word since Haskell's pure
+functions are very static.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Observation}
 
 We insist that examples and properties, which are useful for users, should be
 documented.
-So, let us first observe Haddock (version 2.7.2 or earlier), the documentation system of Haskell. 
+So, let us first observe Haddock~\cite{haddock} (version 2.7.2 or earlier), the documentation system of Haskell. 
 Haddock defines annotation syntax in Haskell's comment.
 
 Haddock provides code block annotations indicated with ({\tt >}).
@@ -578,8 +582,32 @@ Nick Smallbone for having improved QuickCheck so that no-parameter properties ar
 \begin{thebibliography}{}
 \softraggedright
 
-\bibitem[Smith et~al.(2009)Smith, Jones]{smith02}
-P. Q. Smith, and X. Y. Jones. ...reference text...
+\bibitem[Claessen et al. 2000]{quickcheck}
+Claessen K. and Hughes J., 
+``QuickCheck: a lightweight tool for random testing of Haskell programs'',
+ICFP '00 Proceedings of the fifth ACM SIGPLAN international conference on Functional programming,
+pp 268 -- 279,
+2000
+
+\bibitem[Marlow et al. 2010]{haddock}
+Marlow S. and Waern D.,
+``Haddock User Guide'',
+URL http://www.haskell.org/haddock/doc/html/,
+2010
+
+\bibitem[Python 2012]{doctest}
+Python Software Foundation, 
+``Python documentation'', 
+URL http://docs.python.org/library/doctest.html,
+2012
+
+\bibitem[Chelimsky et al. 2010]{rspec}
+Chelimsky D.,
+Astels D., Dennis Z., Hellesoy A., Helmkamp B., and North D.,
+``The RSpec Book: Behaviour-Driven 
+Development with RSpec, Cucumber, and Friends'',
+2010
+%% Hellesoy -- o/
 
 \end{thebibliography}
 
