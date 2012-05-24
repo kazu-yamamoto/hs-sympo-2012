@@ -30,6 +30,8 @@
 
 \usepackage{amsmath}
 
+\newcommand{\hspec}{Hspec}
+
 \begin{document}
 
 \conferenceinfo{Haskell Symposium 2012}{13th September, Copenhagen.}
@@ -311,14 +313,41 @@ to do this job. Its implementation will discussed in Section~\ref{sec:doctest}.
 \subsection{Internal behavior}
 \label{sec:Internal-behavior}
 
-TBD(@sol): talk about hspec.
+If we have some behavior that does not fit into the user documentation, but
+would rather be part of a design document, we use \hspec{}.
+
+\hspec{} provides an EDSL for defining specs.  A spec organizes behavior in a
+tree structure, and it is defined with \texttt{it} and \texttt{describe}.
 
 \begin{quote}
 \small
 \begin{verbatim}
-TBD: Example
+spec :: Specs
+spec = do
+  describe "reverse" $ do
+    it "reverses a list" $
+      reverse [1 :: Int, 2, 3] @?= [3, 2, 1]
+
+    it "gives the original list, if applied twice" $ property $
+      \xs -> reverse (reverse xs) == (xs :: [Int])
 \end{verbatim}
 \end{quote}
+
+\noindent The {\tt it} function combines a text description for a behavior and
+a property or an example that gives some confidence in that behavior into a
+spec.
+Examples can be arbitrary HUnit assertions.  Properties must be of type {\tt
+Property}; QuickCheck's \texttt{property} function can be used to turn
+arbitrary properties inot a \texttt{Property}.
+
+The \texttt{describe} function combines a list of specs into a larger spec.  It
+can be used to organize a spec as a tree.
+Internally, a \texttt{Writer} is used to build up specs in a monadic way.
+
+A spec can be run with the \texttt{hspecX} function.  When a spec is run, all
+properties and examples are evaluated, and failing properties and examples are
+reported to the user (FIXME: user does not fit our definition of \emph{user}
+here!).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Integrating multiple test suites}
