@@ -103,32 +103,19 @@ We agree that type signatures are good abstract document but
 there are many functions whose behaviors cannot be guessed from
 their names and type signatures.
 
-Why do we dislike to write test code?
-It is probably because writing test code is not fun.
-To encourage Haskellers to write more test code
-to detect value errors,
-we need a scheme to make writing test code more interesting.
+In other programming language communities, 
+behavior driven development (BDD) is getting much attention
+slowly replacing test driven development (TDD).
+In BDD, test code is written with specification terminology.
+In other words, specification can be used for automatic testing.
 
-\begin{quote}
-    \emph{We should explain what is BDD around here}
-\end{quote}
-
-For this purpose,
-we brought design methods from other programming language communities and
+In this paper, we consider how put BDD into practice in Haskell.
+We brought BDD methods from other programming language communities and
 integrated them with a Haskell-original test method.
 In particular, we introduced {\tt doctest}~\cite{doctest} and
 integrated with QuickCheck~\cite{quickcheck}. 
 We also implemented {\tt hspec} inspired by rspec~\cite{rspec} 
 and integrated with QuickCheck.
-
-In our method, design specification takes role of documentation for users and
-is used as test cases by its developer. 
-This method would motivate Haskellers
-bacause it has a kill-three-birds-with-one-stone aspect.
-
-%The purpose of this paper is to encourage Haskllers to write documentation, which can be used for testing, in their libraries.
-
-%%%% State your contributions.
 
 The contribution of this paper is as follows:
 
@@ -142,12 +129,19 @@ integrated it with QuickCheck
 \item Show best current practice of behavior driven development in Haskell (Section \ref{ref:Best-current-practice})
 \end{itemize}
 
+\noindent Our {\tt doctest} implementation 
+can be used for design, documentation and automatic testing.
+We hope that this kill-three-birds-with-one-stone aspect 
+motives Haskellers to write test code.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Terminology}
 
 The definitions of words used in this paper is as follows:
 
 \begin{description}
+\item[developer] programmers who develop libraries
+\item[users] programmers who use libraries
 \item[unit test] tests for individual programs or libraries.
 \item[example] Typical usage of functions.
 \item[property] Invariants which functions have.
@@ -399,6 +393,11 @@ TBD.
 \section{Best current practice}
 \label{ref:Best-current-practice}
 
+This section show best current practice of
+BDD in Haskell.
+
+\subsection{Procedure of BBD}
+
 First, we write a signature and leave the definition of the function undefined.
 
 \begin{quote}
@@ -409,7 +408,8 @@ rev = undefined
 \end{verbatim}
 \end{quote}
 
-\noindent Note that the placeholders library provide better keyword such as {\tt notImplemented} and {\tt todo}. Next we wrote documentation.
+\noindent Note that the placeholders library provide better keyword such as {\tt notImplemented} and {\tt todo}. 
+Next we wrote visible behaviors in Haddock annotation:
 
 \begin{quote}
 \small
@@ -430,51 +430,46 @@ rev = undefined
 \end{verbatim}
 \end{quote}
 
+\noindent We should execute {\tt doctest} to ensure no syntax errors.
+Also, we specifies internal behaviors with {\tt hspec}:
 
-\begin{figure*}
+\begin{quote}
 \small
 \begin{verbatim}
-  describe "rev" $ do
-    it "return the first element in the last" $ property $
-        \xs -> not (null xs) ==> head (rev xs) == last (xs :: [Int])
+describe "rev" $ do
+  it "returns the first element in the last" $ 
+    property $ \xs -> not (null xs) ==>
+      head (rev xs) == last (xs :: [Int])
 
-    it "return the last element in the first" $ property $
-        \xs -> not (null xs) ==> last (rev xs) == head (xs :: [Int])
+  it "returns the last element in the first" $ 
+    property $ \xs -> not (null xs) ==>
+      last (rev xs) == head (xs :: [Int])
 \end{verbatim}
-\end{figure*}
+\end{quote}
 
-\noindent We should run test in order to find errors in Haddock annotation.
+\noindent Also, we should execute this hspec module
+to ensure no syntax errors.
 Then we implement the function.
 
 \begin{quote}
 \small
 \begin{verbatim}
--- |
--- 'rev' @xs@ returns the elements of @xs@
--- in rev order. @xs@ must be finite.
--- 
--- >>> rev [1,2,3]
--- [3,2,1]
---
--- prop> rev [] == rev []
--- prop> rev (xs ++ ys) == rev ys ++ rev (xs::[Int])
--- prop> rev (rev xs) == (xs::[Int])
-
 rev :: [a] -> [a]
 rev = foldl (flip (:)) []
 \end{verbatim}
 \end{quote}
 
-\noindent And test.
+\noindent Now we run test suites until
+all test failures disappear.
 
-The authors are not fundamentalist.
+Note that the authors are not fundamentalist.
 If functions to be defined are simple enough,
 we might implement them first withtout signatures.
 And their signatures can be automatically
 inserted by IDE (like ghc-mod) later
 if Haskell compilers can infer correctly.
-Also, we can cut and paste typical examples and their results
-from Haskell interpreters to their document.
+Also, we can cut and paste examples and their results
+from Haskell interpreters to their Haddock annotations.
 
 \subsection{Combining multiple specs}
 
