@@ -133,10 +133,12 @@ The contribution of this paper is as follows:
 
 \begin{itemize}
 \item Introduced {\tt doctest} from Python community to Haskell community
-and integrated it with QuickCheck (Section XXX)
+and integrated it with QuickCheck
+(Section \ref{sec:Visible-behavior} and Section \ref{sec:doctest})
 \item Introduced {\tt hspec} from Ruby community to Haskell community and
-integrated it with QuickCheck (Section XXX)
-\item Show best current practice of design/documentation/tests (Section XXX)
+integrated it with QuickCheck
+(Section \ref{sec:Internal-behavior} and Section \ref{sec:hspec})
+\item Show best current practice of behavior driven development in Haskell (Section \ref{ref:Best-current-practice})
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -190,6 +192,7 @@ To specify visible behavior, we propose to add two new annotation syntax to Hadd
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Visible behavior}
+\label{sec:Visible-behavior}
 
 Useful behavior should be documented in Haddock. 
 For this purpose, we propose the followings:
@@ -271,6 +274,7 @@ to do this job. Its implementation will discussed in Section~\ref{sec:doctest}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Internal behavior}
+\label{sec:Internal-behavior}
 
 TBD: talk about hspec.
 
@@ -382,11 +386,13 @@ to the property.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{hspec}
+\label{sec:hspec}
 
 TBD.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Best current practice}
+\label{ref:Best-current-practice}
 
 First, we write a signature and leave the definition of the function undefined.
 
