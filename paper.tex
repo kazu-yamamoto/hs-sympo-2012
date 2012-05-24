@@ -361,7 +361,8 @@ Since test is done by comparing result string in Haddock notation
 and result string from GHCi, exceptions can be handled.
 
 To test properties, we also uses GHCi. 
-The `quickCheck'' string is prepended to each property
+Each property is enclosed with 
+the ``\verb|quickCheck (|'' and ``\verb|)|'' string
 and GHCi evaluates it.
 Success or failures is decided according to result string from GHCi.
 
