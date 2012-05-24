@@ -29,6 +29,7 @@
 % authoryear    To obtain author/year citation style instead of numeric.
 
 \usepackage{amsmath}
+\usepackage{url}
 
 \newcommand{\hspec}{Hspec}
 
@@ -322,6 +323,7 @@ tree structure, and it is defined with \texttt{it} and \texttt{describe}.
 \begin{quote}
 \small
 \begin{verbatim}
+import Test.Hspec.Monadic
 spec :: Specs
 spec = do
   describe "reverse" $ do
@@ -352,38 +354,65 @@ here!).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Integrating multiple test suites}
 
-TBD(@sol): talk about Cabal.
+\begin{itemize}
+
+\item @kazu: Can you add a reference to:
+\url{http://www.haskell.org/cabal/users-guide/developing-packages.html#test-suites}
+\item @kazu: should this subsection go into "best current practice"?
+
+\item It is important that testing is automated, including running of test
+    suites.  Where should we put this?
+\end{itemize}
+
+\noindent Cabals test feature can be used to automatically run tests.  A cabal
+file can contain multiple test suites, so it is possible to define test suites
+for Doctest and \hspec{} in a single cabal file.
+
+A driver for Hspec looks like so:
 
 \begin{quote}
 \small
 \begin{verbatim}
-TBD: Example
-Test-Suite spec
-  Main-Is: Spec.hs
-  Type: exitcode-stdio-1.0
-  ...
-
-Test-Suite doctests
-  Main-Is: doctests.hs
-  Type: exitcode-stdio-1.0
-  ...
+-- file Spec.hs
+import Test.Hspec.Monadic
+main = hspecX spec
 \end{verbatim}
 \end{quote}
+
+\noindent And a corresponding Cabal test suite section like so:
 
 \begin{quote}
 \small
 \begin{verbatim}
-TBD: Spec.hs comes here
+test-suite spec
+  type:          exitcode-stdio-1.0
+  main-is:       Spec.hs
+  build-depends: base, hspec
 \end{verbatim}
 \end{quote}
+
+\noindent A driver for Doctest looks like so:
 
 \begin{quote}
 \small
 \begin{verbatim}
-TBD: doctest.hs comes here
+-- file doctests.hs
+import Test.DocTest
+main = doctest ["src/Main.hs"]
 \end{verbatim}
 \end{quote}
 
+\noindent And a corresponding Cabal test suite section like so:
+
+\begin{quote}
+\small
+\begin{verbatim}
+test-suite doctests
+  type:          exitcode-stdio-1.0
+  main-is:       doctests.hs
+  build-depends: base, doctest
+\end{verbatim}
+\end{quote}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Implementation}

@@ -1,9 +1,11 @@
+all: paper.pdf
+
 .PHONY: paper.pdf
 
 paper.pdf: paper.tex
 	pdflatex -halt-on-error $<
 
-watch:
+watch: all
 	# This requires watchr.  Install it with e.g.
 	#
 	#   gem install watchr --user
