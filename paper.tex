@@ -103,7 +103,7 @@ We agree that type signatures are good abstract document but
 there are many functions whose behaviors cannot be guessed from
 their names and type signatures.
 
-In other programming language communities, 
+In other programming language communities,
 behavior driven development (BDD) is getting much attention
 slowly replacing test driven development (TDD).
 In BDD, test code is written with specification terminology.
@@ -113,8 +113,8 @@ In this paper, we consider how to put BDD into practice in Haskell.
 We brought BDD methods from other programming language communities and
 integrated them with a Haskell-original test method.
 In particular, we introduced {\tt doctest}~\cite{doctest} and
-integrated with QuickCheck~\cite{quickcheck}. 
-We also implemented {\tt hspec} inspired by rspec~\cite{rspec} 
+integrated with QuickCheck~\cite{quickcheck}.
+We also implemented {\tt hspec} inspired by rspec~\cite{rspec}
 and integrated with QuickCheck.
 
 The contribution of this paper is as follows:
@@ -129,9 +129,9 @@ integrated it with QuickCheck
 \item Show best current practice of behavior driven development in Haskell (Section \ref{ref:Best-current-practice})
 \end{itemize}
 
-\noindent Our {\tt doctest} implementation 
+\noindent Our {\tt doctest} implementation
 can be used for design, documentation and automatic testing.
-We hope that this kill-three-birds-with-one-stone aspect 
+We hope that this kill-three-birds-with-one-stone aspect
 motivates Haskellers to write test code.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -156,7 +156,7 @@ functions are very static.
 \section{Problems}
 
 In Haskell community, HUnit and QuickCheck are commonly used %% what about SmallCheck?
-and the {\tt test-framework} package integrates them. 
+and the {\tt test-framework} package integrates them.
 We can categorize the {\tt test-framework} package into
 a tool of TDD.
 Before our work, there is no BDD tool commonly used in Haskell community.
@@ -164,7 +164,7 @@ Before our work, there is no BDD tool commonly used in Haskell community.
 BDD tools used in other programming language communities are
 mainly based on example test
 and do not support property test.
-To our experience, it is not difficult to find properties for 
+To our experience, it is not difficult to find properties for
 pure Haskell functions.
 So, when we bring BDD tools to
 Haskell community, we should integrate them with properties test.
@@ -183,7 +183,7 @@ triple purpose: design, documentation and automatic testing.
 
 A good candidate for this is {\tt doctest} in Python community.
 It extends Python's documentation strings so that they
-can contain examples. 
+can contain examples.
 Examples can be tested by the Python interpreter.
 
 The standard documentation mechanism for Haskell is
@@ -208,7 +208,7 @@ null (Bin {}) = False
 
 TBD: code block cannot show results. properties should be distinguished from examples.
 
-TBD: Haddock version 2.7.2 or earlier does not provide annotation syntax 
+TBD: Haddock version 2.7.2 or earlier does not provide annotation syntax
 for examples and properties.
 
 Here are summary of the problems:
@@ -229,7 +229,7 @@ To specify visible behavior, we propose to add two new annotation syntax to Hadd
 \subsection{Visible behavior}
 \label{sec:Visible-behavior}
 
-Useful behavior should be documented in Haddock. 
+Useful behavior should be documented in Haddock.
 For this purpose, we propose the followings:
 
 \begin{itemize}
@@ -362,16 +362,16 @@ TBD: doctest.hs comes here
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Haddock}
 
-Haddock version 2.8 or later provides the {\tt >>>} syntax. 
+Haddock version 2.8 or later provides the {\tt >>>} syntax.
 We extended Haddock to support the {\tt prop>} syntax by ourselves
 for proof of concept.
-The maintainers of Haddock agreed to introduce 
+The maintainers of Haddock agreed to introduce
 the {\tt prop>} syntax and is now supporting it by their own.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{QuickCheck}
 
-Since no-parameter properties has no parameters, 
+Since no-parameter properties has no parameters,
 it is enough to test them just one.
 However, QuickCheck 2.3 or earlier tests no-parameter properties 100 times.
 More precisely, the evaluation results are memorized and they are
@@ -395,8 +395,8 @@ Drastic speed up. Do We need a graph for execution time?
 Since test is done by comparing result string in Haddock notation
 and result string from GHCi, exceptions can be handled.
 
-To test properties, we also uses GHCi. 
-Each property is enclosed with 
+To test properties, we also uses GHCi.
+Each property is enclosed with
 the ``\verb|quickCheck (|'' and ``\verb|)|'' string
 and GHCi evaluates it.
 Success or failures is decided according to result string from GHCi.
@@ -404,7 +404,7 @@ Success or failures is decided according to result string from GHCi.
 If properties contain free variables,
 we need to add lambda abstraction prefix before prepending
 the `quickCheck'' string.
-To check if properties contain free variables, 
+To check if properties contain free variables,
 we also use GHCi for easy implementation at this moment.
 GHCi reports free variables if found:
 
@@ -445,7 +445,7 @@ rev = undefined
 \end{verbatim}
 \end{quote}
 
-\noindent Note that the placeholders library provide better keyword such as {\tt notImplemented} and {\tt todo}. 
+\noindent Note that the placeholders library provide better keyword such as {\tt notImplemented} and {\tt todo}.
 Next we wrote visible behaviors in Haddock annotation:
 
 \begin{quote}
@@ -454,7 +454,7 @@ Next we wrote visible behaviors in Haddock annotation:
 -- |
 -- 'rev' @xs@ returns the elements of @xs@
 -- in rev order. @xs@ must be finite.
--- 
+--
 -- >>> rev [1,2,3]
 -- [3,2,1]
 --
@@ -474,11 +474,11 @@ Also, we specifies internal behaviors with {\tt hspec}:
 \small
 \begin{verbatim}
 describe "rev" $ do
-  it "returns the first element in the last" $ 
+  it "returns the first element in the last" $
     property $ \xs -> not (null xs) ==>
       head (rev xs) == last (xs :: [Int])
 
-  it "returns the last element in the first" $ 
+  it "returns the last element in the first" $
     property $ \xs -> not (null xs) ==>
       last (rev xs) == head (xs :: [Int])
 \end{verbatim}
@@ -615,7 +615,7 @@ Nick Smallbone for having improved QuickCheck so that no-parameter properties ar
 \softraggedright
 
 \bibitem[Claessen et al. 2000]{quickcheck}
-Claessen K. and Hughes J., 
+Claessen K. and Hughes J.,
 ``QuickCheck: a lightweight tool for random testing of Haskell programs'',
 ICFP '00 Proceedings of the fifth ACM SIGPLAN international conference on Functional programming,
 pp 268 -- 279,
@@ -628,15 +628,15 @@ URL http://www.haskell.org/haddock/doc/html/,
 2010
 
 \bibitem[Python 2012]{doctest}
-Python Software Foundation, 
-``Python documentation'', 
+Python Software Foundation,
+``Python documentation'',
 URL http://docs.python.org/library/doctest.html,
 2012
 
 \bibitem[Chelimsky et al. 2010]{rspec}
 Chelimsky D.,
 Astels D., Dennis Z., Hellesoy A., Helmkamp B., and North D.,
-``The RSpec Book: Behaviour-Driven 
+``The RSpec Book: Behaviour-Driven
 Development with RSpec, Cucumber, and Friends'',
 2010
 %% Hellesoy -- o/
