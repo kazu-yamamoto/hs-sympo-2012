@@ -109,7 +109,7 @@ slowly replacing test driven development (TDD).
 In BDD, test code is written with specification terminology.
 In other words, specification can be used for automatic testing.
 
-In this paper, we consider how put BDD into practice in Haskell.
+In this paper, we consider how to put BDD into practice in Haskell.
 We brought BDD methods from other programming language communities and
 integrated them with a Haskell-original test method.
 In particular, we introduced {\tt doctest}~\cite{doctest} and
@@ -142,11 +142,10 @@ The definitions of words used in this paper is as follows:
 \begin{description}
 \item[developer] programmers who develop libraries
 \item[users] programmers who use libraries
-\item[unit test] tests for individual programs or libraries.
+%%\item[unit test] tests for individual programs or libraries.
 \item[example] Typical usage of functions.
 \item[property] Invariants which functions have.
 \item[behavior] How do functions behave for users. Behavior can be shown by using both examples and properties.
-\item[design] TBD
 \item[documentation] Explanation of functions.
 \end{description}
 
@@ -154,13 +153,33 @@ TBD: behavior would not be a proper word since Haskell's pure
 functions are very static.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Observation}
+\section{Problems}
 
-We insist that examples and properties, which are useful for users, should be
-documented.
-So, let us first observe Haddock~\cite{haddock} (version 2.7.2 or earlier), the documentation system of Haskell. 
+In Haskell community, HUnit and QuickCheck are commonly used %% what about SmallCheck?
+and the {\tt test-framework} package integrates them. 
+We can categorize the {\tt test-framework} package into
+a tool of TDD.
+Before our work, there is no BDD tool commonly used in Haskell community.
+
+BDD tools used in other programming language communities are
+mainly based on example test. When we bring them to
+Haskell community, we should integrate them with properties test.
+
+We can categorize behaviors into two types: visible behaviors
+and internal behaviors.
+Visible behaviors are those which are useful for for both developers and users.
+By contrast, internal behaviors are those which are usefull only for developers.
+Behavior for a corner case registered in a bug track system is
+a good example of internal behaviors.
+
+BDD tools should be treat both of them and provide functionality
+to disclose visible behaviors as documentation for users.
+
+TBD: doctest and comments
+
+The standard documentation mechanism for Haskell is
+Haddock~\cite{haddock}.
 Haddock defines annotation syntax in Haskell's comment.
-
 Haddock provides code block annotations indicated with ({\tt >}).
 For example, the {\tt container} packages has the following code block annotation:
 
@@ -178,10 +197,19 @@ null (Bin {}) = False
 \end{verbatim}
 \end{quote}
 
+Haddock version 2.7.2 or earlier does not provide annotation syntax 
+for examples and properties.
+
 TBD: code block cannot show results. properties should be distinguished from examples.
 
-TBD: Talk about test-framework. it integrates HUnit and QuickCheck but not 
-suitable for design.
+Here are summary of the problems:
+
+\begin{itemize}
+\item Haskell community does not have common syntax to describe
+behaviors in Haddock.
+\item Haskell community does not have a BBD tool for visible behaviors.
+\item Haskell community does not have a BBD tool for internal behaviors.
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Solution}
