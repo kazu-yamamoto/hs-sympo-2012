@@ -366,69 +366,6 @@ properties and examples are evaluated, and failing properties and examples are
 reported to the user (FIXME: user does not fit our definition of \emph{user}
 here!).
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Integrating multiple test suites}
-
-\begin{itemize}
-
-\item @kazu: Can you add a reference to:
-\url{http://www.haskell.org/cabal/users-guide/developing-packages.html#test-suites}
-\item @kazu: should this subsection go into "best current practice"?
-
-\item It is important that testing is automated, including running of test
-    suites.  Where should we put this?
-\end{itemize}
-
-\noindent Cabals test feature can be used to automatically run tests.  A cabal
-file can contain multiple test suites, so it is possible to define test suites
-for Doctest and \hspec{} in a single cabal file.
-
-A driver for Hspec looks like so:
-
-\begin{quote}
-\small
-\begin{verbatim}
--- file Spec.hs
-import Test.Hspec.Monadic
-main = hspecX spec
-\end{verbatim}
-\end{quote}
-
-\noindent And a corresponding Cabal test suite section like so:
-
-\begin{quote}
-\small
-\begin{verbatim}
-test-suite spec
-  type:          exitcode-stdio-1.0
-  main-is:       Spec.hs
-  build-depends: base, hspec
-\end{verbatim}
-\end{quote}
-
-\noindent A driver for Doctest looks like so:
-
-\begin{quote}
-\small
-\begin{verbatim}
--- file doctests.hs
-import Test.DocTest
-main = doctest ["src/Main.hs"]
-\end{verbatim}
-\end{quote}
-
-\noindent And a corresponding Cabal test suite section like so:
-
-\begin{quote}
-\small
-\begin{verbatim}
-test-suite doctests
-  type:          exitcode-stdio-1.0
-  main-is:       doctests.hs
-  build-depends: base, doctest
-\end{verbatim}
-\end{quote}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Implementation}
 
@@ -646,8 +583,71 @@ main = hspecX $ do
 \end{verbatim}
 \end{quote}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Integrating multiple test suites}
+
+\begin{itemize}
+
+\item @kazu: Can you add a reference to:
+\url{http://www.haskell.org/cabal/users-guide/developing-packages.html#test-suites}
+\item @kazu: should this subsection go into "best current practice"?
+
+\item It is important that testing is automated, including running of test
+    suites.  Where should we put this?
+\end{itemize}
+
+\noindent Cabals test feature can be used to automatically run tests.  A cabal
+file can contain multiple test suites, so it is possible to define test suites
+for Doctest and \hspec{} in a single cabal file.
+
+A driver for Hspec looks like so:
+
+\begin{quote}
+\small
+\begin{verbatim}
+-- file Spec.hs
+import Test.Hspec.Monadic
+main = hspecX spec
+\end{verbatim}
+\end{quote}
+
+\noindent And a corresponding Cabal test suite section like so:
+
+\begin{quote}
+\small
+\begin{verbatim}
+test-suite spec
+  type:          exitcode-stdio-1.0
+  main-is:       Spec.hs
+  build-depends: base, hspec
+\end{verbatim}
+\end{quote}
+
+\noindent A driver for Doctest looks like so:
+
+\begin{quote}
+\small
+\begin{verbatim}
+-- file doctests.hs
+import Test.DocTest
+main = doctest ["src/Main.hs"]
+\end{verbatim}
+\end{quote}
+
+\noindent And a corresponding Cabal test suite section like so:
+
+\begin{quote}
+\small
+\begin{verbatim}
+test-suite doctests
+  type:          exitcode-stdio-1.0
+  main-is:       doctests.hs
+  build-depends: base, doctest
+\end{verbatim}
+\end{quote}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Related work}
+\section{Open problems and related work}
 
 literate programming.
 
