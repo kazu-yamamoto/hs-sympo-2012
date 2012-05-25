@@ -101,11 +101,11 @@ tend to write less test code than programmers of other programming languages.
     \emph{we need evidence to support this.}
 \end{quote}
 
-This also means that typical usage examples is not provided by test code.
+This also means that typical usage examples are not provided by test code.
 
 We agree that type signatures are good abstract documentation~\cite{free}, but
 there are many functions whose behavior cannot be guessed from their names and
-type signatures. A good example is \verb|nub :: [a] -> [a]| from {\tt Data.List}.
+type signatures.  One example is \verb|nub :: [a] -> [a]| from {\tt Data.List}.
 
 In other programming language communities,
 behavior driven development (BDD) is getting much attention, and is
@@ -117,11 +117,11 @@ In this paper, we explore how to apply BDD to Haskell.
 We brought a test method from other programming language community and
 integrated it with a Haskell-original test method.
 In particular, we introduced {\tt doctest}~\cite{doctest} and
-integrated with QuickCheck~\cite{quickcheck} as a BDD tool.
-We also make use of \hspec{} inspired by rspec~\cite{rspec} for
+integrated it with QuickCheck~\cite{quickcheck} as a BDD tool.
+We also make use of \hspec{} inspired by RSpec~\cite{rspec} for
 BDD in Haskell.
 
-The contribution of this paper is as follows:
+The contributions of this paper are:
 
 \begin{itemize}
 \item Introduced {\tt doctest} from Python community to Haskell community
@@ -166,18 +166,18 @@ However, to avoid to define a new terminology,
 we use ``behavior'' in this paper.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Problems}
+\section{Problem}
 
-In Haskell community, HUnit and QuickCheck are commonly used %% what about SmallCheck?
+In the Haskell community, HUnit and QuickCheck are commonly used %% what about SmallCheck?
 and the {\tt test-framework} package integrates them.
-We can categorize the {\tt test-framework} package into
-a tool of TDD.
-Before our work and \hspec{}, there is no BDD tool commonly used in Haskell community.
+We can categorize {\tt test-framework} as
+a tool for TDD.
+Before our work and \hspec{}, there was no widely used BDD tool for Haskell.
 
 BDD tools used in other programming language communities are
-mainly based on example test
-and do not support property test.
-To our experience, it is not difficult to find properties for
+mainly based on example tests,
+and do not support property tests.
+To our experience is, that it is not difficult to find properties for
 pure Haskell functions.
 So, when we bring BDD tools to
 Haskell community, we should integrate them with properties test.
@@ -188,7 +188,7 @@ Examples/properties for users are those which are useful as user documentation.
 By contrast, examples/properties for developers are
 those which are not useful as user documentation.
 A good example of examples/properties for developers
-is a corner example registered in a bug track system.
+is a corner example registered in a bug tracking system.
 
 BDD tools should be treat both of them and provide functionality
 to extract examples/properties for users as user documentation.
@@ -203,8 +203,8 @@ Examples can be tested by the Python interpreter.
 The standard documentation mechanism for Haskell is
 Haddock~\cite{haddock}.
 Haddock defines markup syntax in Haskell's comment.
-Haddock provides the code block markup indicated with ({\tt >}).
-For example, the {\tt container} packages has the following code block markup:
+Haddock provides markup for code blocks, indicated with ({\tt >}).
+For example, the {\tt containers} packages has the following code block markup:
 
 \begin{quote}
 \small
@@ -220,8 +220,8 @@ null (Bin {}) = False
 \end{verbatim}
 \end{quote}
 
-\noindent Though the code block itslef is a necessary feature,
-we think this kind usage has problems.
+\noindent Though the code block itself is a useful feature,
+we think this kind of usage has problems.
 If the equations above are examples, we cannot distinguish
 their results from their expression to be evaluated.
 If they are properties, they should be distinguished
@@ -229,19 +229,22 @@ from example code.
 
 To describe examples/properties for developers, we can use \hspec{}.
 
-Here are summary of the problems:
+Here is a summary of the problem:
 
 \begin{itemize}
-\item Haskell community does not have common syntax to describe
+\item The Haskell community does not have common syntax to describe
 examples/properties with Haddock markup syntax.
-\item Haskell community does not have a BDD tool for 
-examples/properties for users.
+\item The Haskell community does not have a BDD tool for examples/properties
+    for users.
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Solution}
 
-To specify examples/properties for users, we propose to add two new markup to Haddock and to use {\tt doctest} integrated with QuickCheck. To describe examples/properties for developers, we propose to use \hspec{} also integrated with QuickCheck.
+To be able to specify examples and properties for users, we propose to add new
+markup to Haddock and to use {\tt doctest} integrated with QuickCheck. To
+describe examples/properties for developers, we propose to use \hspec{} also
+integrated with QuickCheck.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Examples/properties for users}
