@@ -215,10 +215,12 @@ null (Bin {}) = False
 \end{verbatim}
 \end{quote}
 
-TBD: code block cannot show results. properties should be distinguished from examples.
-
-TBD: Haddock version 2.7.2 or earlier does not provide annotation syntax
-for examples and properties.
+\noindent Though the code block itslef is a necessary feature,
+we think this kind usage has problems.
+If the equations above are examples, we cannot distinguish
+their results from their expression to be evaluated.
+If they are properties, they should be distinguished
+from example code.
 
 Here are summary of the problems:
 
@@ -380,9 +382,13 @@ here!).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Haddock}
 
-We implemented the {\tt >>>} syntax and it
-is available in Haddock version 2.8 or later.
-We also extended Haddock to support the {\tt prop>} syntax
+As we described, Haddock version 2.7.2 or earlier has
+anotation syntax for code block but does not provide
+annotation syntax for examples and properties.
+We implemented annotation syntax for examples ({\tt >>>}) and 
+it is available in Haddock version 2.8 or later.
+We also extended Haddock to support annotation syntax for
+properties ({\tt prop>})
 which will be available in the future release.
 Both examples and properties in Haddock annotation are pretty printed when producing document
 such as in HTML.
