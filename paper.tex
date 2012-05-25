@@ -48,9 +48,9 @@
 \authorinfo{Simon HENGEL}
            {TBD: Affiliation}
            {TBD: Email}
-\authorinfo{Trystan SPANGLER}
-           {TBD: Affiliation}
-           {TBD: Email}
+%% \authorinfo{Trystan SPANGLER}
+%%            {TBD: Affiliation}
+%%            {TBD: Email}
 \authorinfo{Kazuhiko YAMAMOTO}
            {IIJ Innovation Institute Inc.}
            {kazu@iij.ad.jp}
@@ -116,12 +116,11 @@ In BDD, test code is written with specification terminology.
 In other words, specification can be used for automatic testing.
 
 In this paper, we explore how to apply BDD to Haskell.
-We brought BDD methods from other programming language communities and
-integrated them with a Haskell-original test method.
+We brought a test method from other programming language community and
+integrated it with a Haskell-original test method.
 In particular, we introduced {\tt doctest}~\cite{doctest} and
-integrated with QuickCheck~\cite{quickcheck}.
-We also implemented {\tt Hspec} inspired by rspec~\cite{rspec}
-and integrated with QuickCheck.
+integrated with QuickCheck~\cite{quickcheck} as a BDD tool.
+We also make use of \hspec{} inspired by rspec~\cite{rspec}.
 
 The contribution of this paper is as follows:
 
@@ -129,10 +128,10 @@ The contribution of this paper is as follows:
 \item Introduced {\tt doctest} from Python community to Haskell community
 and integrated it with QuickCheck
 (Section \ref{sec:Visible-behavior} and Section \ref{sec:doctest})
-\item Introduced {\tt Hspec} from Ruby community to Haskell community and
-integrated it with QuickCheck
-(Section \ref{sec:Internal-behavior} and Section \ref{sec:hspec})
-\item Show best current practice of behavior driven development in Haskell (Section \ref{ref:Best-current-practice})
+%% \item Introduced {\tt Hspec} from Ruby community to Haskell community and
+%% integrated it with QuickCheck
+%% (Section \ref{sec:Internal-behavior} and Section \ref{sec:hspec})
+\item Show best current practice of behavior driven development in Haskell using {\tt doctest} and \hspec{} (Section \ref{ref:Best-current-practice})
 \end{itemize}
 
 \noindent Our {\tt doctest} implementation
@@ -168,7 +167,7 @@ In Haskell community, HUnit and QuickCheck are commonly used %% what about Small
 and the {\tt test-framework} package integrates them.
 We can categorize the {\tt test-framework} package into
 a tool of TDD.
-Before our work, there is no BDD tool commonly used in Haskell community.
+Before our work and \hspec{}, there is no BDD tool commonly used in Haskell community.
 
 BDD tools used in other programming language communities are
 mainly based on example test
@@ -234,7 +233,7 @@ behaviors in Haddock.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Solution}
 
-To specify visible behavior, we propose to add two new annotation syntax to Haddock and to use {\tt doctest} integrated with QuickCheck. To describe internal behavior, we propose to use {\tt Hspec} aslo integrated with QuickCheck.
+To specify visible behavior, we propose to add two new annotation syntax to Haddock and to use {\tt doctest} integrated with QuickCheck. To describe internal behavior, we propose to use \hspec{} aslo integrated with QuickCheck.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Visible behavior}
@@ -447,10 +446,10 @@ Prelude Data.List> sort xs == sort (sort (xs::[Int]))
 to the property.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Hspec}
-\label{sec:hspec}
+%% \subsection{Hspec}
+%% \label{sec:hspec}
 
-TBD.
+%% TBD.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Best current practice}
@@ -498,7 +497,7 @@ rev = undefined
 \end{quote}
 
 \noindent We should execute {\tt doctest} to ensure no syntax errors.
-Also, we specifies internal behaviors with {\tt Hspec}:
+Also, we specifies internal behaviors with \hspec{}:
 
 \begin{quote}
 \small
@@ -514,7 +513,7 @@ describe "rev" $ do
 \end{verbatim}
 \end{quote}
 
-\noindent Also, we should execute this Hspec module
+\noindent Also, we should execute this \hspec{} module
 to ensure no syntax errors.
 Then we implement the function.
 
@@ -624,7 +623,7 @@ main = hspecX $ do
 file can contain multiple test suites, so it is possible to define test suites
 for Doctest and \hspec{} in a single cabal file.
 
-A driver for Hspec looks like so:
+A driver for \hspec{} looks like so:
 
 \begin{quote}
 \small
