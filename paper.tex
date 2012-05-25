@@ -284,7 +284,7 @@ It's worth explaining that we can specify operation sequences:
 \end{verbatim}
 \end{quote}
 
-To specify properties, we also propose a new markup. In this paper, we use the {\tt prop>} prefix. We can write the no-parameter equation as follows:
+To specify properties, we also propose a new markup. In this paper, we use the {\tt prop>} prefix. We can write properties which do not take parameters as follows:
 
 \begin{quote}
 \small
@@ -293,7 +293,7 @@ prop> Data.Map.null empty == True
 \end{verbatim}
 \end{quote}
 
-\noindent Of course, we allowed parameterized properties by
+\noindent Of course, we allowed properties which take parameters by
 using closed lambda terms.
 Type signatures can be specified for each parameter:
 
@@ -388,13 +388,14 @@ such as in HTML.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{QuickCheck}
 
-Since no-parameter properties have no parameters,
-it is enough to test them just one.
-However, QuickCheck 2.3 or earlier tests no-parameter properties 100 times.
+It is enough to test properties which do not have parameters just one.
+However, QuickCheck 2.3 or earlier tests 
+properties which do not have parameters 100 times.
 More precisely, the evaluation results are memorized and they are
 compared with {\tt True} 100 times.
 The current maintainer of QuickCheck modified so that
-no-parameter properties are tested just once in its source repository.
+properties which do not have parameters
+are tested just once in its source repository.
 This feature will be available in the future release.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -699,8 +700,8 @@ We are grateful to David Waern,
 one of the Haddock maintainers, 
 for reviewing two new markups to Haddock.
 We would like to thank
-Nick Smallbone for having improved QuickCheck so that no-parameter properties are tested just once.
-
+Nick Smallbone for having improved QuickCheck so that 
+properties which do not have parameters are tested just once.
 
 % We recommend abbrvnat bibliography style.
 
