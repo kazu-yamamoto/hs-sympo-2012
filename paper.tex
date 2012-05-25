@@ -120,7 +120,8 @@ We brought a test method from other programming language community and
 integrated it with a Haskell-original test method.
 In particular, we introduced {\tt doctest}~\cite{doctest} and
 integrated with QuickCheck~\cite{quickcheck} as a BDD tool.
-We also make use of \hspec{} inspired by rspec~\cite{rspec}.
+We also make use of \hspec{} inspired by rspec~\cite{rspec} for
+BDD in Haskell.
 
 The contribution of this paper is as follows:
 
@@ -131,7 +132,7 @@ and integrated it with QuickCheck
 %% \item Introduced {\tt Hspec} from Ruby community to Haskell community and
 %% integrated it with QuickCheck
 %% (Section \ref{sec:for-developers} and Section \ref{sec:hspec})
-\item Show best current practice of behavior driven development in Haskell using {\tt doctest} and \hspec{} (Section \ref{ref:Best-current-practice})
+\item Show best current practice of BDD in Haskell using {\tt doctest} and \hspec{} (Section \ref{ref:Best-current-practice})
 \end{itemize}
 
 \noindent Our {\tt doctest} implementation
@@ -186,7 +187,7 @@ A good example of examples/properties for developers
 is a corner example registered in a bug track system.
 
 BDD tools should be treat both of them and provide functionality
-to disclose examples/properties for users as user documentation.
+to extract examples/properties for users as user documentation.
 If we can archive this, BDD tools can be used for
 triple purpose: design, documentation and automatic testing.
 
@@ -222,12 +223,14 @@ their results from their expression to be evaluated.
 If they are properties, they should be distinguished
 from example code.
 
+To describe examples/properties for developers, we can use \hspec{}.
+
 Here are summary of the problems:
 
 \begin{itemize}
 \item Haskell community does not have common syntax to describe
-behaviors in Haddock.
-\item Haskell community does not have a BBD tool for 
+examples/properties with Haddock markup syntax.
+\item Haskell community does not have a BDD tool for 
 examples/properties for users.
 \end{itemize}
 
@@ -314,7 +317,7 @@ prop> sort xs == sort (sort (xs::[Int]))
 \end{verbatim}
 \end{quote}
 
-Examples and properties in Haddock markup are automatically
+Examples and properties in comments are automatically
 tested by the {\tt doctest} command. We also provided a library
 to do this job. Its implementation will discussed in Section~\ref{sec:doctest}.
 
@@ -322,7 +325,11 @@ to do this job. Its implementation will discussed in Section~\ref{sec:doctest}.
 \subsection{Examples/properties for developers}
 \label{sec:for-developers}
 
-If we have some behavior that does not fit into the user documentation, but
+\begin{quote}
+    \emph{TBD: Behavior should be replaced with examples/properties in this subsection?}
+\end{quote}
+
+If we have examples/properties that does not fit into the user documentation, but
 would rather be part of a design document, we use \hspec{}.
 
 \hspec{} provides an EDSL for defining specs.  A spec organizes behavior in a
@@ -436,6 +443,11 @@ Prelude Data.List> sort xs == sort (sort (xs::[Int]))
 \end{verbatim}
 \end{quote}
 
+\begin{quote}
+    \emph{TBD: describe the algorithm}
+\end{quote}
+
+
 \noindent In this case, we should prepend the ``\verb|\xs -> |" string
 to the property.
 
@@ -456,7 +468,7 @@ BDD in Haskell.
     \emph{TBD: one more example relating to IO is desired.}
 \end{quote}
 
-\subsection{Procedure of BBD}
+\subsection{Procedure of BDD}
 
 First, we write a signature and leave the definition of the function undefined.
 
@@ -468,7 +480,7 @@ rev = undefined
 \end{verbatim}
 \end{quote}
 
-\noindent Note that the placeholders library provide better keyword such as {\tt notImplemented} and {\tt todo}.
+\noindent Note that the {\tt placeholders} library provide better keyword such as {\tt notImplemented} and {\tt todo}.
 Next we write examples/properties for users in Haddock markup:
 
 \begin{quote}
@@ -528,7 +540,7 @@ we might implement them first withtout signatures.
 And their signatures can be automatically
 inserted by IDE (such as Emacs/vim with {\tt ghc-mod}) later
 if Haskell compilers can infer correctly.
-Also, we can cut and paste examples and their results
+Also, we can copy-and-paste examples and their results
 from Haskell interpreters to their Haddock markup.
 
 \subsection{Combining multiple specs}
