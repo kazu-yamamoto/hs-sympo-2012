@@ -103,15 +103,11 @@ tend to write less test code than programmers of other programming languages.
 
 This also means that typical usage examples cannot be found from test code.
 
-We agree that type signatures are good abstract document
-
-\begin{quote}
-    \emph{Should we quote "Theorems for free!" by P. Wadler here?}
-\end{quote}
-
+We agree that type signatures are good abstract document~\cite{free}
 but there are many
 functions whose behaviors cannot be guessed from their names and type
-signatures.
+signatures. A good example is \verb|nub :: [a] -> [a]| in 
+the Data.List module.
 
 In other programming language communities,
 behavior driven development (BDD) is getting much attention
@@ -686,6 +682,11 @@ Nick Smallbone for having improved QuickCheck so that no-parameter properties ar
 
 \begin{thebibliography}{}
 \softraggedright
+
+\bibitem[Wadler 1989]{free}
+Wadler P.,
+``Theorems for free!'',
+In proceeding of 4th International Conference on Functional Programming and Computer Architecture, 1989.
 
 \bibitem[Claessen et al. 2000]{quickcheck}
 Claessen K. and Hughes J.,
