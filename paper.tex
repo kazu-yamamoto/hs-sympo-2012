@@ -75,7 +75,7 @@ Say what follows from your solution.
 
 \terms Languages, Design, Verification
 
-\keywords Haddock, QuickCheck, doctest, hspec
+\keywords Haddock, QuickCheck, doctest, Hspec
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
@@ -120,7 +120,7 @@ We brought BDD methods from other programming language communities and
 integrated them with a Haskell-original test method.
 In particular, we introduced {\tt doctest}~\cite{doctest} and
 integrated with QuickCheck~\cite{quickcheck}.
-We also implemented {\tt hspec} inspired by rspec~\cite{rspec}
+We also implemented {\tt Hspec} inspired by rspec~\cite{rspec}
 and integrated with QuickCheck.
 
 The contribution of this paper is as follows:
@@ -129,7 +129,7 @@ The contribution of this paper is as follows:
 \item Introduced {\tt doctest} from Python community to Haskell community
 and integrated it with QuickCheck
 (Section \ref{sec:Visible-behavior} and Section \ref{sec:doctest})
-\item Introduced {\tt hspec} from Ruby community to Haskell community and
+\item Introduced {\tt Hspec} from Ruby community to Haskell community and
 integrated it with QuickCheck
 (Section \ref{sec:Internal-behavior} and Section \ref{sec:hspec})
 \item Show best current practice of behavior driven development in Haskell (Section \ref{ref:Best-current-practice})
@@ -232,7 +232,7 @@ behaviors in Haddock.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Solution}
 
-To specify visible behavior, we propose to add two new annotation syntax to Haddock and to use {\tt doctest} integrated with QuickCheck. To describe internal behavior, we propose to use {\tt hspec} aslo integrated with QuickCheck.
+To specify visible behavior, we propose to add two new annotation syntax to Haddock and to use {\tt doctest} integrated with QuickCheck. To describe internal behavior, we propose to use {\tt Hspec} aslo integrated with QuickCheck.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Visible behavior}
@@ -311,7 +311,7 @@ prop> \xs -> sort xs == sort (sort (xs::[Int]))
 \end{quote}
 
 \noindent Since the right hand side of {\tt ->} is verbose as documentation,
-open lambda terms are also allowed:
+lambda terms without the lambda prefix are also allowed:
 
 \begin{quote}
 \small
@@ -360,10 +360,19 @@ The \texttt{describe} function combines a list of specs into a larger spec.  It
 can be used to organize a spec as a tree.
 Internally, a \texttt{Writer} is used to build up specs in a monadic way.
 
+\begin{quote}
+    \emph{TBD: provide an example?}
+\end{quote}
+
 A spec can be run with the \texttt{hspecX} function.  When a spec is run, all
 properties and examples are evaluated, and failing properties and examples are
 reported to the user (FIXME: user does not fit our definition of \emph{user}
 here!).
+
+\begin{quote}
+    \emph{TBD: should user be replaced with developer?}
+\end{quote}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Implementation}
@@ -375,6 +384,8 @@ We implemented the {\tt >>>} syntax and it
 is available in Haddock version 2.8 or later.
 We also extended Haddock to support the {\tt prop>} syntax
 which will be available in the future release.
+Both examples and properties in Haddock annotation are pretty printed when producing document
+such as in HTML.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{QuickCheck}
@@ -384,8 +395,9 @@ it is enough to test them just one.
 However, QuickCheck 2.3 or earlier tests no-parameter properties 100 times.
 More precisely, the evaluation results are memorized and they are
 compared with {\tt True} 100 times.
-The current maintainer of QuickCheck modified that
+The current maintainer of QuickCheck modified so that
 no-parameter properties are tested just once in its source repository.
+This feature will be available in the future release.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{doctest}
@@ -429,7 +441,7 @@ Prelude Data.List> sort xs == sort (sort (xs::[Int]))
 to the property.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{hspec}
+\subsection{Hspec}
 \label{sec:hspec}
 
 TBD.
@@ -440,6 +452,10 @@ TBD.
 
 This section show best current practice of
 BDD in Haskell.
+
+\begin{quote}
+    \emph{TBD: one more example relating to IO is desired.}
+\end{quote}
 
 \subsection{Procedure of BBD}
 
@@ -476,7 +492,7 @@ rev = undefined
 \end{quote}
 
 \noindent We should execute {\tt doctest} to ensure no syntax errors.
-Also, we specifies internal behaviors with {\tt hspec}:
+Also, we specifies internal behaviors with {\tt Hspec}:
 
 \begin{quote}
 \small
@@ -492,7 +508,7 @@ describe "rev" $ do
 \end{verbatim}
 \end{quote}
 
-\noindent Also, we should execute this hspec module
+\noindent Also, we should execute this Hspec module
 to ensure no syntax errors.
 Then we implement the function.
 
@@ -511,7 +527,7 @@ Note that the authors are not fundamentalist.
 If functions to be defined are simple enough,
 we might implement them first withtout signatures.
 And their signatures can be automatically
-inserted by IDE (such as ghc-mod) later
+inserted by IDE (such as Emacs/vim with {\tt ghc-mod}) later
 if Haskell compilers can infer correctly.
 Also, we can cut and paste examples and their results
 from Haskell interpreters to their Haddock annotations.
@@ -520,6 +536,10 @@ from Haskell interpreters to their Haddock annotations.
 
 \begin{quote}
 \emph{This is optional, so we can skip it, if necessary.}
+\end{quote}
+
+\begin{quote}
+\emph{How about moving this to appendix?}
 \end{quote}
 
 \begin{itemize}
@@ -589,7 +609,6 @@ main = hspecX $ do
 
 \item @kazu: Can you add a reference to:
 \url{http://www.haskell.org/cabal/users-guide/developing-packages.html#test-suites}
-\item @kazu: should this subsection go into "best current practice"?
 
 \item It is important that testing is automated, including running of test
     suites.  Where should we put this?
