@@ -127,10 +127,10 @@ The contribution of this paper is as follows:
 \begin{itemize}
 \item Introduced {\tt doctest} from Python community to Haskell community
 and integrated it with QuickCheck
-(Section \ref{sec:Visible-behavior} and Section \ref{sec:doctest})
+(Section \ref{sec:for-users} and Section \ref{sec:doctest})
 %% \item Introduced {\tt Hspec} from Ruby community to Haskell community and
 %% integrated it with QuickCheck
-%% (Section \ref{sec:Internal-behavior} and Section \ref{sec:hspec})
+%% (Section \ref{sec:for-developers} and Section \ref{sec:hspec})
 \item Show best current practice of behavior driven development in Haskell using {\tt doctest} and \hspec{} (Section \ref{ref:Best-current-practice})
 \end{itemize}
 
@@ -177,15 +177,16 @@ pure Haskell functions.
 So, when we bring BDD tools to
 Haskell community, we should integrate them with properties test.
 
-We can categorize behaviors into two types: visible behaviors
-and internal behaviors.
-Visible behaviors are those which are useful for both developers and users.
-By contrast, internal behaviors are those which are usefull only for developers.
-A good example of internal behaviors
-is behavior for a corner case registered in a bug track system.
+We can categorize examples/properties into two types: for users and
+and for developers.
+Examples/properties for users are those which are useful as user documentation.
+By contrast, examples/properties for developers are
+those which are not useful as user documentation.
+A good example of examples/properties for developers
+is a corner example registered in a bug track system.
 
 BDD tools should be treat both of them and provide functionality
-to disclose visible behaviors as documentation for users.
+to disclose examples/properties for users as user documentation.
 If we can archive this, BDD tools can be used for
 triple purpose: design, documentation and automatic testing.
 
@@ -197,7 +198,7 @@ Examples can be tested by the Python interpreter.
 The standard documentation mechanism for Haskell is
 Haddock~\cite{haddock}.
 Haddock defines markup syntax in Haskell's comment.
-Haddock provides code block markup indicated with ({\tt >}).
+Haddock provides the code block markup indicated with ({\tt >}).
 For example, the {\tt container} packages has the following code block markup:
 
 \begin{quote}
@@ -226,28 +227,20 @@ Here are summary of the problems:
 \begin{itemize}
 \item Haskell community does not have common syntax to describe
 behaviors in Haddock.
-\item Haskell community does not have a BBD tool for visible behaviors.
-\item Haskell community does not have a BBD tool for internal behaviors.
+\item Haskell community does not have a BBD tool for 
+examples/properties for users.
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Solution}
 
-To specify visible behavior, we propose to add two new markups to Haddock and to use {\tt doctest} integrated with QuickCheck. To describe internal behavior, we propose to use \hspec{} aslo integrated with QuickCheck.
+To specify examples/properties for users, we propose to add two new markups to Haddock and to use {\tt doctest} integrated with QuickCheck. To describe examples/properties for developers, we propose to use \hspec{} also integrated with QuickCheck.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Visible behavior}
-\label{sec:Visible-behavior}
+\subsection{Examples/properties for users}
+\label{sec:for-users}
 
-\begin{quote}
-    @kazu: I think all behavior is user visible, in the way that the user can
-    observe it when he uses the function.  Otherwise we would not be interested
-    in that behavior at all.  What do you think about using \emph{Behavior as
-    user documentation} and \emph{Behavior as code documentation} instead of
-    visible/internal behavior?  Or can we come up with something else?
-\end{quote}
-
-Useful behavior should be documented in Haddock.
+Examples/properties for users should be documented with Haddock markup syntax.
 For this purpose, we propose the followings:
 
 \begin{itemize}
@@ -326,8 +319,8 @@ tested by the {\tt doctest} command. We also provided a library
 to do this job. Its implementation will discussed in Section~\ref{sec:doctest}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Internal behavior}
-\label{sec:Internal-behavior}
+\subsection{Examples/properties for developers}
+\label{sec:for-developers}
 
 If we have some behavior that does not fit into the user documentation, but
 would rather be part of a design document, we use \hspec{}.
@@ -475,7 +468,7 @@ rev = undefined
 \end{quote}
 
 \noindent Note that the placeholders library provide better keyword such as {\tt notImplemented} and {\tt todo}.
-Next we write visible behaviors in Haddock markup:
+Next we write examples/properties for users in Haddock markup:
 
 \begin{quote}
 \small
@@ -497,7 +490,7 @@ rev = undefined
 \end{quote}
 
 \noindent We should execute {\tt doctest} to ensure no syntax errors.
-Also, we specifies internal behaviors with \hspec{}:
+Also, we specifies examples/properties for developers with \hspec{}:
 
 \begin{quote}
 \small
