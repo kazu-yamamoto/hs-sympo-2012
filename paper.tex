@@ -196,9 +196,9 @@ Examples can be tested by the Python interpreter.
 
 The standard documentation mechanism for Haskell is
 Haddock~\cite{haddock}.
-Haddock defines annotation syntax in Haskell's comment.
-Haddock provides code block annotations indicated with ({\tt >}).
-For example, the {\tt container} packages has the following code block annotation:
+Haddock defines markup syntax in Haskell's comment.
+Haddock provides code block markup indicated with ({\tt >}).
+For example, the {\tt container} packages has the following code block markup:
 
 \begin{quote}
 \small
@@ -233,7 +233,7 @@ behaviors in Haddock.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Solution}
 
-To specify visible behavior, we propose to add two new annotation syntax to Haddock and to use {\tt doctest} integrated with QuickCheck. To describe internal behavior, we propose to use \hspec{} aslo integrated with QuickCheck.
+To specify visible behavior, we propose to add two new markups to Haddock and to use {\tt doctest} integrated with QuickCheck. To describe internal behavior, we propose to use \hspec{} aslo integrated with QuickCheck.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Visible behavior}
@@ -251,13 +251,13 @@ Useful behavior should be documented in Haddock.
 For this purpose, we propose the followings:
 
 \begin{itemize}
-\item Define a new Haddock annotation syntax for examples.
-\item Define a new Haddock annotation syntax for properties.
+\item Define a new Haddock markup for examples.
+\item Define a new Haddock markup for properties.
 \item Bring {\tt doctest} from the Python community to the Haskell
 community and integrate it with QuickCheck.
 \end{itemize}
 
-First, we introduce a new Haddock annotation syntax for the example.
+First, we introduce a new Haddock markup for the example.
 In this paper, we use {\tt >>>} which is the same as Python's one.
 Here is an example:
 
@@ -291,7 +291,7 @@ It's worth explaining that we can specify operation sequences:
 \end{verbatim}
 \end{quote}
 
-To specify properties in Haddock annotations, we also propose a new syntax. In this paper, we use the {\tt prop>} prefix. We can write the no-parameter equation as follows:
+To specify properties, we also propose a new markup. In this paper, we use the {\tt prop>} prefix. We can write the no-parameter equation as follows:
 
 \begin{quote}
 \small
@@ -321,7 +321,7 @@ prop> sort xs == sort (sort (xs::[Int]))
 \end{verbatim}
 \end{quote}
 
-Examples and properties in Haddock annotations are automatically
+Examples and properties in Haddock markup are automatically
 tested by the {\tt doctest} command. We also provided a library
 to do this job. Its implementation will discussed in Section~\ref{sec:doctest}.
 
@@ -382,14 +382,14 @@ here!).
 \subsection{Haddock}
 
 As we described, Haddock version 2.7.2 or earlier has
-anotation syntax for code block but does not provide
-annotation syntax for examples and properties.
-We implemented annotation syntax for examples ({\tt >>>}) and 
+the markup for code block but does not provide
+markups for examples and properties.
+We implemented a markup for examples ({\tt >>>}) and 
 it is available in Haddock version 2.8 or later.
-We also extended Haddock to support annotation syntax for
+We also extended Haddock to support a markup for
 properties ({\tt prop>})
 which will be available in the future release.
-Both examples and properties in Haddock annotation are pretty printed when producing document
+Both examples and properties in Haddock markup are pretty printed when producing document
 such as in HTML.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -408,7 +408,7 @@ This feature will be available in the future release.
 \subsection{doctest}
 \label{sec:doctest}
 
-TBD(@sol): how to obtain examples and properties from Haddock annotations.
+TBD(@sol): how to obtain examples and properties from Haddock markup.
 Old version uses Haddock API but now uses GHC API directly. Why?
 
 TBD(@sol): escape from HUnit. Why?
@@ -475,7 +475,7 @@ rev = undefined
 \end{quote}
 
 \noindent Note that the placeholders library provide better keyword such as {\tt notImplemented} and {\tt todo}.
-Next we write visible behaviors in Haddock annotation:
+Next we write visible behaviors in Haddock markup:
 
 \begin{quote}
 \small
@@ -535,7 +535,7 @@ And their signatures can be automatically
 inserted by IDE (such as Emacs/vim with {\tt ghc-mod}) later
 if Haskell compilers can infer correctly.
 Also, we can cut and paste examples and their results
-from Haskell interpreters to their Haddock annotations.
+from Haskell interpreters to their Haddock markup.
 
 \subsection{Combining multiple specs}
 
@@ -696,7 +696,7 @@ TBD
 
 We are grateful to David Waern, 
 one of the Haddock maintainers, 
-for reviewing two new syntax to Haddock.
+for reviewing two new markups to Haddock.
 We would like to thank
 Nick Smallbone for having improved QuickCheck so that no-parameter properties are tested just once.
 
