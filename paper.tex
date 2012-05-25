@@ -101,19 +101,17 @@ tend to write less test code than programmers of other programming languages.
     \emph{we need evidence to support this.}
 \end{quote}
 
-This also means that typical usage examples cannot be found from test code.
+This also means that typical usage examples is not provided by test code.
 
-We agree that type signatures are good abstract document~\cite{free}
-but there are many
-functions whose behavior cannot be guessed from their names and type
-signatures. A good example is \verb|nub :: [a] -> [a]| in 
-the Data.List module.
+We agree that type signatures are good abstract documentation~\cite{free}, but
+there are many functions whose behavior cannot be guessed from their names and
+type signatures. A good example is \verb|nub :: [a] -> [a]| from {\tt Data.List}.
 
 In other programming language communities,
 behavior driven development (BDD) is getting much attention, and is
 slowly replacing test driven development (TDD).
 In BDD, test code is written with specification terminology.
-In other words, specification can be used for automatic testing.
+In other words, specifications can be used for automatic testing.
 
 In this paper, we explore how to apply BDD to Haskell.
 We brought a test method from other programming language community and
