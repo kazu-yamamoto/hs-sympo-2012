@@ -122,16 +122,21 @@ integrated it with QuickCheck~\cite{quickcheck} as a BDD tool.
 We also make use of \hspec{} inspired by RSpec~\cite{rspec} for
 BDD in Haskell.
 
-The contributions of this paper are:
+Our contributions are:
 
 \begin{itemize}
-\item Introduced \doctest{} from Python community to Haskell community
-and integrated it with QuickCheck
-(Section \ref{sec:for-users} and Section \ref{sec:doctest})
+\item
+    Add support for QuickCheck properties to \doctest{}
+    (Section \ref{sec:for-users} and Section \ref{sec:doctest})
+
+\item
+    Introduce a set of combinators to set of expectations about \emph{code
+    examples} for use with \hspec{}.
 %% \item Introduced {\tt Hspec} from Ruby community to Haskell community and
 %% integrated it with QuickCheck
 %% (Section \ref{sec:for-developers} and Section \ref{sec:hspec})
-\item Show best current practice of BDD in Haskell using \doctest{} and \hspec{} (Section \ref{ref:Best-current-practice})
+\item Show best current practice of BDD in Haskell using \doctest{} and
+    \hspec{} (Section \ref{ref:Best-current-practice})
 \end{itemize}
 
 \noindent Our \doctest{} implementation
