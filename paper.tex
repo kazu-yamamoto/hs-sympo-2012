@@ -150,19 +150,32 @@ motivates Haskellers to write test code.
 The definitions of words used in this paper is as follows:
 
 \begin{description}
+
 \item[developer]
     A programmer who develops a library.
+
 \item[user]
     A programmer who uses a library.
-%%\item[unit test] tests for individual programs or libraries.
+
 \item[example]
-    A typical usage example of a function.
+    An example shows how a function is used.  It is either a \emph{code
+    example} in the form of an HUnit test case; or an \emph{interactive
+    example}, given as a short GHCi session.
+
 \item[property]
-    An invariant of a function.
+    Property means a QuickCheck property as defined in~\cite{quickcheck}.
+
 \item[behavior]
-    How does a function behave from a users point of view. Behavior can be
-    shown by using both examples and properties.
-\item[documentation] Explanation of functions.
+    Behavior means an invariant of a function.  We use an informal description
+    to refer to a particular behavior, e.g.  "sorts a list" or "launches
+    missiles when run".
+
+\item[evidence]
+    Evidence is either an example or a property.  It provides some confidence,
+    that a function exhibits a certain behavior.
+
+\item[documentation]
+    Explanation of functions.
 \end{description}
 
 The word ``behavior'' is associated with actions.
