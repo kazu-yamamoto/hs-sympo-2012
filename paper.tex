@@ -98,6 +98,8 @@ code in this paper will not work!}
         \item
             Automating things, and continuous integration is an important
             aspect of BDD.
+        \item
+            BDD uses expectations instead of assertions
     \end{itemize}
 \end{quote}
 
@@ -201,8 +203,14 @@ The definitions of words used in this paper is as follows:
     example} in the form of an HUnit test case; or an \emph{interactive
     example}, given as a short GHCi session.
 
+\item[expectation]
+    Expectations are used to define the expected outcome of a code
+    example.  They serve the same purpose as assertions in xUnit
+    testing frameworks, but use a different terminology.
+
 \item[property]
-    Property means a QuickCheck property as defined in~\cite{quickcheck}.
+    Property means a QuickCheck property as defined in
+    \cite{quickcheck}.
 
 \item[behavior]
     Behavior means an invariant of a function.  We use an informal description
@@ -294,10 +302,33 @@ To describe examples/properties for developers, we can use \hspec{}.
     TBD:
 \begin{itemize}
     \item Motivate \verb|test-shouldbe|
+
+        BDD frameworks use \emph{should} or \emph{must} instead of
+        \emph{assert}.
+
+        Here is an example that uses RSpec.
+
+        \begin{verbatim}
+23.should eq(23)
+        \end{verbatim}
+
+        RSpec provides a mechanism to expect exceptions.
+
+        \begin{verbatim}
+expect {launche_missiles}.to raise_error
+        \end{verbatim}
+
+        \hspec does not yet provide a mechanism to set expectations
+        about the outcome of code examples.  It uses HUnit assertions
+        instead.
+
+        HUnit does not provide a mechanism to expect exceptions.
+
     \item Motivate \verb|shouldThrow|
     \item \emph{optional:} Motivate why it's important to integrate \doctest{} with
         Cabal.
     \item \emph{optional:} Motivate \verb|hspec-discover|
+
         It is common to have several files that contain \emph{specs}.
         And we want to be able to run them all together.  Hspec allows
         us combine specs together.  But this has to be done manually.
@@ -466,8 +497,17 @@ here!).
 \end{quote}
 
 \subsection{Combinators for expectations}
-TBD
-\subsection{Automatic discovery of specs}
+We propose to use three combinators to set expectations about the
+outcome of code examples.
+
+
+\begin{quote}\small\begin{verbatim}
+shouldBe :: (Show a, Eq a) => a -> a -> Assertion
+shouldSatisfy :: Show a => a -> (a -> Bool) -> Assertion
+shouldReturn :: (Show a, Eq a) => IO a -> a -> Assertion
+\end{verbatim}\end{quote}
+
+\subsection{\emph{optional} Automatic discovery of specs}
 TBD
 
 
