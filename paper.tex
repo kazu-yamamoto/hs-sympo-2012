@@ -198,6 +198,9 @@ The definitions of words used in this paper is as follows:
     Evidence is either an example or a property.  It provides some confidence,
     that a function exhibits a certain behavior.
 
+\item[spec]
+    TBD: BDD terminology for test suite.
+
 \item[documentation]
     Explanation of functions.
 \end{description}
@@ -280,6 +283,11 @@ To describe examples/properties for developers, we can use \hspec{}.
     \item \emph{optional:} Motivate why it's important to integrate \doctest{} with
         Cabal.
     \item \emph{optional:} Motivate \verb|hspec-discover|
+        It is common to have several files that contain \emph{specs}.
+        And we want to be able to run them all together.  Hspec allows
+        us combine specs together.  But this has to be done manually.
+        Hspec does not provide a way to automatically discover and run
+        all specs of a project.
 \end{itemize}
 \end{quote}
 
