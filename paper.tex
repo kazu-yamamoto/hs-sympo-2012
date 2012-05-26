@@ -598,14 +598,18 @@ rev = foldl (flip (:)) []
 \noindent Now we run test suites until
 all test failures disappear.
 
-Note that the authors are not fundamentalist.
-If functions to be defined are simple enough,
-we might implement them first withtout signatures.
-And their signatures can be automatically
-inserted by IDE (such as Emacs/vim with {\tt ghc-mod}) later
-if Haskell compilers can infer correctly.
-Also, we can copy-and-paste examples and their results
-from Haskell interpreters to their Haddock markup.
+\begin{quote}
+    TBD: @kazu: Do we need this to make our case?  I'm asking, because
+    it will require some work to get the language right.
+
+    Note that the authors are not fundamentalist.  If functions to be
+    defined are simple enough, we might implement them first withtout
+    signatures.  And their signatures can be automatically inserted by
+    IDE (such as Emacs/vim with {\tt ghc-mod}) later if Haskell
+    compilers can infer correctly.  Also, we can copy-and-paste
+    examples and their results from Haskell interpreters to their
+    Haddock markup.
+\end{quote}
 
 \subsection{Combining multiple specs}
 
