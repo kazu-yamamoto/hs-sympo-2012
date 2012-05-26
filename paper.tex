@@ -82,6 +82,12 @@ Say what follows from your solution.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
+\begin{quote}
+\emph{NOTE: @sol has to release a new version of hspec, that includes
+the Spec-to-Specs and hspecX-to-hspec changes.  Otherwise the code in
+this paper will not work!}
+\end{quote}
+
 %%%% Describe the problem.
 \begin{quote}
     TBD: Important points we want to say about BDD:
@@ -382,7 +388,7 @@ tree structure, and it is defined with \texttt{it} and \texttt{describe}.
 \small
 \begin{verbatim}
 import Test.Hspec.Monadic
-spec :: Specs
+spec :: Spec
 spec = do
   describe "reverse" $ do
     it "reverses a list" $
@@ -408,7 +414,7 @@ Internally, a \texttt{Writer} is used to build up specs in a monadic way.
     \emph{TBD: provide an example?}
 \end{quote}
 
-A spec can be run with the \texttt{hspecX} function.  When a spec is run, all
+A spec can be run with the \texttt{hspec} function.  When a spec is run, all
 properties and examples are evaluated, and failing properties and examples are
 reported to the user (FIXME: user does not fit our definition of \emph{user}
 here!).
@@ -648,7 +654,7 @@ import qualified Foo.BarSpec
 import qualified BazSpec
 
 main :: IO ()
-main = hspecX $ do
+main = hspec $ do
   describe "Foo"     FooSpec.spec
   describe "Foo.Bar" Foo.BarSpec.spec
   describe "Baz"     BazSpec.spec
@@ -689,7 +695,7 @@ A driver for \hspec{} looks like so:
 \begin{verbatim}
 -- file Spec.hs
 import Test.Hspec.Monadic
-main = hspecX spec
+main = hspec spec
 \end{verbatim}
 \end{quote}
 
