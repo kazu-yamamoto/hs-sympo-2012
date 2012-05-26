@@ -272,13 +272,29 @@ from example code.
 
 To describe examples/properties for developers, we can use \hspec{}.
 
+\begin{quote}
+    TBD:
+\begin{itemize}
+    \item Motivate \verb|test-shouldbe|
+    \item Motivate \verb|shouldThrow|
+    \item \emph{optional:} Motivate why it's important to integrate \doctest{} with
+        Cabal.
+    \item \emph{optional:} Motivate \verb|hspec-discover|
+\end{itemize}
+\end{quote}
+
 Here is a summary of the problem:
 
 \begin{itemize}
-\item The Haskell community does not have common syntax to describe
-examples/properties with Haddock markup syntax.
-\item The Haskell community does not have a BDD tool for examples/properties
-    for users.
+\item
+    The Haskell community does not have common syntax to describe
+    examples/properties with Haddock markup syntax.
+\item
+    The Haskell community does not have a BDD tool for
+    examples/properties for users.
+\item
+    Hspec does not provide combinators to express expectations with
+    BDD terminology
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -444,7 +460,7 @@ generating documentation, (e.g. as HTML).
 \subsection{QuickCheck}
 
 It is enough to test properties which do not have parameters just one.
-However, QuickCheck 2.3 or earlier tests 
+However, QuickCheck 2.3 or earlier tests
 properties which do not have parameters 100 times.
 More precisely, the evaluation results are memorized and they are
 compared with {\tt True} 100 times.
@@ -758,7 +774,7 @@ TBD
 We are grateful to David Waern, Haddock's maintainer, for reviewing our patches
 and accepting our patches to Haddock.
 We would like to thank
-Nick Smallbone for having improved QuickCheck so that 
+Nick Smallbone for having improved QuickCheck so that
 properties which do not have parameters are tested just once.
 
 % We recommend abbrvnat bibliography style.
