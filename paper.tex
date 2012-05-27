@@ -573,8 +573,8 @@ shouldReturn :: (Show a, Eq a) => IO a -> a
 
 \subsubsection{Expecting exceptions}
 
-HUnit does not provide any versatile mechanism to expect that an
-exception is thrown.  So we propose a combinator for that.
+HUnit does not provide any versatile mechanism to state that an action
+should throw an exception.  So we propose a combinator for that.
 
 \begin{quote}\small\begin{verbatim}
 shouldThrow :: Exception e => IO a -> (e -> Bool)
