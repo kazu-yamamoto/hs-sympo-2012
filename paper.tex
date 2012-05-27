@@ -32,9 +32,6 @@
 \usepackage{amsmath}
 \usepackage{url}
 
-\newcommand{\hspec}{Hspec}
-\newcommand{\doctest}{Doctest}
-
 \begin{document}
 
 \conferenceinfo{Haskell Symposium 2012}{13th September, Copenhagen.}
@@ -74,7 +71,7 @@ Say what follows from your solution.
 
 \terms Languages, Design, Verification
 
-\keywords \doctest{}, Haddock, \hspec{}, QuickCheck
+\keywords Doctest, Haddock, Hspec, QuickCheck
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
@@ -146,11 +143,11 @@ In other words, specifications can be used for automatic testing.
     TBD: Important points we want to say here:
     \begin{itemize}
         \item
-            We use \doctest{} and \hspec{} to document behavior.
+            We use Doctest and Hspec to document behavior.
             (in contrast to other communities)
         \item
-            Some features are missing from both, \doctest{} and
-            \hspec{}.
+            Some features are missing from both, Doctest and
+            Hspec.
         \item
             We extend them accordingly, and show how they can be used
             in combination to design, document and test Haskell code.
@@ -160,35 +157,35 @@ In other words, specifications can be used for automatic testing.
 In this paper, we explore how to apply BDD to Haskell.
 We brought a test method from other programming language community and
 integrated it with a Haskell-original test method.
-In particular, we introduced \doctest{}~\cite{doctest} and
+In particular, we introduced Doctest~\cite{doctest} and
 integrated it with QuickCheck~\cite{quickcheck} as a BDD tool.
-We also make use of \hspec{} inspired by RSpec~\cite{rspec} for
+We also make use of Hspec inspired by RSpec~\cite{rspec} for
 BDD in Haskell.
 
 Our contributions are:
 
 \begin{itemize}
 \item
-    Add support for QuickCheck properties to \doctest{} (Section
+    Add support for QuickCheck properties to Doctest (Section
     \ref{sec:for-users} and Section \ref{sec:doctest})
 
 \item
     Introduce a set of combinators to set expectations about
-    \emph{code examples} for use with \hspec{}.
+    \emph{code examples} for use with Hspec.
 
 \item
-    Improve CI support for \doctest{} and \hspec{}
+    Improve CI support for Doctest and Hspec
 
     TBD:
     \emph{This relates to hspec-discover and Doctest's Cabal support.}
 
 \item
-    Show best current practice of BDD in Haskell using \doctest{} and
-    \hspec{} (Section \ref{ref:Best-current-practice})
+    Show best current practice of BDD in Haskell using Doctest and
+    Hspec (Section \ref{ref:Best-current-practice})
 
 \end{itemize}
 
-\noindent Our \doctest{} implementation
+\noindent Our Doctest implementation
 can be used for design, documentation and automatic testing.
 We hope that this kill-three-birds-with-one-stone aspect
 motivates Haskellers to write test code.
@@ -249,7 +246,7 @@ In the Haskell community, HUnit and QuickCheck are commonly used %% what about S
 and the {\tt test-framework} package integrates them.
 We can categorize {\tt test-framework} as
 a tool for TDD.
-Before our work and \hspec{}, there was no widely used BDD tool for Haskell.
+Before our work and Hspec, there was no widely used BDD tool for Haskell.
 
 BDD tools used in other programming language communities are
 mainly based on example tests,
@@ -272,7 +269,7 @@ to extract examples/properties for users as user documentation.
 If we can archive this, BDD tools can be used for
 triple purpose: design, documentation and automatic testing.
 
-A good candidate for this is \doctest{} in Python community.
+A good candidate for this is Doctest in Python community.
 It extends Python's documentation strings so that they
 can contain examples.
 Examples can be tested by the Python interpreter.
@@ -304,7 +301,7 @@ their results from their expression to be evaluated.
 If they are properties, they should be distinguished
 from example code.
 
-To describe examples/properties for developers, we can use \hspec{}.
+To describe examples/properties for developers, we can use Hspec.
 
 \begin{quote}
     TBD:
@@ -326,13 +323,14 @@ To describe examples/properties for developers, we can use \hspec{}.
 expect {launch_missiles}.to raise_error
         \end{verbatim}
 
-        \hspec does not yet provide a mechanism to set expectations
+        Hspec does not yet provide a mechanism to set expectations
         about the outcome of code examples.  It uses HUnit assertions
         instead.
 
         HUnit does not provide a mechanism to expect exceptions.
 
-    \item \emph{optional:} Motivate why it's important to integrate \doctest{} with
+    \item \emph{optional:} Motivate why it's important to integrate
+        Doctest with
         Cabal.
 
     \item \emph{optional:} Motivate \verb|hspec-discover|
@@ -363,8 +361,8 @@ Here is a summary of the problem:
 \section{Solution}
 
 To be able to specify examples and properties for users, we propose to add new
-markup to Haddock and to use \doctest{} integrated with QuickCheck. To
-describe examples/properties for developers, we propose to use \hspec{} also
+markup to Haddock and to use Doctest integrated with QuickCheck. To
+describe examples/properties for developers, we propose to use Hspec also
 integrated with QuickCheck.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -377,7 +375,7 @@ For this purpose, we propose the followings:
 \begin{itemize}
 \item Define a new Haddock markup for examples.
 \item Define a new Haddock markup for properties.
-\item Bring \doctest{} from the Python community to the Haskell
+\item Bring Doctest from the Python community to the Haskell
 community and integrate it with QuickCheck.
 \end{itemize}
 
@@ -446,7 +444,7 @@ prop> sort xs == sort (sort (xs::[Int]))
 \end{quote}
 
 Examples and properties in comments are automatically
-tested by the \doctest{} command. We also provided a library
+tested by the Doctest command. We also provided a library
 to do this job. Its implementation will discussed in Section~\ref{sec:doctest}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -459,9 +457,9 @@ appropriate here?}
 \end{quote}
 
 If we have evidence that does not fit into the user documentation, but would
-rather be part of a design document, we use \hspec{}.
+rather be part of a design document, we use Hspec.
 
-\hspec{} provides an EDSL for defining specs.  A spec organizes evidence in a
+Hspec provides an EDSL for defining specs.  A spec organizes evidence in a
 tree structure, and it is defined with \texttt{it} and \texttt{describe}.
 
 \begin{quote}
@@ -624,7 +622,7 @@ are tested just once in its source repository.
 This feature will be available in the future release.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{\doctest}
+\subsection{Doctest}
 \label{sec:doctest}
 
 \subsubsection{Testing examples}
@@ -723,8 +721,8 @@ rev = undefined
 \end{verbatim}
 \end{quote}
 
-\noindent We should execute \doctest{} to ensure no syntax errors.
-Also, we specifies examples/properties for developers with \hspec{}:
+\noindent We should execute Doctest to ensure no syntax errors.
+Also, we specifies examples/properties for developers with Hspec:
 
 \begin{quote}
 \small
@@ -740,7 +738,7 @@ describe "rev" $ do
 \end{verbatim}
 \end{quote}
 
-\noindent Also, we should execute this \hspec{} module
+\noindent Also, we should execute this Hspec module
 to ensure no syntax errors.
 Then we implement the function.
 
@@ -860,9 +858,9 @@ main = hspec $ do
 
 \noindent Cabals test feature can be used to automatically run tests.  A cabal
 file can contain multiple test suites, so it is possible to define test suites
-for \doctest{} and \hspec{} in a single cabal file.
+for Doctest and Hspec in a single cabal file.
 
-A driver for \hspec{} looks like so:
+A driver for Hspec looks like so:
 
 \begin{quote}
 \small
@@ -885,7 +883,7 @@ test-suite spec
 \end{verbatim}
 \end{quote}
 
-\noindent A driver for \doctest{} looks like so:
+\noindent A driver for Doctest looks like so:
 
 \begin{quote}
 \small
