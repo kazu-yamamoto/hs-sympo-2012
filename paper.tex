@@ -505,15 +505,91 @@ here!).
 \end{quote}
 
 \subsection{Combinators for expectations}
-We propose to use three combinators to set expectations about the
-outcome of code examples.
 
+We propose four combinators, that can be used to set expectations
+about the outcome of code examples.
+
+A common expectation is, that a value should be equal to an other
+value.
+
+\begin{quote}\small\begin{verbatim}
+x `shouldBe` 23
+\end{verbatim}\end{quote}
+
+\noindent This is just an other name for HUnit's \texttt{@?=}
+operator.  The type is:
 
 \begin{quote}\small\begin{verbatim}
 shouldBe :: (Show a, Eq a) => a -> a -> Assertion
-shouldSatisfy :: Show a => a -> (a -> Bool) -> Assertion
-shouldReturn :: (Show a, Eq a) => IO a -> a -> Assertion
 \end{verbatim}\end{quote}
+
+\noindent Or we may expect that a value satisfies some predicate.
+
+\begin{quote}\small\begin{verbatim}
+x `shouldSatisfy` (< 23)
+\end{verbatim}\end{quote}
+
+\noindent The value is required to be in the \texttt{Show} class, so that a
+useful error message can be given when the predicate is not satisfied.
+
+\begin{quote}\small\begin{verbatim}
+shouldSatisfy :: Show a => a -> (a -> Bool)
+  -> Assertion
+\end{verbatim}\end{quote}
+
+\noindent Examples are often used to provide evidence for {\tt IO}
+actions.
+
+\begin{quote}\small\begin{verbatim}
+launchMissiles >>=
+  (`shouldBe` (Left "not implemented"))
+\end{verbatim}\end{quote}
+
+\noindent So we propose a shortcut for this common use case.
+
+\begin{quote}\small\begin{verbatim}
+launchMissiles `shouldReturn` (Left "not implemented")
+\end{verbatim}\end{quote}
+
+\begin{quote}\small\begin{verbatim}
+shouldReturn :: (Show a, Eq a) => IO a -> a
+  -> Assertion
+\end{verbatim}\end{quote}
+
+\subsubsection{Expecting exceptions}
+
+HUnit does not provide any versatile mechanism to expect that an
+exception is thrown.  So we propose a combinator for that.
+
+\begin{quote}\small\begin{verbatim}
+shouldThrow :: Exception e => IO a -> (e -> Bool)
+  -> Assertion
+\end{verbatim}\end{quote}
+
+\noindent It takes an {\tt IO} action, and a predicate.  The predicate
+servers two purposes.  It selects the type of the expected exception,
+and constraints the value.
+
+\begin{quote}\small\begin{verbatim}
+launchMissiles `shouldThrow` (== ExitFailure 1)
+\end{verbatim}\end{quote}
+
+\noindent To make it more convenient, to expect any exception of a
+certain type, we provide type-restricted versions of {\tt (const
+True)} for all standard exceptions.
+
+\begin{quote}\small\begin{verbatim}
+anyArithException :: ArithException -> Bool
+anyArithException = const True
+\end{verbatim}\end{quote}
+
+\noindent Which can be used like so:
+
+\begin{quote}\small\begin{verbatim}
+let x = 1 `div` 0 in (x `seq` return x)
+      `shouldThrow` anyArithException
+\end{verbatim}\end{quote}
+
 
 \subsection{\emph{optional} Automatic discovery of specs}
 TBD
