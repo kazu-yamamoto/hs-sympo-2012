@@ -516,10 +516,15 @@ here!).
 
 \subsection{Combinators for expectations}
 
-We propose four combinators, that can be used to set expectations
-about the outcome of code examples.
+We propose several combinators, that can be used to set expectations
+about the outcome of code examples.  And we build them on top of
+HUnit.
 
-A common expectation is, that a value should be equal to an other
+\begin{quote}\small\begin{verbatim}
+type Expectation = Assertion
+\end{verbatim}\end{quote}
+
+\noindent A common expectation is, that a value should be equal to an other
 value.
 
 \begin{quote}\small\begin{verbatim}
@@ -530,7 +535,7 @@ x `shouldBe` 23
 operator.  The type is:
 
 \begin{quote}\small\begin{verbatim}
-shouldBe :: (Show a, Eq a) => a -> a -> Assertion
+shouldBe :: (Show a, Eq a) => a -> a -> Expectation
 \end{verbatim}\end{quote}
 
 \noindent Or we may expect that a value satisfies some predicate.
@@ -544,7 +549,7 @@ useful error message can be given when the predicate is not satisfied.
 
 \begin{quote}\small\begin{verbatim}
 shouldSatisfy :: Show a => a -> (a -> Bool)
-  -> Assertion
+  -> Expectation
 \end{verbatim}\end{quote}
 
 \noindent Examples are often used to provide evidence for {\tt IO}
@@ -563,7 +568,7 @@ launchMissiles `shouldReturn` (Left "not implemented")
 
 \begin{quote}\small\begin{verbatim}
 shouldReturn :: (Show a, Eq a) => IO a -> a
-  -> Assertion
+  -> Expectation
 \end{verbatim}\end{quote}
 
 \subsubsection{Expecting exceptions}
@@ -573,7 +578,7 @@ exception is thrown.  So we propose a combinator for that.
 
 \begin{quote}\small\begin{verbatim}
 shouldThrow :: Exception e => IO a -> (e -> Bool)
-  -> Assertion
+  -> Expectation
 \end{verbatim}\end{quote}
 
 \noindent It takes an {\tt IO} action, and a predicate.  The predicate
