@@ -108,11 +108,19 @@ detected at compile time rather than runtime.  Thanks to this, we assume that
 programs written in Haskell have less bugs than programs written in programming
 languages that do not provide such a strong type system.
 
-Unfortunately, the strong type system of Haskell does not guarantee correct
-semantic.
+Unfortunately, the type system of Haskell does not always guarantee
+correct semantics.
 
 \begin{quote}
-    \emph{TBD: What about dependent types and GHC's new features?}
+    TBD: Make it plausible, that the type system does not always
+    guarantee correctly semantics.
+    \begin{itemize}
+        \item Many of the standard type classes \emph{should} adhere
+            to certain laws.
+        \item The type system does not enforce those laws.
+        \item It is the programmers responsibility to ensure that
+            instance definitions \emph{behave} as \emph{expected}.
+    \end{itemize}
 \end{quote}
 
 Haskell programmers, however, tend to rely on the type system too much.  They
@@ -324,9 +332,9 @@ expect {launche_missiles}.to raise_error
 
         HUnit does not provide a mechanism to expect exceptions.
 
-    \item Motivate \verb|shouldThrow|
     \item \emph{optional:} Motivate why it's important to integrate \doctest{} with
         Cabal.
+
     \item \emph{optional:} Motivate \verb|hspec-discover|
 
         It is common to have several files that contain \emph{specs}.
