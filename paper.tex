@@ -392,7 +392,7 @@ For this purpose, we propose the followings:
 community and integrate it with QuickCheck.
 \end{itemize}
 
-First, we introduce a new Haddock markup for the example.
+\noindent First, we introduce a new Haddock markup for the example.
 In this paper, we use {\tt >>>} which is the same as Python's one.
 Here is an example:
 
@@ -426,7 +426,9 @@ It's worth explaining that we can specify operation sequences:
 \end{verbatim}
 \end{quote}
 
-To specify properties, we also propose a new markup. In this paper, we use the {\tt prop>} prefix. We can write properties which do not take parameters as follows:
+\noindent To specify properties, we also propose a new markup. In this paper, we
+use the {\tt prop>} prefix. We can write properties which do not take
+parameters as follows:
 
 \begin{quote}
 \small
@@ -456,7 +458,7 @@ prop> sort xs == sort (sort (xs::[Int]))
 \end{verbatim}
 \end{quote}
 
-Examples and properties in comments are automatically
+\noindent Examples and properties in comments are automatically
 tested by the Doctest command. We also provided a library
 to do this job. Its implementation will discussed in Section~\ref{sec:doctest}.
 
