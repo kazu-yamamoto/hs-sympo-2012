@@ -320,8 +320,9 @@ spec = do
 \end{verbatim}
 \end{quote}
 
-\noindent The {\tt it} function combines a text description and
-an evidence and makes a spec.
+\noindent The {\tt it} function combines a text description for a
+behavior and a property or an example that gives some confidence in
+that behavior into a spec.
 Examples can be arbitrary HUnit assertions.  Properties must be of type {\tt
 Property}; QuickCheck's \texttt{property} function can be used to turn
 arbitrary properties into a \texttt{Property}.
@@ -330,8 +331,9 @@ The \texttt{describe} function combines a list of specs into a larger spec.  It
 can be used to organize a spec as a tree.
 Internally, a \texttt{Writer} is used to build up specs in a monadic way.
 
-A spec can be run with the \texttt{hspec} function.  When a spec is run, all
-evidence are evaluated, and failing evidence are reported to developers.
+A spec can be run with the \texttt{hspec} function.  When a spec is
+run, all properties and examples are evaluated, and failing properties
+and examples are reported to the developer.
 
 \begin{quote}
     TBD:
