@@ -268,16 +268,16 @@ pure Haskell functions.
 So, when we bring BDD tools to
 Haskell community, we should integrate them with properties test.
 
-We can categorize examples/properties into two types: for users and
+We can categorize evidences into two types: for users and
 and for developers.
-Examples/properties for users are those which are useful as user documentation.
-By contrast, examples/properties for developers are
+evidences for users are those which are useful as user documentation.
+By contrast, evidences for developers are
 those which are not useful as user documentation.
-A good example of examples/properties for developers
+A good example of evidences for developers
 is a corner example registered in a bug tracking system.
 
 BDD tools should be treat both of them and provide functionality
-to extract examples/properties for users as user documentation.
+to extract evidences for users as user documentation.
 If we can archive this, BDD tools can be used for
 triple purpose: design, documentation and automatic testing.
 
@@ -313,7 +313,7 @@ their results from their expression to be evaluated.
 If they are properties, they should be distinguished
 from example code.
 
-To describe examples/properties for developers, we can use Hspec.
+To describe evidences for developers, we can use Hspec.
 
 \begin{quote}
     TBD:
@@ -360,10 +360,10 @@ Here is a summary of the problem:
 \begin{itemize}
 \item
     The Haskell community does not have common syntax to describe
-    examples/properties with Haddock markup syntax.
+    evidences with Haddock markup syntax.
 \item
     The Haskell community does not have a BDD tool for
-    examples/properties for users.
+    evidences for users.
 \item
     Hspec does not provide combinators to express expectations with
     BDD terminology
@@ -372,16 +372,16 @@ Here is a summary of the problem:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Solution}
 
-To be able to specify examples and properties for users, we propose to add new
+To be able to specify evidences for users, we propose to add new
 markup to Haddock and to use Doctest integrated with QuickCheck. To
-describe examples/properties for developers, we propose to use Hspec also
+describe evidences for developers, we propose to use Hspec also
 integrated with QuickCheck.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Evidence as user documentation}
 \label{sec:for-users}
 
-Examples/properties for users should be documented with Haddock markup syntax.
+evidences for users should be documented with Haddock markup syntax.
 For this purpose, we propose the followings:
 
 \begin{itemize}
@@ -457,7 +457,7 @@ prop> sort xs == sort (sort (xs::[Int]))
 \end{verbatim}
 \end{quote}
 
-\noindent Examples and properties in comments are automatically
+\noindent Evidences in comments are automatically
 tested by the Doctest command. We also provided a library
 to do this job. Its implementation will discussed in Section~\ref{sec:doctest}.
 
@@ -467,7 +467,7 @@ appropriate here?}
 \label{sec:for-developers}
 
 \begin{quote}
-    \emph{TBD: Behavior should be replaced with examples/properties in this subsection?}
+    \emph{TBD: Behavior should be replaced with evidences in this subsection?}
 \end{quote}
 
 If we have evidence that does not fit into the user documentation, but would
@@ -493,7 +493,7 @@ spec = do
 \end{quote}
 
 \noindent The {\tt it} function combines a text description for a behavior and
-a property or an example that gives some confidence in that behavior into a
+an evidence that gives some confidence in that behavior into a
 spec.
 Examples can be arbitrary HUnit assertions.  Properties must be of type {\tt
 Property}; QuickCheck's \texttt{property} function can be used to turn
@@ -508,7 +508,7 @@ Internally, a \texttt{Writer} is used to build up specs in a monadic way.
 \end{quote}
 
 A spec can be run with the \texttt{hspec} function.  When a spec is run, all
-properties and examples are evaluated, and failing properties and examples are
+evidences are evaluated, and failing evidences are
 reported to the user (FIXME: user does not fit our definition of \emph{user}
 here!).
 
@@ -647,7 +647,7 @@ TBD
 \subsection{Haddock}
 
 As we described, Haddock version 2.7.2 or earlier provides markup syntax for
-code blocks, but does not provide any markup syntax for examples or properties.
+code blocks, but does not provide any markup syntax for evidences.
 We implemented markup support for examples ({\tt >>>}) and it is available in
 Haddock version 2.8 or later.
 We also extended Haddock to support markup for properties ({\tt prop>}) which
@@ -674,7 +674,7 @@ This feature will be available in the future release.
 
 \subsubsection{Testing examples}
 
-TBD(@sol): how to obtain examples and properties from Haddock markup.
+TBD(@sol): how to obtain evidences from Haddock markup.
 Old version uses Haddock API but now uses GHC API directly. Why?
 
 TBD(@sol): escape from HUnit. Why?
@@ -751,7 +751,7 @@ rev = undefined
 \end{quote}
 
 \noindent Note that the {\tt placeholders} library provide better keyword such as {\tt notImplemented} and {\tt todo}.
-Next we write examples/properties for users in Haddock markup:
+Next we write evidences for users in Haddock markup:
 
 \begin{quote}
 \small
@@ -773,7 +773,7 @@ rev = undefined
 \end{quote}
 
 \noindent We should execute Doctest to ensure no syntax errors.
-Also, we specifies examples/properties for developers with Hspec:
+Also, we specifies evidences for developers with Hspec:
 
 \begin{quote}
 \small
