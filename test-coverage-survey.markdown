@@ -34,7 +34,7 @@
 This is a list of all packages from the Haskell platform, excluding core
 libraries that come with GHC.
 
-We do not include core libraries, because some of the have tests of their own,
+We do not include core libraries, because some of them have tests of their own,
 and some of them have tests in GHC's test suite.  And we did not make the
 effort to properly survey this.
 
