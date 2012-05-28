@@ -957,16 +957,38 @@ test-suite doctests
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Open problems and related work}
+\begin{itemize}
+    \item literate programming.
+    \item hunit.
+    \item test-framework.
+    \item smallCheck.
+    \item And others?
+    \item The {\tt testpack} package provides a function that is
+        similar in purpose to {\tt shouldThrow}.
 
-literate programming.
+        @kazu: Do you think we should discuss this; or is it safe to
+        ignore.
 
-hunit.
-
-test-framework.
-
-smallCheck.
-
-And others?
+\begin{quote}\small\begin{verbatim}
+assertRaises :: (Show a, Exception e, Show e, Eq e) =>
+  String -> e -> IO a -> IO ()
+\end{verbatim}\end{quote}
+        But it has several shortcomings:
+        \begin{itemize}
+            \item
+                It only works for exceptions with an {\tt Eq}
+                instance, but several standard exceptions (most
+                prominently {\tt ErrorCall}) have no {\tt Eq}
+                instance.
+            \item
+                It places an unnecessary {\tt Show} constraint on the
+                result of the {\tt IO} action, further limiting it's
+                applicability.
+            \item
+                It only allows to expect specific values; expecting
+                any exception of a certain type is not possible.
+        \end{itemize}
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
