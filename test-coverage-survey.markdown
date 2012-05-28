@@ -86,9 +86,23 @@ r:none
 
 r:examples
 
-## regex-base, regex-compat, regex-posix
+## regex-base
 
-TODO: repositories are at http://code.haskell.org/
+    darcs get http://code.haskell.org/regex-base/
+
+r:examples
+
+## regex-compat
+
+    darcs get http://code.haskell.org/regex-compat/
+
+r:none
+
+## regex-posix
+
+    darcs get http://code.haskell.org/regex-posix/
+
+r:none
 
 ## stm
 
