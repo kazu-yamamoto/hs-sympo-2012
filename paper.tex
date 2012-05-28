@@ -76,7 +76,7 @@ Say what follows from your solution.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-\emph{IMPORTANT: @sol has to release a new version of hspec, that
+\emph{IMPORTANT: sol: I have to release a new version of hspec, that
 includes the Specs-to-Spec and hspecX-to-hspec changes.  Otherwise the
 code in this paper will not work!}
 
@@ -221,7 +221,7 @@ However, this word is already used in Haskell community~\cite{typeclassopedia}.
 So, we use ``behavior'' instead of defining a new terminology in this paper.
 
 %% \begin{quote}
-%%     @kazu: We e.g. say ill-behaved Monoid instance.  So is
+%%     sol: We e.g. say ill-behaved Monoid instance.  So is
 %%     ``behavior'' really a bad word?  But I agree that some people in
 %%     the community might associated it with something imperative.
 
@@ -661,12 +661,12 @@ generating documentation, (e.g. as HTML).
 
 \subsubsection{Testing examples}
 
-TBD(@sol): how to obtain evidence from Haddock markup.
+TBD: kazu: how to obtain evidence from Haddock markup.
 Old version uses Haddock API but now uses GHC API directly. Why?
 
-TBD(@sol): escape from HUnit. Why?
+TBD: kazu: escape from HUnit. Why?
 
-TBD(@sol): Old version executes one GHCi for each function examples.
+TBD: kazu: Old version executes one GHCi for each function examples.
 But new version executes one GHCI per module.
 Drastic speed up. Do We need a graph for execution time?
 
@@ -754,11 +754,11 @@ BDD in Haskell.
 \subsection{Procedure of BDD}
 
 \begin{quote}
-@kazu: Can we use \verb|reverse| instead of \verb|rev| here?
+sol: Can we use \verb|reverse| instead of \verb|rev| here?
 \end{quote}
 
 \begin{quote}
-@sol: I used \verb|rev| just because it is short.
+kazu: I used \verb|rev| just because it is short.
 Actually I used \verb|reverse| once but it is overflowed
 in the right hand side.
 \end{quote}
@@ -828,7 +828,7 @@ rev = foldl (flip (:)) []
 all test failures disappear.
 
 \begin{quote}
-    TBD: @kazu: Do we need this to make our case?  I'm asking, because
+    TBD: sol: Do we need this to make our case?  I'm asking, because
     it will require some work to get the language right.
 
     Note that the authors are not fundamentalist.  If functions to be
@@ -985,14 +985,20 @@ and is implemented using Template Haskell~\cite{template-haskell}.
 All examples and properties must be written in a single
 source file.
 
+\begin{quote}
+    sol: I think you can have several files with tests, but you have
+    to combine the test suites manually.
+\end{quote}
+
+
 \begin{itemize}
     \item The {\tt testpack} package provides a function that is
         similar in purpose to {\tt shouldThrow}.
 
-        @kazu: Do you think we should discuss this; or is it safe to
+        sol: Do you think we should discuss this; or is it safe to
         ignore.
 
-        @sol: Let's add this.
+        kazu: Let's add this.
 
 \begin{quote}\small\begin{verbatim}
 assertRaises :: (Show a, Exception e, Show e, Eq e) =>
