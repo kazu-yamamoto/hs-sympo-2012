@@ -936,17 +936,25 @@ test-suite doctests
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Open problems and related work}
+
+SmallCheck~\cite{smallcheck} is a tool for
+automatic exhaustive testing at a certain level.
+Both Doctest and Hspec do not have support for SmallCheck
+at this moment.
+
+The {\tt test-framework} family is a TDD tool, 
+which currently integrates HUnit, QuickCheck, SmallCheck, and Doctest.
+Automatic test discovery based on prefixes of function name
+and is implemented using Template Haskell.
+
 \begin{itemize}
-    \item literate programming.
-    \item hunit.
-    \item test-framework.
-    \item smallCheck.
-    \item And others?
     \item The {\tt testpack} package provides a function that is
         similar in purpose to {\tt shouldThrow}.
 
         @kazu: Do you think we should discuss this; or is it safe to
         ignore.
+
+        @sol: Let's add this.
 
 \begin{quote}\small\begin{verbatim}
 assertRaises :: (Show a, Exception e, Show e, Eq e) =>
