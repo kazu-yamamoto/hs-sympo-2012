@@ -486,7 +486,10 @@ prop> sort xs == (sort . sort) (xs :: [Int])
 \end{verbatim}
 \end{quote}
 
-\noindent Evidence in comments are automatically
+\noindent We call such properties \emph{implicitly quantified}.  The
+given property is implicitly quantified over \verb|xs|.
+
+Evidence in comments are automatically
 tested by the Doctest command. We also provided a library
 to do this job. Its implementation will discussed in Section~\ref{sec:doctest}.
 
