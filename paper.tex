@@ -696,13 +696,41 @@ Prelude Data.List> sort xs == sort (sort (xs::[Int]))
 \end{verbatim}
 \end{quote}
 
+\noindent In this case, we should prepend the ``\verb|\xs -> |" string
+to the property.
+
 \begin{quote}
-    \emph{TBD: describe the algorithm}
+    TBD: describe the algorithm
+
+    Below is the schematic algorithm, from my original mail to kazu:
 \end{quote}
 
 
-\noindent In this case, we should prepend the ``\verb|\xs -> |" string
-to the property.
+\noindent \verb|xs| is a free variable here.  So we would need to
+close that term by transforming it to:
+
+\begin{quote}\small\begin{verbatim}
+\xs -> sort xs == sort (sort (xs::[Int]))
+\end{verbatim}\end{quote}
+
+\noindent I imagine this could work by performing those steps:
+
+\begin{enumerate}
+
+    \item
+        parse the property with e.g. haskell-src (never used it, so
+        I'm not sure if it allows you to parse code snippets)
+
+    \item
+        Load the module containing the DocProperty with hint, and try
+        to look up all variables used by the property (\verb|sort| and
+        \verb|xs| for the example above).
+
+    \item
+        Close the term over all variables, for which lookup failed,
+        load it with hint and test it with quickCheck.
+\end{enumerate}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
