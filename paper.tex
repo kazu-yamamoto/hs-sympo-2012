@@ -126,8 +126,8 @@ we brought a test method from other programming language community and
 extended missing features.
 In particular, we introduced Doctest~\cite{doctest} and
 integrated it with QuickCheck~\cite{quickcheck}
-for evidence for users.
-To specify evidence for developers,
+for user documentation.
+For code documentation,
 we make use of Hspec inspired by RSpec~\cite{rspec}
 and we proposed some combinators to it.
 
@@ -732,7 +732,7 @@ rev = undefined
 \end{quote}
 
 \noindent Note that the {\tt placeholders} library provide better keyword such as {\tt notImplemented} and {\tt todo}.
-Next we write evidence for users in Haddock markup:
+Next we write user documentation in Haddock markup:
 
 \begin{quote}
 \small
@@ -754,7 +754,7 @@ rev = undefined
 \end{quote}
 
 \noindent We should execute Doctest to ensure no syntax errors.
-Also, we specifies evidence for developers with Hspec:
+Also, we write code documentation with Hspec:
 
 \begin{quote}
 \small
