@@ -678,62 +678,40 @@ and result string from GHCi, exceptions can be handled.
 
 \subsubsection{Testing properties}
 
-To test properties, we use GHCi.  Each property is enclosed within
-``\verb|quickCheck (|'' and ``\verb|)|'', and GHCi is used to evaluate
-that.  GHCi output is used to decide, whether the property succeeded,
-or failed.
-
-If a property contains free variables, we need to add lambda
-abstraction prefix before prepending the `quickCheck'' string.  To
-check if properties contain free variables, we also use GHCi for easy
-implementation at this moment.  GHCi reports free variables if found:
 
 \begin{quote}
-\small
-\begin{verbatim}
-Prelude Data.List> sort xs == (sort . sort) (xs :: [Int]))
-<interactive>:1:6: Not in scope: `xs'
-<interactive>:1:24: Not in scope: `xs'
-\end{verbatim}
+    sol: Should we use verify instead of test here?
 \end{quote}
 
-\noindent In this case, we should prepend the ``\verb|\xs -> |" string
-to the property.
+\noindent QuickCheck and GHCi are used to test properties.  Before we
+test a property, we bring the module that contains the Haddock comment
+from which we extracted the property into scope.
 
-\begin{quote}
-    TBD: describe the algorithm
+Implicitly quantified properties need to be closed before they can be
+tested.  This requires the following steps.
+\begin{enumerate}
+    \item
+        Find all free variables of the property
+    \item
+        Try to lookup each free variable in the module context
+    \item
+        Close the property over all free variables, for which lookup
+        failed
+\end{enumerate}
 
-    Below is the schematic algorithm, from my original mail to kazu.
-    Can we somehow get rid of haskell-src, and hint, and only describe
-    the algorithm?
-\end{quote}
+\noindent Here is an example:
 
+\begin{quote}\small\begin{verbatim}
+sort xs == (sort . sort) (xs :: [Int]))
+\end{verbatim}\end{quote}
 
-\noindent \verb|xs| is a free variable here.  So we would need to
-close that term by transforming it to:
+\noindent Both \verb|xs| and \verb|sort| are free variables, but
+\verb|sort| is bound by the module context.  So we need to close the
+term over \verb|xs|.
 
 \begin{quote}\small\begin{verbatim}
 \xs -> sort xs == (sort . sort) (xs :: [Int])
 \end{verbatim}\end{quote}
-
-\noindent I imagine this could work by performing those steps:
-
-\begin{enumerate}
-
-    \item
-        parse the property with e.g. haskell-src (never used it, so
-        I'm not sure if it allows you to parse code snippets)
-
-    \item
-        Load the module containing the DocProperty with hint, and try
-        to look up all variables used by the property (\verb|sort| and
-        \verb|xs| for the example above).
-
-    \item
-        Close the term over all variables, for which lookup failed,
-        load it with hint and test it with quickCheck.
-\end{enumerate}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
