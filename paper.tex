@@ -113,48 +113,25 @@ slowly replacing test driven development (TDD).
 In BDD, test code is written with specification terminology.
 In other words, specifications can be used for automatic testing.
 
-\begin{quote}
-    TBD: Important points we want to say about BDD:
-    \begin{itemize}
-        \item
-            All behavior should be documented, together with some
-            \emph{evidence} for that behavior.
-
-        \item
-            Automating things, and continuous integration~\cite{ci} is an important
-            aspect of BDD.
-        \item
-            BDD uses expectations instead of assertions
-    \end{itemize}
-\end{quote}
-
-\begin{quote}
-    TBD: Important points we want to say here:
-    \begin{itemize}
-        \item
-            We use Doctest and Hspec to document behavior.
-            (in contrast to other communities)
-        \item
-            Some features are missing from both, Doctest and
-            Hspec.
-        \item
-            We extend them accordingly, and show how they can be used
-            in combination to design, document and test Haskell code.
-    \end{itemize}
-\end{quote}
-
 In this paper, we explore how to apply BDD to Haskell.
 BDD approaches
 TDD and acceptance test-driven development (ATDD)
 with a new terminology and mindset. 
 For the purpose of this paper we only focus on the TDD aspect of BDD.
 
-We brought a test method from other programming language community and
-integrated it with a Haskell-original test method.
+In BDD, all behavior should be documented, together with some
+\emph{evidence} for that behavior.
+for this purpose, 
+we brought a test method from other programming language community and
+extended missing features.
 In particular, we introduced Doctest~\cite{doctest} and
-integrated it with QuickCheck~\cite{quickcheck} as a BDD tool.
-We also make use of Hspec inspired by RSpec~\cite{rspec} for
-BDD in Haskell.
+integrated it with QuickCheck~\cite{quickcheck}
+for user documentation.
+For code documentation, we also make use of Hspec inspired by RSpec~\cite{rspec}
+and we proposed some combinators to it.
+
+Automating such as test discovery and continuous integration (CI) ~\cite{ci} 
+is an important aspect of BDD. TBD: need to say somting.
 
 Our contributions are:
 
@@ -165,10 +142,10 @@ Our contributions are:
 
 \item
     Introduce a set of combinators to set expectations about
-    \emph{code examples} for use with Hspec.
+    \emph{code examples} for use with Hspec. (Section \ref{sec:for-developers})
 
 \item
-    Improve CI support for Doctest and Hspec
+    Improve CI support for Doctest and Hspec (Section \ref{sec:TBD})
 
     TBD:
     \emph{This relates to hspec-discover and Doctest's Cabal support.}
@@ -179,10 +156,20 @@ Our contributions are:
 
 \end{itemize}
 
-\noindent Our Doctest implementation
+\noindent Our BDD procedure
 can be used for design, documentation and automatic testing.
 We hope that this kill-three-birds-with-one-stone aspect
 motivates Haskellers to write test code.
+
+\begin{quote}
+    TBD: Important points we want to say about BDD:
+    \begin{itemize}
+        \item
+            BDD uses expectations instead of assertions
+    \end{itemize}
+\end{quote}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Terminology}
@@ -823,10 +810,6 @@ all test failures disappear.
 
 \begin{quote}
     \emph{should emphasize ``automatically discover tests''}
-\end{quote}
-
-\begin{quote}
-    \emph{talk about CI}
 \end{quote}
 
 \begin{quote}
