@@ -66,6 +66,11 @@ r:tests
 
 ## OpenGL (the Haskell platform does not include new versions)
 
+    git clone https://github.com/haskell-opengl/OpenGL
+    git checkout v2.2.3.1
+
+r:none
+
 ## parallel
 
     git clone http://darcs.haskell.org/packages/parallel.git/
