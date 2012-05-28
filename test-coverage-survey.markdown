@@ -1,5 +1,33 @@
-## Core libraries: provided by every ghc installation
 ## Summary
+
+### No tests at all (10)
+ * deepseq
+ * fgl
+ * html
+ * mtl
+ * OpenGL
+ * parsec
+ * regex-compat
+ * regex-posix
+ * transformers
+ * xhtml
+
+### Only examples (5)
+ * cgi
+ * GLUT
+ * haskell-src
+ * QuickCheck
+ * regex-base
+
+### Tests (8)
+ * HTTP
+ * HUnit
+ * network
+ * parallel
+ * stm
+ * syb
+ * text
+ * zlib
 
 ## Details
 
@@ -9,6 +37,12 @@ libraries that come with GHC.
 We do not include core libraries, because some of the have tests of their own,
 and some of them have tests in GHC's test suite.  And we did not make the
 effort to properly survey this.
+
+We classify packages as follows:
+
+ * r:none - The repository includes no tests at all.
+ * r:examples - Some examples are included in the repository.
+ * r:tests - Repository includes a test suite.
 
 ## cgi (the Haskell platform does not include new versions)
 
@@ -55,12 +89,18 @@ r:none
 
     darcs get http://code.haskell.org/HUnit/
 
+Uses cabal hooks to run tests.
+
 r:tests
 
 ## network
 
     git clone git://github.com/haskell/network.git
     git checkout v2.3.0.13
+
+Includes lots of unit tests.
+
+Uses Cabal's new test support.
 
 r:tests
 
@@ -121,6 +161,8 @@ r:tests
 
     git clone https://github.com/dreixel/syb
 
+Lots of tests.  Uses cabal hooks to tests.
+
 r:tests
 
 ## xhtml
@@ -133,11 +175,17 @@ r:none
 
     darcs get http://code.haskell.org/zlib/
 
+Tests, but no cabal integration.
+
 r:tests
 
 ## HTTP
 
     git clone https://github.com/haskell/HTTP.git
+
+Includes lots of unit tests.
+
+Uses Cabal's new test support.
 
 r:tests
 
@@ -150,6 +198,9 @@ r:none
 ## text
 
     git clone https://github.com/bos/text
+
+Uses Cabal's new test support.  Extensive test suite, with documentation how to
+use it.
 
 r:tests
 
