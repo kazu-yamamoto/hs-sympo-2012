@@ -140,11 +140,11 @@ Our contributions are:
 \begin{itemize}
 \item
     Implement Doctest in Haskell and add support for QuickCheck properties to Doctest (Section
-    \ref{sec:for-users} and Section \ref{sec:doctest})
+    \ref{sec:user-doc} and Section \ref{sec:doctest})
 
 \item
     Introduce a set of combinators to set expectations about
-    code examples (simply ``code'' hereafter) for use with Hspec. (Section \ref{sec:for-developers})
+    code examples for use with Hspec. (Section \ref{sec:code-doc} and Section \ref{sec:hspec-comb})
 
 \item
     Improve CI support for Doctest and Hspec (Section \ref{sec:TBD})
@@ -393,7 +393,7 @@ integrated with QuickCheck.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{User documentation}
-\label{sec:for-users}
+\label{sec:user-doc}
 
 Evidence for users should be documented with Haddock markup syntax.
 For this purpose, we propose the followings:
@@ -483,6 +483,7 @@ to do this job. Its implementation will discussed in Section~\ref{sec:doctest}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Code documentation}
+\label{sec:code-doc}
 
 We propose following extensions for Hspec to 
 describe evidence for developers.
@@ -692,7 +693,10 @@ Prelude Data.List> sort xs == sort (sort (xs::[Int]))
 \noindent In this case, we should prepend the ``\verb|\xs -> |" string
 to the property.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Hspec combinators for expectations}
+\label{sec:hspec-comb}
 
 TBD: describe the implementation of {\tt shouldBe}, etc.
 
