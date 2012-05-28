@@ -674,18 +674,15 @@ and result string from GHCi, exceptions can be handled.
 
 \subsubsection{Testing properties}
 
-To test properties, we also uses GHCi.
-Each property is enclosed with
-the ``\verb|quickCheck (|'' and ``\verb|)|'' string
-and GHCi evaluates it.
-Success or failures is decided according to result string from GHCi.
+To test properties, we also use GHCi.  Each property is enclosed
+within ``\verb|quickCheck (|'' and ``\verb|)|'' string and GHCi
+evaluates it.  Success or failures is decided according to result
+string from GHCi.
 
-If properties contain free variables,
-we need to add lambda abstraction prefix before prepending
-the `quickCheck'' string.
-To check if properties contain free variables,
-we also use GHCi for easy implementation at this moment.
-GHCi reports free variables if found:
+If properties contain free variables, we need to add lambda
+abstraction prefix before prepending the `quickCheck'' string.  To
+check if properties contain free variables, we also use GHCi for easy
+implementation at this moment.  GHCi reports free variables if found:
 
 \begin{quote}
 \small
