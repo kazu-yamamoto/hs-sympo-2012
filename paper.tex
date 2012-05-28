@@ -121,7 +121,7 @@ For the purpose of this paper we only focus on the TDD aspect of BDD.
 
 In BDD, all behavior should be documented, together with some
 \emph{evidence}\/s for that behavior.
-for this purpose, 
+For this purpose, 
 we brought a test method from other programming language community and
 extended missing features.
 In particular, we introduced Doctest~\cite{doctest} and
@@ -211,9 +211,9 @@ The definitions of words used in this paper is as follows:
     TBD: BDD terminology for test suite.
 
 \item[user documentation]
-    TBD: Explanation of functions.
+    Explanation of functions for users.
 \item[code documentation]
-    TBD: Explanation of functions.
+    Explanation of functions for developers.
 
 \end{description}
 
@@ -253,9 +253,10 @@ Haskell community, we should integrate them with properties test.
 
 We can categorize evidences into two types: for users and
 and for developers.
-evidences for users are those which are useful as user documentation.
+Evidences for users are those which are useful as user documentation.
 By contrast, evidences for developers are
-those which are not useful as user documentation.
+those which are not useful as user documentation
+but should be written as code documentation.
 A good example of evidences for developers
 is a corner example registered in a bug tracking system.
 
@@ -361,10 +362,10 @@ describe evidences for developers, we propose to use Hspec also
 integrated with QuickCheck.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Evidence as user documentation}
+\subsection{Evidences as user documentation}
 \label{sec:for-users}
 
-evidences for users should be documented with Haddock markup syntax.
+Evidences for users should be documented with Haddock markup syntax.
 For this purpose, we propose the followings:
 
 \begin{itemize}
@@ -445,7 +446,7 @@ tested by the Doctest command. We also provided a library
 to do this job. Its implementation will discussed in Section~\ref{sec:doctest}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Evidence as code documentation (TBD: Is this still
+\subsection{Evidences as code documentation (TBD: Is this still
 appropriate here?}
 \label{sec:for-developers}
 
