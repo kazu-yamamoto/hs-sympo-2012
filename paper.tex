@@ -107,16 +107,19 @@ We agree that type signatures are good abstract documentation~\cite{free}, but
 there are many functions whose behavior cannot be guessed from their names and
 type signatures.  One example is \verb|nub :: [a] -> [a]| from {\tt Data.List}.
 
-In other programming language communities,
-behavior driven development (BDD) is getting much attention, and is
-slowly replacing test driven development (TDD).
-In BDD, test code is written with specification terminology.
-In other words, specifications can be used for automatic testing.
+In other programming language communities, behavior driven development
+(BDD) is getting much attention, and is slowly replacing test driven
+development (TDD).  TDD is an iterative style of software development
+where the developer first writes a few test cases, then implements the
+software in the simplest possible way which makes the test cases pass.
+That could mean yielding a constant value at first.  Subsequently,
+more test cases are written to reqire more details and drive the
+implementation closer to the desired goal.  Rinse and repeat.  BDD
+includes TDD, amongst other software development methodologies, but
+with a terminology and mindset  shifted towards specification instead
+of testing.  In BDD, specifications can be used for automatic testing.
 
 In this paper, we explore how to apply BDD to Haskell.
-BDD approaches
-TDD and acceptance test-driven development (ATDD)
-with a new terminology and mindset. 
 For the purpose of this paper we only focus on the TDD aspect of BDD.
 
 In BDD, all behavior should be documented, together with some
