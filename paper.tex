@@ -81,25 +81,6 @@ includes the Specs-to-Spec and hspecX-to-hspec changes.  Otherwise the
 code in this paper will not work!}
 
 %%%% Describe the problem.
-\begin{quote}
-    TBD: Important points we want to say about BDD:
-    \begin{itemize}
-        \item
-            All behavior should be documented, together with some
-            \emph{evidence} for that behavior.
-        \item
-            \emph{Behavior driven development (BDD)} approaches
-            \emph{test-driven development (TDD)} and \emph{acceptance
-            test-driven development (ATDD)} with a new terminology and
-            mindset.  For the purpose of this paper we only focus on
-            the TDD aspect of BDD.
-        \item
-            Automating things, and continuous integration~\cite{ci} is an important
-            aspect of BDD.
-        \item
-            BDD uses expectations instead of assertions
-    \end{itemize}
-\end{quote}
 
 Haskell~\cite{haskell} has a very strong type system, which ensures that most type errors are
 detected at compile time rather than runtime.  Thanks to this, we assume that
@@ -133,6 +114,21 @@ In BDD, test code is written with specification terminology.
 In other words, specifications can be used for automatic testing.
 
 \begin{quote}
+    TBD: Important points we want to say about BDD:
+    \begin{itemize}
+        \item
+            All behavior should be documented, together with some
+            \emph{evidence} for that behavior.
+
+        \item
+            Automating things, and continuous integration~\cite{ci} is an important
+            aspect of BDD.
+        \item
+            BDD uses expectations instead of assertions
+    \end{itemize}
+\end{quote}
+
+\begin{quote}
     TBD: Important points we want to say here:
     \begin{itemize}
         \item
@@ -148,6 +144,11 @@ In other words, specifications can be used for automatic testing.
 \end{quote}
 
 In this paper, we explore how to apply BDD to Haskell.
+BDD approaches
+TDD and acceptance test-driven development (ATDD)
+with a new terminology and mindset. 
+For the purpose of this paper we only focus on the TDD aspect of BDD.
+
 We brought a test method from other programming language community and
 integrated it with a Haskell-original test method.
 In particular, we introduced Doctest~\cite{doctest} and
