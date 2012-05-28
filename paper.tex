@@ -265,6 +265,8 @@ to extract evidences for users as user documentation.
 If we can archive this, BDD tools can be used for
 triple purpose: design, documentation and automatic testing.
 
+\subsection{Doctest and Haddock}
+
 A good candidate for this is Doctest in Python community.
 It extends Python's documentation strings so that they
 can contain examples.
@@ -297,7 +299,41 @@ their results from their expression to be evaluated.
 If they are properties, they should be distinguished
 from example code.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Hspec}
+
 To describe evidences for developers, we can use Hspec.
+Hspec provides an EDSL for defining specs.  A spec organizes evidence in a
+tree structure, and it is defined with \texttt{it} and \texttt{describe}.
+
+\begin{quote}
+\small
+\begin{verbatim}
+import Test.Hspec.Monadic
+spec :: Spec
+spec = do
+  describe "reverse" $ do
+    it "reverses a list" $
+      reverse [1 :: Int, 2, 3] @?= [3, 2, 1]
+
+    it "gives the original list, if applied twice" $
+      property $ \xs ->
+        (reverse . reverse) xs == (xs :: [Int])
+\end{verbatim}
+\end{quote}
+
+\noindent The {\tt it} function combines a text description and
+an evidence and makes a spec.
+Examples can be arbitrary HUnit assertions.  Properties must be of type {\tt
+Property}; QuickCheck's \texttt{property} function can be used to turn
+arbitrary properties into a \texttt{Property}.
+
+The \texttt{describe} function combines a list of specs into a larger spec.  It
+can be used to organize a spec as a tree.
+Internally, a \texttt{Writer} is used to build up specs in a monadic way.
+
+A spec can be run with the \texttt{hspec} function.  When a spec is run, all
+evidences are evaluated, and failing evidences are reported to developers.
 
 \begin{quote}
     TBD:
@@ -339,6 +375,9 @@ expect {launch_missiles}.to raise_error
 \end{itemize}
 \end{quote}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Problem Summary}
+
 Here is a summary of the problem:
 
 \begin{itemize}
@@ -362,7 +401,7 @@ describe evidences for developers, we propose to use Hspec also
 integrated with QuickCheck.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Evidences as user documentation}
+\subsection{Evidences for users}
 \label{sec:for-users}
 
 Evidences for users should be documented with Haddock markup syntax.
@@ -374,6 +413,9 @@ For this purpose, we propose the followings:
 \item Bring Doctest from the Python community to the Haskell
 community and integrate it with QuickCheck.
 \end{itemize}
+
+%%%%%%%%%%%%%%%%
+\subsubsection{Markup for Examples}
 
 \noindent First, we introduce a new Haddock markup for the example.
 In this paper, we use {\tt >>>} which is the same as Python's one.
@@ -408,6 +450,9 @@ It's worth explaining that we can specify operation sequences:
 *** Exception: Prelude.head: empty list
 \end{verbatim}
 \end{quote}
+
+%%%%%%%%%%%%%%%%
+\subsubsection{Markup for Properties}
 
 \noindent To specify properties, we also propose a new markup. In this paper, we
 use the {\tt prop>} prefix. We can write properties which do not take
@@ -446,61 +491,13 @@ tested by the Doctest command. We also provided a library
 to do this job. Its implementation will discussed in Section~\ref{sec:doctest}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Evidences as code documentation (TBD: Is this still
-appropriate here?}
-\label{sec:for-developers}
+\subsection{Evidences for developers}
 
-\begin{quote}
-    \emph{TBD: Behavior should be replaced with evidences in this subsection?}
-\end{quote}
+We propose following extensions for Hspec to 
+describe evidences for developers.
 
-If we have evidence that does not fit into the user documentation, but would
-rather be part of a design document, we use Hspec.
-
-Hspec provides an EDSL for defining specs.  A spec organizes evidence in a
-tree structure, and it is defined with \texttt{it} and \texttt{describe}.
-
-\begin{quote}
-\small
-\begin{verbatim}
-import Test.Hspec.Monadic
-spec :: Spec
-spec = do
-  describe "reverse" $ do
-    it "reverses a list" $
-      reverse [1 :: Int, 2, 3] @?= [3, 2, 1]
-
-    it "gives the original list, if applied twice" $
-      property $ \xs ->
-        (reverse . reverse) xs == (xs :: [Int])
-\end{verbatim}
-\end{quote}
-
-\noindent The {\tt it} function combines a text description for a behavior and
-an evidence that gives some confidence in that behavior into a
-spec.
-Examples can be arbitrary HUnit assertions.  Properties must be of type {\tt
-Property}; QuickCheck's \texttt{property} function can be used to turn
-arbitrary properties inot a \texttt{Property}.
-
-The \texttt{describe} function combines a list of specs into a larger spec.  It
-can be used to organize a spec as a tree.
-Internally, a \texttt{Writer} is used to build up specs in a monadic way.
-
-\begin{quote}
-    \emph{TBD: provide an example?}
-\end{quote}
-
-A spec can be run with the \texttt{hspec} function.  When a spec is run, all
-evidences are evaluated, and failing evidences are
-reported to the user (FIXME: user does not fit our definition of \emph{user}
-here!).
-
-\begin{quote}
-    \emph{TBD: should user be replaced with developer?}
-\end{quote}
-
-\subsection{Setting expectations}
+%%%%%%%%%%%%%%%%
+\subsubsection{Setting expectations}
 
 We propose several combinators, that can be used to set expectations
 about the outcome of code examples.  And we build them on top of
@@ -557,6 +554,7 @@ shouldReturn :: (Show a, Eq a) => IO a -> a
   -> Expectation
 \end{verbatim}\end{quote}
 
+%%%%%%%%%%%%%%%%
 \subsubsection{Expecting exceptions}
 
 HUnit does not provide any versatile mechanism to state that an action
@@ -620,6 +618,7 @@ shouldThrow_ :: (NFData a, Exception e) =>
   a -> (e -> Bool) -> Expectation
 \end{verbatim}\end{quote}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{\emph{optional} Automatic discovery of specs}
 TBD
 
