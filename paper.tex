@@ -126,8 +126,8 @@ we brought a test method from other programming language community and
 extended missing features.
 In particular, we introduced Doctest~\cite{doctest} and
 integrated it with QuickCheck~\cite{quickcheck}
-for evidences for users.
-To specify evidences for developers,
+for evidence for users.
+To specify evidence for developers,
 we make use of Hspec inspired by RSpec~\cite{rspec}
 and we proposed some combinators to it.
 
@@ -243,23 +243,23 @@ pure Haskell functions.
 So, when we bring BDD tools to
 Haskell community, we should integrate them with properties test.
 
-We can categorize evidences into two types: for users and
+We can categorize evidence into two types: for users and
 and for developers.
-Evidences for users are those which are useful as user documentation.
-By contrast, evidences for developers are
+Evidence for users are those which are useful as user documentation.
+By contrast, evidence for developers are
 those which are not useful as user documentation
 but should be written as code documentation.
-A good example of evidences for developers
+A good example of evidence for developers
 is a corner example registered in a bug tracking system.
 
 BDD tools should be treat both of them and provide functionality
-to extract evidences for users as user documentation.
+to extract evidence for users as user documentation.
 If we can archive this, BDD tools can be used for
 triple purpose: design, documentation and automatic testing.
 
 \subsection{Doctest and Haddock}
 
-A good candidate to describe evidences for users is Doctest in Python community.
+A good candidate to describe evidence for users is Doctest in Python community.
 It extends Python's documentation strings so that they
 can contain examples.
 Examples can be tested by the Python interpreter.
@@ -294,7 +294,7 @@ from example code.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Hspec}
 
-To describe evidences for developers, we can use Hspec.
+To describe evidence for developers, we can use Hspec.
 Hspec provides an EDSL for defining specs.  A spec organizes evidence in a
 tree structure, and it is defined with \texttt{it} and \texttt{describe}.
 
@@ -325,7 +325,7 @@ can be used to organize a spec as a tree.
 Internally, a \texttt{Writer} is used to build up specs in a monadic way.
 
 A spec can be run with the \texttt{hspec} function.  When a spec is run, all
-evidences are evaluated, and failing evidences are reported to developers.
+evidence are evaluated, and failing evidence are reported to developers.
 
 \begin{quote}
     TBD:
@@ -375,10 +375,10 @@ Here is a summary of the problem:
 \begin{itemize}
 \item
     The Haskell community does not have common syntax to describe
-    evidences with Haddock markup syntax.
+    evidence with Haddock markup syntax.
 \item
     The Haskell community does not have a BDD tool for
-    evidences for users.
+    evidence for users.
 \item
     Hspec does not provide combinators to express expectations with
     BDD terminology
@@ -387,16 +387,16 @@ Here is a summary of the problem:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Solution}
 
-To be able to specify evidences for users, we propose to add new
+To be able to specify evidence for users, we propose to add new
 markup to Haddock and to use Doctest integrated with QuickCheck. To
-describe evidences for developers, we propose to use Hspec also
+describe evidence for developers, we propose to use Hspec also
 integrated with QuickCheck.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Evidences for users}
+\subsection{Evidence for users}
 \label{sec:for-users}
 
-Evidences for users should be documented with Haddock markup syntax.
+Evidence for users should be documented with Haddock markup syntax.
 For this purpose, we propose the followings:
 
 \begin{itemize}
@@ -478,15 +478,15 @@ prop> sort xs == sort (sort (xs::[Int]))
 \end{verbatim}
 \end{quote}
 
-\noindent Evidences in comments are automatically
+\noindent Evidence in comments are automatically
 tested by the Doctest command. We also provided a library
 to do this job. Its implementation will discussed in Section~\ref{sec:doctest}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Evidences for developers}
+\subsection{Evidence for developers}
 
 We propose following extensions for Hspec to 
-describe evidences for developers.
+describe evidence for developers.
 
 %%%%%%%%%%%%%%%%
 \subsubsection{Setting expectations}
@@ -622,7 +622,7 @@ TBD
 \subsection{Haddock}
 
 As we described, Haddock version 2.7.2 or earlier provides markup syntax for
-code blocks, but does not provide any markup syntax for evidences.
+code blocks, but does not provide any markup syntax for evidence.
 We implemented markup support for examples ({\tt >>>}) and it is available in
 Haddock version 2.8 or later.
 We also extended Haddock to support markup for properties ({\tt prop>}) which
@@ -649,7 +649,7 @@ This feature will be available in the future release.
 
 \subsubsection{Testing examples}
 
-TBD(@sol): how to obtain evidences from Haddock markup.
+TBD(@sol): how to obtain evidence from Haddock markup.
 Old version uses Haddock API but now uses GHC API directly. Why?
 
 TBD(@sol): escape from HUnit. Why?
@@ -732,7 +732,7 @@ rev = undefined
 \end{quote}
 
 \noindent Note that the {\tt placeholders} library provide better keyword such as {\tt notImplemented} and {\tt todo}.
-Next we write evidences for users in Haddock markup:
+Next we write evidence for users in Haddock markup:
 
 \begin{quote}
 \small
@@ -754,7 +754,7 @@ rev = undefined
 \end{quote}
 
 \noindent We should execute Doctest to ensure no syntax errors.
-Also, we specifies evidences for developers with Hspec:
+Also, we specifies evidence for developers with Hspec:
 
 \begin{quote}
 \small
