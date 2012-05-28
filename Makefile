@@ -2,7 +2,13 @@ all: paper.pdf
 
 .PHONY: paper.pdf
 
-paper.pdf: paper.tex
+paper.pdf: refs.bbl
+	pdflatex -halt-on-error paper.tex
+
+refs.bbl: refs.bib paper.aux
+	bibtex paper
+
+paper.aux: paper.tex
 	pdflatex -halt-on-error $<
 
 watch: all
@@ -14,4 +20,4 @@ watch: all
 	watchr -e "watch('paper.tex') {system 'make'};"
 
 clean:
-	-rm -f paper.aux paper.log paper.pdf
+	-rm -f paper.aux paper.log paper.pdf paper.bbl paper.blg

@@ -898,14 +898,11 @@ main = hspec $ do
 
 \begin{itemize}
 
-\item @kazu: Can you add a reference to:
-\url{http://www.haskell.org/cabal/users-guide/developing-packages.html#test-suites}
-
 \item It is important that testing is automated, including running of test
     suites.  Where should we put this?
 \end{itemize}
 
-\noindent Cabals test feature can be used to automatically run tests.  A cabal
+\noindent Cabals test feature can be used to automatically run tests~\cite{cabal}.  A cabal
 file can contain multiple test suites, so it is possible to define test suites
 for Doctest and Hspec in a single cabal file.
 
@@ -1008,47 +1005,9 @@ We would like to thank
 Nick Smallbone for having improved QuickCheck so that
 properties which do not have parameters are tested just once.
 
-% We recommend abbrvnat bibliography style.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \bibliographystyle{abbrvnat}
-
-% The bibliography should be embedded for final submission.
-
-\begin{thebibliography}{}
-\softraggedright
-
-\bibitem[Wadler 1989]{free}
-Wadler P.,
-``Theorems for free!'',
-In proceeding of 4th International Conference on Functional Programming and Computer Architecture, 1989.
-
-\bibitem[Claessen et al. 2000]{quickcheck}
-Claessen K. and Hughes J.,
-``QuickCheck: a lightweight tool for random testing of Haskell programs'',
-ICFP '00 Proceedings of the fifth ACM SIGPLAN international conference on Functional programming,
-pp 268 -- 279,
-2000
-
-\bibitem[Marlow et al. 2010]{haddock}
-Marlow S. and Waern D.,
-``Haddock User Guide'',
-URL http://www.haskell.org/haddock/doc/html/,
-2010
-
-\bibitem[Python 2012]{doctest}
-Python Software Foundation,
-``Python documentation'',
-URL http://docs.python.org/library/doctest.html,
-2012
-
-\bibitem[Chelimsky et al. 2010]{rspec}
-Chelimsky D.,
-Astels D., Dennis Z., Hellesoy A., Helmkamp B., and North D.,
-``The RSpec Book: Behaviour-Driven
-Development with RSpec, Cucumber, and Friends'',
-2010
-%% Hellesoy -- o/
-
-\end{thebibliography}
+\bibliography{refs}
 
 \end{document}
