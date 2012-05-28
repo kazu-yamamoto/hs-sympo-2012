@@ -109,6 +109,9 @@ r:tests
     git clone https://github.com/haskell-opengl/OpenGL
     git checkout v2.2.3.1
 
+There is a `specs` directory.  Not sure what this is, I asked the maintainers
+via email.
+
 r:none
 
 ## parallel
