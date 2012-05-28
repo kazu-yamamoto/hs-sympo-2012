@@ -472,7 +472,7 @@ Type signatures can be specified for each parameter:
 \begin{quote}
 \small
 \begin{verbatim}
-prop> \xs -> sort xs == sort (sort (xs::[Int]))
+prop> \xs -> sort xs == (sort . sort) (xs :: [Int])
 \end{verbatim}
 \end{quote}
 
@@ -482,7 +482,7 @@ lambda terms without the lambda prefix are also allowed:
 \begin{quote}
 \small
 \begin{verbatim}
-prop> sort xs == sort (sort (xs::[Int]))
+prop> sort xs == (sort . sort) (xs :: [Int])
 \end{verbatim}
 \end{quote}
 
@@ -688,7 +688,7 @@ implementation at this moment.  GHCi reports free variables if found:
 \begin{quote}
 \small
 \begin{verbatim}
-Prelude Data.List> sort xs == sort (sort (xs::[Int]))
+Prelude Data.List> sort xs == (sort . sort) (xs :: [Int]))
 <interactive>:1:6: Not in scope: `xs'
 <interactive>:1:24: Not in scope: `xs'
 \end{verbatim}
@@ -710,7 +710,7 @@ to the property.
 close that term by transforming it to:
 
 \begin{quote}\small\begin{verbatim}
-\xs -> sort xs == sort (sort (xs::[Int]))
+\xs -> sort xs == (sort . sort) (xs :: [Int])
 \end{verbatim}\end{quote}
 
 \noindent I imagine this could work by performing those steps:
