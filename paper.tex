@@ -94,7 +94,7 @@ code in this paper will not work!}
             mindset.  For the purpose of this paper we only focus on
             the TDD aspect of BDD.
         \item
-            Automating things, and continuous integration is an important
+            Automating things, and continuous integration~\cite{ci} is an important
             aspect of BDD.
         \item
             BDD uses expectations instead of assertions
@@ -108,18 +108,13 @@ languages that do not provide such a strong type system.
 
 Unfortunately, the type system of Haskell does not always guarantee
 correct semantics.
-
-\begin{quote}
-    TBD: Make it plausible, that the type system does not always
-    guarantee correctly semantics.
-    \begin{itemize}
-        \item Many of the standard type classes \emph{should} adhere
-            to certain laws.
-        \item The type system does not enforce those laws.
-        \item It is the programmers responsibility to ensure that
-            instance definitions \emph{behave} as \emph{expected}.
-    \end{itemize}
-\end{quote}
+For example, it does not ensure that division by zero does not occur.
+Another example is lows of type classes. 
+For instance, the {\tt Monad} class has three Monad lows 
+that its instance \emph{should} satisfy
+but
+it is the programmers responsibility to ensure that
+instance definitions \emph{behave} as \emph{expected}.
 
 Haskell programmers, however, is apt to rely on the type system too much
 and tend not to write test code.
