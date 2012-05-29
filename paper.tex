@@ -554,13 +554,13 @@ actions.
 
 \begin{quote}\small\begin{verbatim}
 launchMissiles >>=
-  (`shouldBe` (Left "not implemented"))
+  (`shouldBe` Left "not implemented")
 \end{verbatim}\end{quote}
 
 \noindent So we propose a shortcut for this common use case.
 
 \begin{quote}\small\begin{verbatim}
-launchMissiles `shouldReturn` (Left "not implemented")
+launchMissiles `shouldReturn` Left "not implemented"
 \end{verbatim}\end{quote}
 
 \begin{quote}\small\begin{verbatim}
@@ -568,14 +568,6 @@ shouldReturn :: (Show a, Eq a) => IO a -> a
   -> Expectation
 \end{verbatim}\end{quote}
 
-\begin{quote}
-\emph{kazu: are parentheses necessary? how about following?}
-\begin{verbatim}
-  launchMissiles >>=
-  (`shouldBe` Left "not implemented")
-  launchMissiles `shouldReturn` Left "not implemented"
-\end{verbatim}
-\end{quote}
 
 %%%%%%%%%%%%%%%%
 \subsubsection{Expecting exceptions}
