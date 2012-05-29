@@ -193,18 +193,34 @@ The definitions of words used in this paper is as follows:
 \begin{description}
 
 \item[example]
-    An example shows how a function is used.  It is either a \emph{code
-    example} in the form of an HUnit test case; or an \emph{interactive
-    example}, given as a short GHCi session.
+    An example is a piece of source code that shows how a function is
+    used.  It consists of the function call with concrete values as
+    parameters, together with the expected outcome.  The outcome can
+    be given as a pure value, or in the case of impure code, as a
+    short GHCi session.
 
 \item[expectation]
-    Expectations are used to define the expected outcome of a code
-    example.  They serve the same purpose as \emph{assertions} in xUnit
-    testing frameworks, but use a different terminology.
+    An expectation is a proposition that defines the anticipated
+    outcome of a function call.  Expectations serve the same purpose
+    as \emph{assertions} in classical unit testing frameworks, but use
+    a different terminology. For instance, instead of
+    \begin{quote}
+    \small
+    \begin{verbatim}assertEqual (gcd 13 7) 1\end{verbatim}
+    \end{quote}
+    we write
+    \begin{quote}
+    \small
+    \begin{verbatim}gcd 13 7 `shouldBe` 1\end{verbatim}
+    \end{quote}
 
 \item[property]
-    Property means a QuickCheck property as defined in
-    \cite{quickcheck}.
+    A property is a piece of code similar to an example, except that
+    some parameters of the function call are abstracted from.  The
+    test framework runs a property several times with different
+    parameters, resulting in several outcomes. The expectation is
+    therefore not given as a concrete value, but as a predicate which
+    all outcomes should satisfy.
 
 \item[behavior]
     Behavior means an invariant of a function.  We use an informal description
@@ -212,7 +228,7 @@ The definitions of words used in this paper is as follows:
     missiles when run".
 
 \item[evidence]
-    Evidence provides some confidence, that a function exhibits a
+    Evidence provides some confidence that a function exhibits a
     certain behavior.  In Haskell we use examples and properties as
     evidence.
 
