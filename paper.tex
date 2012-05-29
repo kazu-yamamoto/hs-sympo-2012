@@ -168,8 +168,7 @@ as needed.  In particular, our contributions are:
 
 \begin{itemize}
 \item
-    We originally implemented Doctest, and added markup support for
-    interactive examples to Haddock, back in 2010.
+    We originally implemented Doctest, back in 2010.
 \item
     Add support for QuickCheck properties to Doctest (Section
     \ref{sec:user-doc} and Section \ref{sec:doctest})
@@ -340,15 +339,6 @@ their results from their expression to be evaluated.
 If they are properties, they should be distinguished
 from example code.
 
-\begin{quote}\begin{itemize}
-    \item
-        Haddock has markup support for interactive examples, and
-        Doctest can verify them.
-    \item
-        But it is not possible to use properties in Haddock comments
-        and automatically test them.
-\end{itemize} \end{quote}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Hspec}
 
@@ -473,6 +463,16 @@ integrated with QuickCheck.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{User documentation}
 \label{sec:user-doc}
+
+\begin{quote}\begin{itemize}
+    \item
+        We already added markup support for interactive examples to
+        Haddock, back in 2010; and Doctest can verify them.
+    \item
+        But it is not possible to use properties in Haddock comments
+        and automatically test them.
+\end{itemize} \end{quote}
+
 
 Evidence for users should be documented with Haddock markup syntax.
 For this purpose, we propose the followings:
