@@ -269,25 +269,6 @@ So, we use ``behavior'' instead of defining a new terminology in this paper.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Problem}
 
-\begin{quote}\begin{itemize}
-    \item
-        BDD tools for other programming languages use code examples as
-        evidence for behavior.
-    \item
-        When we apply BDD to Haskell we want to use properties and
-        examples to provide evidence for behavior.
-    \item
-        Hspec already has support for both.
-    \item
-        Haddock has markup support for interactive examples, and
-        Doctest can verify them.
-    \item
-        But it is not possible to use properties in Haddock comments
-        and automatically test them.
-\end{itemize} \end{quote}
-
-
-\begin{quote}
 Hspec can be used to document the behavior of a system in a way that
 is similar to a specification.  All facets of the system should be
 described with examples and properties, including every possible
@@ -297,21 +278,31 @@ We think that some evidence is useful as user documentation, hence we
 want to be able to include it in Haddock comments.  But there is also
 evidence that is not useful as user documentation.  E.g. that a
 particular \texttt{Monoid} instance is a monoid in the mathematical
-sense is self-evident.  So we do not want to include any examples or
-behaviors for that into user documentation, but we still want to be
-able to automatically test it.
+sense is self-evident.  So we do not want to include any evidence for
+that into user documentation, but we still want to automatically test
+it.
 
-We propose to use Doctest to test evidence that is useful as user
-documentation, and Hspec for evidence that is not useful as user
-documentation.
-\end{quote}
+We propose to use Doctest and Haddock to test evidence that is useful
+as user documentation, and Hspec for evidence that is not useful as
+user documentation.
 
+\begin{quote}
 BDD tools should be treat both of them and provide functionality
 to extract evidence for users as user documentation.
 If we can archive this, BDD tools can be used for
 triple purpose: design, documentation and automatic testing.
+\end{quote}
 
 \subsection{Doctest and Haddock}
+
+\begin{quote}\begin{itemize}
+    \item
+        Haddock has markup support for interactive examples, and
+        Doctest can verify them.
+    \item
+        But it is not possible to use properties in Haddock comments
+        and automatically test them.
+\end{itemize} \end{quote}
 
 A good candidate to describe evidence for users is Doctest in Python community.
 It extends Python's documentation strings so that they
