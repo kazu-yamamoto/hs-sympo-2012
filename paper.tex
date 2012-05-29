@@ -31,6 +31,7 @@
 
 \usepackage{amsmath}
 \usepackage{url}
+\usepackage{alltt}
 
 \begin{document}
 
@@ -772,23 +773,13 @@ BDD in Haskell.
 
 \subsection{Procedure of BDD}
 
-\begin{quote}
-sol: Can we use \verb|reverse| instead of \verb|rev| here?
-\end{quote}
-
-\begin{quote}
-kazu: I used \verb|rev| just because it is short.
-Actually I used \verb|reverse| once but it is overflowed
-in the right hand side.
-\end{quote}
-
 First, we write a signature and leave the definition of the function undefined.
 
 \begin{quote}
 \small
 \begin{verbatim}
-rev :: [a] -> [a]
-rev = undefined
+reverse :: [a] -> [a]
+reverse = undefined
 \end{verbatim}
 \end{quote}
 
@@ -797,21 +788,22 @@ Next we write user documentation in Haddock markup:
 
 \begin{quote}
 \small
-\begin{verbatim}
+\begin{alltt}
 -- |
--- 'rev' @xs@ returns the elements of @xs@
+-- 'reverse' @xs@ returns the elements of @xs@
 -- in reverse order. @xs@ must be finite.
 --
--- >>> rev [1,2,3]
+-- >>> reverse [1,2,3]
 -- [3,2,1]
 --
--- prop> rev [] == rev []
--- prop> rev (xs ++ ys) == rev ys ++ rev (xs::[Int])
--- prop> rev (rev xs) == (xs::[Int])
+-- prop> reverse [] == reverse []
+-- prop> reverse (xs ++ ys) == reverse ys ++ \(\hookleftarrow\)
+                               reverse (xs::[Int])
+-- prop> reverse (reverse xs) == (xs::[Int])
 
-rev :: [a] -> [a]
-rev = undefined
-\end{verbatim}
+reverse :: [a] -> [a]
+reverse = undefined
+\end{alltt}
 \end{quote}
 
 \noindent We should execute Doctest to ensure no syntax errors.
@@ -820,14 +812,14 @@ Also, we write code documentation with Hspec:
 \begin{quote}
 \small
 \begin{verbatim}
-describe "rev" $ do
+describe "reverse" $ do
   it "returns the first element in the last" $
     property $ \xs -> not (null xs) ==>
-      head (rev xs) == last (xs :: [Int])
+      head (reverse xs) == last (xs :: [Int])
 
   it "returns the last element in the first" $
     property $ \xs -> not (null xs) ==>
-      last (rev xs) == head (xs :: [Int])
+      last (reverse xs) == head (xs :: [Int])
 \end{verbatim}
 \end{quote}
 
@@ -838,8 +830,8 @@ Then we implement the function.
 \begin{quote}
 \small
 \begin{verbatim}
-rev :: [a] -> [a]
-rev = foldl (flip (:)) []
+reverse :: [a] -> [a]
+reverse = foldl (flip (:)) []
 \end{verbatim}
 \end{quote}
 
