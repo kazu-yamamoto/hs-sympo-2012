@@ -195,6 +195,12 @@ The definitions of words used in this paper is as follows:
     Property means a QuickCheck property as defined in
     \cite{quickcheck}.
 
+\item[non-quantified property]
+    Property which does not take parameters.
+
+\item[quantified property]
+    Property which takes parameters.
+
 \item[behavior]
     Behavior means an invariant of a function.  We use an informal description
     to refer to a particular behavior, e.g.  "sorts a list" or "launches
@@ -459,8 +465,7 @@ It's worth explaining that we can specify operation sequences:
 \subsubsection{Markup for Properties}
 
 \noindent To specify properties, we also propose a new markup. In this paper, we
-use the {\tt prop>} prefix. We can write properties which do not take
-parameters as follows:
+use the {\tt prop>} prefix. We can write non-quantified properties as follows:
 
 \begin{quote}
 \small
@@ -469,8 +474,8 @@ prop> Data.Map.null empty == True
 \end{verbatim}
 \end{quote}
 
-\noindent Of course, we allowed properties which take parameters by
-using closed lambda terms.
+\noindent Of course, we allowed quantified properties by using closed
+lambda terms.
 Type signatures can be specified for each parameter:
 
 \begin{quote}
@@ -661,13 +666,13 @@ generating documentation, (e.g. as HTML).
 %% \emph{TBD What does this have to do with the topic of the paper?}
 %% \emph{Acknowledgment is enough.}
 
-%% It is enough to test properties which do not have parameters just one.
+%% It is enough to test non-quantified properties just one.
 %% However, QuickCheck 2.3 or earlier tests
-%% properties which do not have parameters 100 times.
+%% non-quantified properties 100 times.
 %% More precisely, the evaluation results are memorized and they are
 %% compared with {\tt True} 100 times.
 %% The current maintainer of QuickCheck modified so that
-%% properties which do not have parameters
+%% non-quantified properties
 %% are tested just once in its source repository.
 %% This feature will be available in the future release.
 
@@ -1027,7 +1032,7 @@ We are grateful to David Waern, Haddock's maintainer, for reviewing our patches
 and accepting our patches to Haddock.
 We would like to thank
 Nick Smallbone for having improved QuickCheck so that
-properties which do not have parameters are tested just once.
+non-quantified properties are tested just once.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
