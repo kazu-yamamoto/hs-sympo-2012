@@ -8,8 +8,6 @@ We can decide title at the last moment but let's enumerates candidates:
 1. Best Current Practice for Design, Documentation and Test in Haskell
 1. Behavior Driven Development in Haskell
 
-Author: Simon HENGEL, Trystan SPANGLER and Kazuhiko YAMAMOTO
-
 ## Purpose of the paper
 
 Encourage Haskllers to write usage/examples/properties in their
