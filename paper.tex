@@ -104,7 +104,7 @@ instance definitions \emph{behave} as \emph{expected}.
 Haskell programmers, however, is apt to rely on the type system too
 much and tend not to write test code.  For example, the Haskell
 Platform 2011.4.0.0 contains 23 packages (not counting the 19 core
-libraries that come with GHC), but only 8 of them a test suite (5
+libraries that come with GHC), but only 8 of them have a test suite (5
 provide example code, 10 have no tests nor examples).  Lacking test
 code also means that typical usage examples are not provided.
 
@@ -137,7 +137,7 @@ In BDD, all behavior should be documented, together with some
 \emph{code examples} as evidence for behavior.
 Hspec, a BDD tool for Haskell inspired by RSpec~\cite{rspec}, supports
 both code examples and \emph{properties} as evidence.
-It can verify examples and tests properties, and it can create an
+It can verify examples and test properties, and it can create an
 informal specification document from that.
 
 We made two observations:
@@ -163,8 +163,8 @@ document and test Haskell code.
 ~\cite{ci} is an important aspect of BDD.}
 \end{quote}
 
-Both, Doctest and Hspec miss some features.  So we extend them as
-needed.  Our contributions are:
+Both, Doctest and Hspec are missing some features.  So we extend them
+as needed.  In particular, our contributions are:
 
 \begin{itemize}
 \item
@@ -173,7 +173,7 @@ needed.  Our contributions are:
 
 \item
     Introduce a set of combinators to set expectations about
-    code examples for use with Hspec. (Section \ref{sec:code-doc} and Section \ref{sec:hspec-comb})
+    code examples for use with Hspec (Section \ref{sec:code-doc} and Section \ref{sec:hspec-comb})
 
 \item
     Improve CI support for Doctest and Hspec (Section \ref{sec:TBD})
@@ -182,7 +182,7 @@ needed.  Our contributions are:
     \emph{This relates to hspec-discover and Doctest's Cabal support.}
 
 \item
-    Show best current practice of BDD in Haskell using Doctest and
+    Show best current practice of BDD in Haskell, using Doctest and
     Hspec (Section \ref{ref:Best-current-practice})
 
 \end{itemize}
@@ -199,12 +199,6 @@ The definitions of words used in this paper is as follows:
 
 \begin{description}
 
-\item[developer]
-    A programmer who develops a library.
-
-\item[user]
-    A programmer who uses a library.
-
 \item[example]
     An example shows how a function is used.  It is either a \emph{code
     example} in the form of an HUnit test case; or an \emph{interactive
@@ -219,12 +213,6 @@ The definitions of words used in this paper is as follows:
     Property means a QuickCheck property as defined in
     \cite{quickcheck}.
 
-\item[non-quantified property]
-    Property which does not take parameters.
-
-\item[quantified property]
-    Property which takes parameters.
-
 \item[behavior]
     Behavior means an invariant of a function.  We use an informal description
     to refer to a particular behavior, e.g.  "sorts a list" or "launches
@@ -237,11 +225,31 @@ The definitions of words used in this paper is as follows:
 
 \item[spec]
     TBD: BDD terminology for test suite.
+\end{description}
+
+
+\begin{quote}
+    \emph{sol: Can we remove what follows??}
+\end{quote}
+
+\begin{description}
+\item[developer]
+    A programmer who develops a library.
+
+\item[user]
+    A programmer who uses a library.
+
 
 \item[user documentation]
     Explanation of functions for users.
 \item[code documentation]
     Explanation of functions for developers.
+
+\item[non-quantified property]
+    Property which does not take parameters.
+
+\item[quantified property]
+    Property which takes parameters.
 
 \end{description}
 
