@@ -982,6 +982,47 @@ test-suite doctests
 
 \subsection{Reusable spec}
 
+\begin{itemize}
+\item Some type classes have their laws.
+\item We can use Hspec to enforce such properties.
+\item If such properties are reusable among instances,
+we can avoid boilerplates.
+\item reusable spec can do this.
+\end{itemize}
+
+\begin{quote}
+\small
+\begin{verbatim}
+shouldSatisfyMonoidLaws ::
+  (Eq a, Show a, Monoid a, Arbitrary a) => a -> Specs
+shouldSatisfyMonoidLaws t = do
+  describe "mempty" $ do
+    it "is a left identity" $ property $ \x ->
+      mempty <> x == x `asTypeOf` t
+
+    it "is a right identity" $ property $ \x ->
+      x <> mempty == x `asTypeOf` t
+
+  describe "<>" $ do
+    it "is associative" $ property $ \x y z ->
+      (x <> y) <> z == x <> (y <> z) `asTypeOf` t
+\end{verbatim}
+\end{quote}
+
+\noindent The following is an example to apply this laws
+to lists.
+
+\begin{quote}
+\small
+\begin{verbatim}
+describe "List as a Monoid" $
+  shouldSatisfyMonoidLaws (undefined :: [Int])
+\end{verbatim}
+\end{quote}
+
+\begin{itemize}
+\item we should prepare this kind of laws.
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Related work}
