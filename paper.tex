@@ -206,7 +206,7 @@ The definitions of words used in this paper is as follows:
 
 \item[expectation]
     Expectations are used to define the expected outcome of a code
-    example.  They serve the same purpose as \emph{assertion}\/s in xUnit
+    example.  They serve the same purpose as \emph{assertions} in xUnit
     testing frameworks, but use a different terminology.
 
 \item[property]
@@ -378,35 +378,36 @@ Property}; QuickCheck's \texttt{property} function can be used to turn
 arbitrary properties into a \texttt{Property}.
 
 The \texttt{describe} function combines a list of specs into a larger spec.
-%% It can be used to organize a spec as a tree.
-%% Internally, a \texttt{Writer} is used to build up specs in a monadic way.
+It can be used to organize a spec as a tree.
+Internally, a \texttt{Writer} is used to build up specs in a monadic way.
+
 A spec can be run with the \texttt{hspec} function.  When a spec is
-run, all evidence is tested, and behavior with evidence that does not
+run, all evidence is tested.  Behavior with evidence that does not
 hold is reported to the developer.
 
-The problem of the original Hspec is that it does not provide
-a mechanism to express \emph{expectation}\/s with
-BDD terminology.
-For instance,
-it still uses HUnit
-assertions, which are TDD
-terminologies. In BDD, they are replaced with design terminologies.
-The following RSpec example shows the ``should'' expectation keyword:
+\subsubsection{Hspec not provide a mechanism for expectations}
+BDD frameworks use \emph{should} or \emph{must} instead of
+\emph{assert} to express expectations.  Here is an example that uses
+RSpec.
 
 \begin{quote}\small\begin{verbatim}
 [1, 2, 3].reverse.should eq([3, 2, 1])
 \end{verbatim}\end{quote}
 
-\noindent Another example is exceptions. Hspec does not yet provide a
-mechanism to express expectation on exceptions. The following is
-how to express expectation on an exception in RSpec:
 
-\begin{quote}
-\small
-\begin{verbatim}
+\noindent Hspec does not yet provide a mechanism to express
+\emph{expectations} with that terminology.  The developer has to use
+HUnit assertions instead.
+
+\subsubsection{Hspec provides no mechanism to expect exceptions}
+RSpec provides a mechanism to expect exceptions.
+
+\begin{quote}\small\begin{verbatim}
 expect {launch_missiles}.to raise_error
-\end{verbatim}
-\end{quote}
+\end{verbatim}\end{quote}
+
+\noindent Neither Hspec nor HUnit provide a convenient equivalent.
+
 
 \begin{quote}
     TBD:
