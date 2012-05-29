@@ -122,9 +122,11 @@ software in the simplest possible way which makes the test cases pass.
 That could mean yielding a constant value at first.  Subsequently,
 more test cases are written to reqire more details and drive the
 implementation closer to the desired goal.  Rinse and repeat.  BDD
-includes TDD, amongst other software development methods, but
-with a terminology and mindset  shifted towards specification instead
-of testing.  In BDD, specifications can be used for automatic testing.
+includes TDD, but with a terminology and mindset  shifted towards
+specification instead of testing. BDD also includes other software
+development methods, such as automatic test discovery and continuous
+integration~\cite{ci}.  In BDD, specifications can be used for
+automatic testing.
 
 BDD-style TDD has been pioneered by RSpec~\cite{rspec}.  In this
 paper, we explore how to apply the TDD aspect of BDD to Haskell.
@@ -151,14 +153,6 @@ We made two observations:
 think it fits the picture.
 We show how to use Doctest and Hspec in combination to design,
 document and test Haskell code.
-
-
-\begin{quote}
-    \emph{sol: @mkl, any idea where to put this?}
-
-\emph{Automation, such as test discovery and continuous integration (CI)
-~\cite{ci} is an important aspect of BDD.}
-\end{quote}
 
 Both, Doctest and Hspec are missing some features.  So we extend them
 as needed.  In particular, our contributions are:
