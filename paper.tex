@@ -345,10 +345,13 @@ A spec can be run with the \texttt{hspec} function.  When a spec is
 run, all properties and examples are evaluated, and failing properties
 and examples are reported to the developer.
 
-One problem of the original Hspec is that it still uses HUnit
-assertions (e.g. \verb|@?=| in the example above) , which are TDD
-terminologies. In BDD, they are replaced with design terminologies,
-{\it expectation}.
+The problem of the original Hspec is that it does not provide
+a mechanism to express \emph{expectation}\/s with
+BDD terminology.
+For instance,
+it still uses HUnit
+assertions (e.g. \verb|@?=| in the example above), which are TDD
+terminologies. In BDD, they are replaced with design terminologies.
 The following Rspec example shows the ``should'' expectation keyword:
 
 \begin{quote}
@@ -358,21 +361,20 @@ The following Rspec example shows the ``should'' expectation keyword:
 \end{verbatim}
 \end{quote}
 
+\noindent Another example is exceptions. Hspec does not yet provide a
+mechanism to express expectation on exceptions. The following is
+how to express expectation on an exception in Rspec:
+
+\begin{quote}
+\small
+\begin{verbatim}
+expect {launch_missiles}.to raise_error
+\end{verbatim}
+\end{quote}
+
 \begin{quote}
     TBD:
 \begin{itemize}
-    \item RSpec provides a mechanism to expect exceptions.
-
-        \begin{verbatim}
-expect {launch_missiles}.to raise_error
-        \end{verbatim}
-
-        Hspec does not yet provide a mechanism to set expectations
-        about the outcome of examples.  It uses HUnit assertions
-        instead.
-
-        HUnit does not provide a mechanism to expect exceptions.
-
     \item \emph{optional:} Motivate why it's important to integrate
         Doctest with
         Cabal.
@@ -400,7 +402,7 @@ Here is a summary of the problem:
     The Haskell community does not have a BDD tool for user documentation.
 \item
     Hspec does not provide combinators to express expectations with
-    BDD terminology
+    BDD terminology.
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
