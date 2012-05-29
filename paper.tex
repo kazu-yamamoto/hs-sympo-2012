@@ -126,22 +126,13 @@ includes TDD, amongst other software development methodologies, but
 with a terminology and mindset  shifted towards specification instead
 of testing.  In BDD, specifications can be used for automatic testing.
 
-\begin{quote}\begin{itemize}
-    \item
-        sol: Should we state that BDD-style TDD has been pioneered by
-        RSpec?  By now I think it would be a good idea, that way it
-        feels more natural to the reader that we always look at RSpec.
-
-        @mkl: Where would that fit in?
-\end{itemize}\end{quote}
-
-In this paper, we explore how to apply BDD to Haskell.
-For the purpose of this paper we only focus on the TDD aspect of BDD.
+BDD-style TDD has been pioneered by RSpec~\cite{rspec}.  In this
+paper, we explore how to apply the TDD aspect of BDD to Haskell.
 
 In BDD, all behavior should be documented, together with some
 \emph{evidence} for that behavior.  Most existing BDD tools use
 \emph{code examples} as evidence for behavior.
-Hspec, a BDD tool for Haskell inspired by RSpec~\cite{rspec}, supports
+Hspec, a BDD tool for Haskell inspired by RSpec, supports
 both code examples and \emph{properties} as evidence.
 It can verify examples and test properties, and it can create an
 informal specification document from that.
