@@ -240,6 +240,18 @@ So, we use ``behavior'' instead of defining a new terminology in this paper.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Problem}
 
+\begin{quote}\begin{itemize}
+    \item
+        We want to use properties and examples to provide evidence for
+        behavior.
+    \item
+        Haddock already has markup support for interactive examples,
+        and Doctest can verify them.
+    \item
+        It is not possible to use properties in Haddock comments and
+        automatically test them.
+\end{itemize}\end{quote}
+
 In the Haskell community, HUnit and QuickCheck are commonly used %% what about SmallCheck?
 and the {\tt test-framework} package integrates them.
 We can categorize {\tt test-framework} as
