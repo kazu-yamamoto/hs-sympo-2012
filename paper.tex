@@ -731,17 +731,28 @@ generating documentation, (e.g. as HTML).
 
 \subsubsection{Testing examples}
 
-TBD: kazu: how to obtain evidence from Haddock markup.
-Old version uses Haddock API but now uses GHC API directly. Why?
+\begin{itemize}
+    \item
+        Doctest uses the GHC API to extract Haddock comments.
+    \item
+        It uses the GHC API directly, so that it can more easily
+        support old GHC versions.  Each release of Haddock only
+        supports the latest GHC version.
+    \item
+        Doctest use GHCi to verify examples.
+    \item
+        It reuses the same GHCi session for all examples.
+    \item
+        Examples from the same Haddock comment are grouped together,
+        and share the same scope.
+    \item
+        The scope is cleared with \verb|:reload| before a new
+        Example group is started.
+    \item
+\end{itemize}
 
-TBD: kazu: escape from HUnit. Why?
-
-TBD: kazu: Old version executes one GHCi for each function examples.
-But new version executes one GHCI per module.
-Drastic speed up. Do We need a graph for execution time?
-
-Since test is done by comparing result string in Haddock notation
-and result string from GHCi, exceptions can be handled.
+Since test is done by comparing result string in Haddock notation and
+result string from GHCi, exceptions can be handled.
 
 \subsubsection{Testing properties}
 
