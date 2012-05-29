@@ -124,16 +124,39 @@ In this paper, we explore how to apply BDD to Haskell.
 For the purpose of this paper we only focus on the TDD aspect of BDD.
 
 In BDD, all behavior should be documented, together with some
-\emph{evidence} for that behavior.
+\emph{evidence} for that behavior.  Hspec inspired by
+RSpec~\cite{rspec} allows to document code with \emph{properties} and
+\emph{code examples}, and create an informal specification document
+from that.
+
+We made two observations:
+\begin{enumerate}
+    \item
+        Parts of a specification can be useful as user documentation.
+    \item
+        Doctest, a tool inspired by a Python module with the same
+        name~\cite{doctest}, already allows to verify
+        \emph{interactive examples} in Haddock comments.
+\end{enumerate}
+
+\noindent Doctest is not commonly described as a BDD tool, but we
+think it fits the picture.
+We show how to use Doctest and Hspec in combination to design,
+document and test Haskell code.
 
 For this purpose, we brought a test method from other programming
 language community and extended missing features.  In particular, we
 introduced Doctest~\cite{doctest} and integrated it with
 QuickCheck~\cite{quickcheck} for user documentation.
 
-For code documentation, we make use of Hspec inspired by
-RSpec~\cite{rspec} and we proposed some combinators to set
-expectations about \emph{code example}\/s.
+
+\begin{itemize}
+    \item
+        We proposed some combinators to set expectations about
+        \emph{code examples}.
+\end{itemize}
+
+
 
 Automating such as test discovery and continuous integration (CI) ~\cite{ci}
 is an important aspect of BDD.
