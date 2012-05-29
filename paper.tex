@@ -233,8 +233,9 @@ The definitions of words used in this paper is as follows:
     missiles when run".
 
 \item[evidence]
-    Evidence is either an example or a property.  It provides some confidence,
-    that a function exhibits a certain behavior.
+    Evidence provides some confidence, that a function exhibits a
+    certain behavior.  In Haskell we use examples and properties as
+    evidence.
 
 \item[spec]
     TBD: BDD terminology for test suite.
@@ -268,38 +269,39 @@ So, we use ``behavior'' instead of defining a new terminology in this paper.
 
 \begin{quote}\begin{itemize}
     \item
-        We want to use properties and examples to provide evidence for
-        behavior.
+        BDD tools for other programming languages use code examples as
+        evidence for behavior.
     \item
-        Haddock already has markup support for interactive examples,
-        and Doctest can verify them.
+        When we apply BDD to Haskell we want to use properties and
+        examples to provide evidence for behavior.
     \item
-        It is not possible to use properties in Haddock comments and
-        automatically test them.
-\end{itemize}\end{quote}
+        Hspec already has support for both.
+    \item
+        Haddock has markup support for interactive examples, and
+        Doctest can verify them.
+    \item
+        But it is not possible to use properties in Haddock comments
+        and automatically test them.
+\end{itemize} \end{quote}
 
-In the Haskell community, HUnit and QuickCheck are commonly used %% what about SmallCheck?
-and the {\tt test-framework} package integrates them.
-We can categorize {\tt test-framework} as
-a tool for TDD.
-Before our work and Hspec, there was no widely used BDD tool for Haskell.
 
-BDD tools used in other programming language communities are
-mainly based on example tests,
-and do not support property tests.
-To our experience is, that it is not difficult to find properties for
-pure Haskell functions.
-So, when we bring BDD tools to
-Haskell community, we should integrate them with properties test.
+\begin{quote}
+Hspec can be used to document the behavior of a system in a way that
+is similar to a specification.  All facets of the system are described
+with examples and properties, including every possible corner case.
 
-We can categorize evidence into two types: for users and
-and for developers.
-Evidence for users are those which are useful as user documentation.
-By contrast, evidence for developers are
-those which are not useful as user documentation
-but should be written as code documentation.
-A good example of evidence for developers
-is a corner example registered in a bug tracking system.
+We think that some evidence is useful as user documentation, hence we
+want to be able to include it in Haddock comments.  But there is also
+evidence that is not useful as user documentation.  E.g. that a
+particular \texttt{Monoid} instance is a monoid in the mathematical
+sense is self-evident.  So we do not want to include any examples or
+behaviors for that into user documentation, but we still want to be
+able to automatically test it.
+
+We propose to use Doctest to test evidence that is useful as user
+documentation, and Hspec for evidence that is not useful as user
+documentation.
+\end{quote}
 
 BDD tools should be treat both of them and provide functionality
 to extract evidence for users as user documentation.
