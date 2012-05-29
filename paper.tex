@@ -294,25 +294,13 @@ triple purpose: design, documentation and automatic testing.
 
 \subsection{Doctest and Haddock}
 
-\begin{quote}\begin{itemize}
-    \item
-        Haddock has markup support for interactive examples, and
-        Doctest can verify them.
-    \item
-        But it is not possible to use properties in Haddock comments
-        and automatically test them.
-\end{itemize} \end{quote}
-
-A good candidate to describe evidence for users is Doctest in Python community.
-It extends Python's documentation strings so that they
-can contain examples.
-Examples can be tested by the Python interpreter.
 
 The standard documentation mechanism for Haskell is
 Haddock~\cite{haddock}.
-Haddock defines markup syntax in Haskell's comment.
-Haddock provides markup for code blocks, indicated with ({\tt >}).
-For example, the {\tt containers} packages has the following code block markup:
+Haddock provides markup syntax for code blocks, indicated with ({\tt
+>}).
+For example, the {\tt containers} packages contains a Haddock comment
+with the following code block.
 
 \begin{quote}
 \small
@@ -334,6 +322,15 @@ If the equations above are examples, we cannot distinguish
 their results from their expression to be evaluated.
 If they are properties, they should be distinguished
 from example code.
+
+\begin{quote}\begin{itemize}
+    \item
+        Haddock has markup support for interactive examples, and
+        Doctest can verify them.
+    \item
+        But it is not possible to use properties in Haddock comments
+        and automatically test them.
+\end{itemize} \end{quote}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Hspec}
