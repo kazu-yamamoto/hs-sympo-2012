@@ -165,7 +165,7 @@ as needed.  In particular, our contributions are:
     \ref{sec:user-doc} and Section \ref{sec:doctest})
 
 \item
-    Introduce a set of combinators to set expectations about
+    Introduce a set of combinators to express expectations about
     code examples for use with Hspec (Section \ref{sec:code-doc} and Section \ref{sec:hspec-comb})
 
 \item
@@ -573,9 +573,8 @@ describe evidence for developers.
 %%%%%%%%%%%%%%%%
 \subsubsection{Setting expectations}
 
-We propose several combinators, that can be used to set expectations
-about the outcome of examples.  And we build them on top of
-HUnit.
+We propose several combinators which can be used to express expectations
+about the outcome of examples.  These are built on top of HUnit.
 
 \begin{quote}\small\begin{verbatim}
 type Expectation = Assertion
