@@ -359,7 +359,8 @@ spec :: Spec
 spec = do
   describe "reverse" $ do
     it "reverses a list" $
-      reverse [1 :: Int, 2, 3] @?= [3, 2, 1]
+      assertEqual "" [3, 2, 1]
+                     (reverse [1 :: Int, 2, 3])
 
     it "gives the original list, if applied twice" $
       property $ \xs ->
@@ -386,7 +387,7 @@ a mechanism to express \emph{expectation}\/s with
 BDD terminology.
 For instance,
 it still uses HUnit
-assertions (e.g. \verb|@?=| in the example above), which are TDD
+assertions, which are TDD
 terminologies. In BDD, they are replaced with design terminologies.
 The following Rspec example shows the ``should'' expectation keyword:
 
