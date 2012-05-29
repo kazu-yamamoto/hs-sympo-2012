@@ -391,18 +391,15 @@ For instance,
 it still uses HUnit
 assertions, which are TDD
 terminologies. In BDD, they are replaced with design terminologies.
-The following Rspec example shows the ``should'' expectation keyword:
+The following RSpec example shows the ``should'' expectation keyword:
 
-\begin{quote}
-\small
-\begin{verbatim}
-23.should eq(23)
-\end{verbatim}
-\end{quote}
+\begin{quote}\small\begin{verbatim}
+[1, 2, 3].reverse.should eq([3, 2, 1])
+\end{verbatim}\end{quote}
 
 \noindent Another example is exceptions. Hspec does not yet provide a
 mechanism to express expectation on exceptions. The following is
-how to express expectation on an exception in Rspec:
+how to express expectation on an exception in RSpec:
 
 \begin{quote}
 \small
