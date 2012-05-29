@@ -345,12 +345,11 @@ tree structure, and it is defined with \texttt{it} and
 \small
 \begin{verbatim}
 import Test.Hspec.Monadic
-spec :: Spec
-spec = do
+main :: IO ()
+main = spec $ do
   describe "reverse" $ do
     it "reverses a list" $
-      assertEqual "" [3, 2, 1]
-                     (reverse [1 :: Int, 2, 3])
+      assertEqual "" [3, 2, 1] (reverse [1, 2, 3])
 
     it "gives the original list, if applied twice" $
       property $ \xs ->
@@ -359,9 +358,8 @@ spec = do
 \end{quote}
 
 \noindent The {\tt it} function combines a text description for a
-behavior and a property or an example that gives some confidence in
-that behavior into a spec.
-Examples can be arbitrary HUnit assertions.  Properties must be of type {\tt
+behavior and some evidence into a spec.
+Code examples can be arbitrary HUnit assertions.  Properties must be of type {\tt
 Property}; QuickCheck's \texttt{property} function can be used to turn
 arbitrary properties into a \texttt{Property}.
 
@@ -369,8 +367,8 @@ The \texttt{describe} function combines a list of specs into a larger spec.
 %% It can be used to organize a spec as a tree.
 %% Internally, a \texttt{Writer} is used to build up specs in a monadic way.
 A spec can be run with the \texttt{hspec} function.  When a spec is
-run, all properties and examples are evaluated, and failing properties
-and examples are reported to the developer.
+run, all evidence is tested, and behavior with evidence that does not
+hold is reported to the developer.
 
 The problem of the original Hspec is that it does not provide
 a mechanism to express \emph{expectation}\/s with
