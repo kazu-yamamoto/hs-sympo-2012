@@ -306,10 +306,19 @@ triple purpose: design, documentation and automatic testing.
 
 The standard documentation mechanism for Haskell is
 Haddock~\cite{haddock}.
-Haddock provides markup syntax for code blocks, indicated with ({\tt
->}).
-For example, the {\tt containers} packages contains a Haddock comment
-with the following code block.
+Haddock has markup support for code blocks.  And it is widely used to
+include properties and examples in documentation.
+
+\begin{quote}
+    sol: @kazu should we cite package documentation, to support this?
+    I'm aware of:
+    \begin{itemize}
+        \item filepath
+        \item containers
+    \end{itemize}
+\end{quote}
+
+Here is an example from the {\tt containers} packages.
 
 \begin{quote}
 \small
