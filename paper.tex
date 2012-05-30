@@ -507,7 +507,7 @@ community and integrate it with QuickCheck.
 \end{itemize}
 \end{quote}
 
-\noindent First, we introduce new Haddock markup for the example.
+\noindent First, we introduce new Haddock markup for examples.
 In this paper, we use {\tt >>>} which is the same as Python's one.
 Here is an example:
 
@@ -555,8 +555,8 @@ prop> Data.Map.null empty == True
 \end{verbatim}
 \end{quote}
 
-\noindent Of course, we allowed quantified properties by using closed
-lambda terms. The property example in Section~\ref{sec:doctest-haddock}
+\noindent Of course, we allow quantified properties by using a
+lambda expression. The property example in Section~\ref{sec:doctest-haddock}
 can be written as follows:
 
 \begin{quote}
@@ -589,7 +589,7 @@ prop> sort xs == (sort . sort) (xs :: [Int])
 \noindent We call such properties \emph{implicitly quantified}.  The
 given property is implicitly quantified over \verb|xs|.
 
-Evidence in comments are automatically
+Evidence in comments is automatically
 tested by the Doctest command. We also provided a library
 to do this job. Its implementation will discussed in Section~\ref{sec:doctest}.
 
@@ -597,7 +597,7 @@ to do this job. Its implementation will discussed in Section~\ref{sec:doctest}.
 \subsection{Code documentation}
 \label{sec:code-doc}
 
-We propose following extensions for Hspec to
+We propose the following extensions for Hspec to
 describe evidence for developers.
 
 %%%%%%%%%%%%%%%%
