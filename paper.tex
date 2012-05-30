@@ -307,6 +307,7 @@ documentation.  The following subsections discuss problems that we
 have to solve before we can do this.
 
 \subsection{Doctest and Haddock}
+\label{sec:doctest-haddock}
 
 The standard documentation mechanism for Haskell is
 Haddock~\cite{haddock}.
@@ -531,7 +532,8 @@ prop> Data.Map.null empty == True
 \end{quote}
 
 \noindent Of course, we allowed quantified properties by using closed
-lambda terms.
+lambda terms. The property example in Section~\ref{sec:doctest-haddock}
+can be written as follows:
 
 \begin{quote}
 \small
@@ -541,7 +543,7 @@ prop> \verb|\|x -> null (takeExtension x) == \(\hookleftarrow\)
 \end{alltt}
 \end{quote}
 
-\noindent Type signatures can be specified for each parameter:
+\noindent If a default type is not suitable, expression type--signatures can be specified for each parameter:
 
 \begin{quote}
 \small
