@@ -68,6 +68,22 @@ method, specification can be used for documentation and automatic
 testing. This kill-three-birds-with-one-stone aspect would motivate
 Haskellers to write test code.
 
+\emph{mkl proposes:}
+When wading through the numerous libraries written by
+the Haskell community, one sometimes gets the impression that the type
+system is being too much relied on, at the expense of testing.
+While the type system cannot always guarantee semantic correctness,
+test code has more applications than getting the code correct.
+Test code assists developers in maintaining correctness when extending
+software, and shows users how an API is supposed to be used.
+To ease the production and enhance the value of test code, we advocate
+behavior driven development with two tools:
+QuickCheck integrated in Doctest for user documentation and Hspec
+with new mnemonic combinators for code documentation.
+Our method utilizes specification that can also be used for
+documentation and automatic testing. We hope that this three-in-one
+quality motivates Haskellers to write more test code.
+
 %% State the problem.
 %% Say why it's an interesting problem.
 %% Say what your solution achieves.
