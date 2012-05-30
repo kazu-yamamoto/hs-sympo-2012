@@ -304,6 +304,23 @@ sense is self-evident.  So we do not want to include any evidence for
 that into user documentation, but we still want to automatically test
 it.
 
+\begin{quote}
+kazu: the two paragraphs above doe not seem logical to me. I would change these
+as follows:
+
+BDD tools can be used to document the behavior of a system in a way that
+is similar to a specification.  All facets of the system should be
+described with evidence, including every possible corner case.
+
+We think that some evidence is useful as user documentation, hence we
+want to be able to include it in Haddock comments.  But others are not
+useful as user documentation.  E.g. that a particular \texttt{Monoid}
+instance is a monoid in the mathematical sense is self-evident.
+They should be included in code document. Both kinds of evidence
+should be automatically tested.
+\end{quote}
+
+
 We propose to use Doctest and Haddock for evidence that is useful as
 user documentation, and Hspec for evidence that is not useful as user
 documentation.
