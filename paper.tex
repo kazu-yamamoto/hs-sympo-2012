@@ -398,21 +398,20 @@ main = spec $ do
 \end{quote}
 
 \noindent The {\tt it} function combines a text description for a
-behavior and some evidence into a spec.
+behavior and some evidence (a code example or a property) into a spec.
 Code examples can be arbitrary HUnit assertions.  Properties must be of type {\tt
 Property}; QuickCheck's \texttt{property} function can be used to turn
 arbitrary properties into a \texttt{Property}.
 
 The \texttt{describe} function combines a list of specs into a larger spec.
-It can be used to organize a spec as a tree.
-Internally, a \texttt{Writer} is used to build up specs in a monadic way.
-
+% It can be used to organize a spec as a tree.
+% Internally, a \texttt{Writer} is used to build up specs in a monadic way.
 A spec can be run with the \texttt{hspec} function.  When a spec is
 run, all evidence is tested.  Behavior with evidence that does not
 hold is reported to the developer.
 
 %%%%%%%%%%%%%%%%
-\subsubsection{Hspec does not provide a mechanism for expectations}
+% \subsubsection{Hspec does not provide a mechanism for expectations}
 BDD frameworks use \emph{should} or \emph{must} instead of
 \emph{assert} to express expectations.  Here is an example that uses
 RSpec.
@@ -427,8 +426,8 @@ RSpec.
 HUnit assertions instead.
 
 %%%%%%%%%%%%%%%%
-\subsubsection{Hspec provides no mechanism to expect exceptions}
-RSpec provides a mechanism to expect exceptions.
+% \subsubsection{Hspec provides no mechanism to expect exceptions}
+Moreover RSpec provides a mechanism to expect exceptions.
 
 \begin{quote}\small\begin{verbatim}
 expect {launch_missiles}.to raise_error
