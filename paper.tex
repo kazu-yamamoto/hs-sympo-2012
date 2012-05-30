@@ -624,7 +624,8 @@ operator.  The type is:
 shouldBe :: (Show a, Eq a) => a -> a -> Expectation
 \end{verbatim}\end{quote}
 
-\noindent Or we may expect that a value satisfies some predicate.
+\noindent Or we may expect that a value should satisfies some
+predicate.
 
 \begin{quote}\small\begin{verbatim}
 x `shouldSatisfy` (< 23)
@@ -651,6 +652,8 @@ launchMissiles >>=
 \begin{quote}\small\begin{verbatim}
 launchMissiles `shouldReturn` Left "not implemented"
 \end{verbatim}\end{quote}
+
+\noindent Where \verb|shouldReturn| has the following type:
 
 \begin{quote}\small\begin{verbatim}
 shouldReturn :: (Show a, Eq a) => IO a -> a
