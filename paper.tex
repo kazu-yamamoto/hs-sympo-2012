@@ -159,7 +159,8 @@ as needed.  In particular, our contributions are:
 
 \begin{itemize}
 \item
-    We originally implemented Haskell's version of Doctest, and extended
+    We originally implemented Haskell's version of Doctest\footnote{%
+    http://hackage.haskell.org/package/doctest}, and extended
     Haddock's markup to support examples, back in 2010
 \item
     Add support for QuickCheck properties to Doctest and
@@ -827,13 +828,10 @@ term over \verb|xs|.
 \subsection{Hspec combinators for expectations}
 \label{sec:hspec-comb}
 
-\begin{quote}
-    sol: @kazu: Can you add the documentation of \verb|test-shouldbe|
-    to the bib, and cite it here?
-\end{quote}
-
-\noindent All combinators introduced in \ref{} have been
-implemented~\cite{todo}; and they will be incorporated into a future
+\noindent All combinators introduced in \ref{sec:code-doc} have been
+implemented in the {\tt hspec-shouldbe} package\footnote{%
+http://hackage.haskell.org/package/hspec-shouldbe};
+and they will be incorporated into a future
 release of Hspec.
 The implementation is trivial, so we will not further discuss it.
 
@@ -1105,8 +1103,8 @@ TBD:
 We do not get source locations for failing tests. Doctest solves this.
 For Hspec/QuickCheck/HUnit something like JHC's
 \verb|SRCLOC_ANNOTATE|
-pragma~\cite{todo}
-could help.
+pragma\footnote{%
+http://repetae.net/computer/jhc/jhc.shtml} could help.
 
 \begin{quote}
     sol: @kazu should we cite
