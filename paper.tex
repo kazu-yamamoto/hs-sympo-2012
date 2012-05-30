@@ -1160,15 +1160,21 @@ assertRaises :: (Show a, Exception e, Show e, Eq e) =>
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 
-\begin{quote}
-    TBD
+TBD:
 
-    sol: @kazu, can you work on this, if you have time.  I think an
-    ``itemized'' list is better than text.  It's more flexible for
-    now, and @mkl or @sol can do the final wording)
-\end{quote}
-
-
+\begin{itemize}
+\item We discussed how to carry out BDD in Haskell.
+\item We proposed to use Doctest for user documentation
+and Hspec for code documentation.
+\item We enhanced Haddock to support examples and properties, 
+and implemented Doctest integrated with QuickCheck.
+\item We also supplied expectation combinators to Hspec.
+\item With these two tools, specification can also be used for
+documentation and automatic testing.
+\item test discovery
+\item This enhances the value of test code and would motivate
+Haskell programmers to write test code.
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \acks
