@@ -165,11 +165,11 @@ It can verify examples and test properties, and it can create an
 informal specification document from that.
 
 Hspec is thus useful for \emph{code documentation} but we observed that parts
-of a specification can be useful as user documentation. We pay attention
-to Python's Doctest~\cite{doctest} for this purpose.
-Doctest is not commonly described as a BDD tool, but we think
-it can be used for BDD.
-There is a Haskell version of Doctest\footnote{%
+of a specification can be useful as user documentation. To that end, we think
+Python's {\tt doctest} module~\cite{doctest} is interesting.
+It is not commonly described as a BDD tool, but we think it can be
+used for BDD.
+There is a Haskell version called Doctest\footnote{%
 http://hackage.haskell.org/package/doctest}, which is integrated with Haddock~\cite{haddock},
 the standard documentation mechanism for Haskell.
 It extracts \emph{interactive examples} in Haddock comments and
