@@ -1051,13 +1051,14 @@ test-suite doctests
 
 \subsection{Reusable spec}
 
-\begin{itemize}
-\item Some type classes have their laws.
-\item We can use Hspec to enforce such properties.
-\item If such properties are reusable among instances,
-we can avoid boilerplates.
-\item reusable spec can do this.
-\end{itemize}
+Reusable spec is an idea to scrap boilerplate of evidence.
+For instance, without reusable spec,
+each developer of an instance of a type class should
+express evidence for its laws.
+Since instances of a type class share API,
+we can avoid such boilerplate.
+The following is an example to implement
+evidence for Monoid laws:
 
 \begin{quote}
 \small
@@ -1078,8 +1079,8 @@ shouldSatisfyMonoidLaws t = do
 \end{verbatim}
 \end{quote}
 
-\noindent The following is an example to apply this laws
-to lists.
+\noindent This can be used for any instances of Monoid.
+Here is an example to apply it to a list:
 
 \begin{quote}
 \small
@@ -1089,9 +1090,9 @@ describe "List as a Monoid" $
 \end{verbatim}
 \end{quote}
 
-\begin{itemize}
-\item we should prepare this kind of laws.
-\end{itemize}
+\noindent We have already implemented this experimentally.
+We should ensure the practicality of reusable spec and
+prepare reusable spec to cover variety of type classes.
 
 \subsection{Source locations for failing examples}
 
