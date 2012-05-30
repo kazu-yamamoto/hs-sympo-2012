@@ -308,41 +308,25 @@ So, we use ``behavior'' instead of defining a new terminology in this paper.
 \section{Problem}
 \label{sec:problem}
 
-Hspec can be used to document the behavior of a system in a way that
+BDD tools can be used to document the behavior of a system in a way that
 is similar to a specification.  All facets of the system should be
 described with evidence, including every possible corner case.
 
-We think that some evidence is useful as user documentation, hence we
-want to be able to include it in Haddock comments.  But there is also
-evidence that is not useful as user documentation.  E.g. that a
-particular \texttt{Monoid} instance is a monoid in the mathematical
-sense is self-evident.  So we do not want to include any evidence for
-that into user documentation, but we still want to automatically test
-it.
+We think that some evidence is useful as user documentation.
+But there is also evidence, that is not
+useful as user documentation.  E.g. that a particular \texttt{Monoid}
+instance is a monoid in the mathematical sense is self-evident.
 
 We propose to use Doctest and Haddock for evidence that is useful as
 user documentation, and Hspec for evidence that is not useful as user
 documentation.
 
 \begin{quote}
-kazu: I'm uncomfortable with the three paragraphs above. I would change these
-as follows:
+    TBD: Not correct English, so we have to find an other way to say
+    this.
 
-BDD tools can be used to document the behavior of a system in a way that
-is similar to a specification.  All facets of the system should be
-described with evidence, including every possible corner case.
-
-We think that some evidence is useful as user documentation, hence we
-want to be able to include it in Haddock comments.  But others are not
-useful as user documentation.  E.g. that a particular \texttt{Monoid}
-instance is a monoid in the mathematical sense is self-evident.
-They should be included in code document. Both kinds of evidence
-should be automatically tested.
-
-We propose to use Doctest and Haddock for evidence that is useful as
-user documentation, and Hspec for evidence that is not useful as user
-documentation. The following subsections disccuss problems when
-we try to carry out our proposal of BDD.
+    The following subsections disccuss problems when we try to carry
+    out our proposal of BDD.
 \end{quote}
 
 \subsection{Doctest and Haddock}
