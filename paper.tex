@@ -340,37 +340,25 @@ See e.g. the documentation of
 {\tt filepath},
 {\tt bytestring} or
 {\tt text}}.
-Here is an example from the {\tt containers} package.
+Here is an example from the {\tt filepath} package.
 
 \begin{quote}
 \small
 \begin{verbatim}
--- | /O(1)/. Is the map empty?
+-- | Does the given filename have an extension?
 --
--- > Data.Map.null (empty)           == True
--- > Data.Map.null (singleton 1 'a') == False
-
-null :: Map k a -> Bool
-null Tip      = True
-null (Bin {}) = False
+-- > null (takeExtension x) == not (hasExtension x)
+hasExtension :: FilePath -> Bool
+hasExtension = any isExtSeparator . takeFileName
 \end{verbatim}
 \end{quote}
 
 \noindent Though code blocks in Haddock comments are a useful feature,
-we still think that this particular usage has problems.
-
-
-\begin{quote}
-    \emph{sol: I think the Haddock comment only contains properties.
-    So the argumentation is shaky?} \\
-    \emph{kazu: My point is that we cannot tell which the author of packages
-   want to express, examples or properties.}
-\end{quote}
-
-If the equations above are examples, we cannot distinguish
-their results from their expression to be evaluated.
-If they are properties, they should be distinguished
-from example code.
+we still think that this particular usage has problems.  The code
+block contains a property.  And it would be useful to have a tool that
+automatically extracts and tests the property.
+But writing such a tool is hard, because it is not easy to decide if
+the code block is a property, an example, or some random code snippet.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Hspec}
