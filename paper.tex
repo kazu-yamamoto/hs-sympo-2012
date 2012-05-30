@@ -153,13 +153,6 @@ both code examples and \emph{properties} as evidence.
 It can verify examples and test properties, and it can create an
 informal specification document from that.
 
-\begin{quote}
-    \emph{kazu: we should talk about Python's doctest,
-    Haskell's doctest and Haddock here and put
-    citation on them.}
-\end{quote}
-
-
 We made two observations:
 \begin{enumerate}
     \item
@@ -177,6 +170,28 @@ document and test Haskell code.
 
 Both, Doctest and Hspec are missing some features.  So we extend them
 as needed.  In particular, our contributions are:
+
+\begin{quote}
+    \emph{kazu: I would like to change blocks above (from ``We made two ...'') with:}
+
+Hspec is thus useful for code documentation but we observed that parts
+of a specification can be useful as user documentation. We pay attention
+to Python's Doctest~\cite{doctest} for this purpose.
+Doctest is not commonly described as a BDD tool, but we think
+it can be used for BDD.
+There is Haskell version of Doctest\footnote{%
+http://hackage.haskell.org/package/doctest} coped with Haddock~\cite{haddock},
+standard documentation mechanism for Haskell.
+It extracts \emph{interactive examples} in Haddock comments and
+verify them automatically.
+
+We will show how to use Doctest and Hspec in combination to design,
+document and test Haskell code.
+Both, Doctest and Hspec are missing some features.  So we extend them
+as needed.  In particular, our contributions are:
+\end{quote}
+
+
 
 \begin{itemize}
 \item
