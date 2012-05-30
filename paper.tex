@@ -123,25 +123,34 @@ That could mean yielding a constant value at first.  Subsequently,
 more test cases are written to require more details and drive the
 implementation closer to the desired goal.  Rinse and repeat.  
 
-BDD includes TDD, but with a terminology and mindset shifted towards
-specification instead of testing. BDD also includes other software
-development methods, such as automatic test discovery and continuous
-integration~\cite{ci}.  In BDD, specifications can be used for
+BDD includes TDD, amongst other software development methodologies,
+but with a terminology and mindset shifted towards
+specification instead of testing.
+In BDD, specifications can be used for
 automatic testing.  BDD-style TDD has been pioneered by
 RSpec~\cite{rspec}.  In this paper, we explore how to apply the TDD
 aspect of BDD to Haskell.
 
 \begin{quote}
-    \emph{kazu: I would like to exchange 2nd sentence and 3rd sentence:}
+    BDD also includes other software development methods, such as
+    automatic test discovery and continuous integration~\cite{ci}.
 
-    sol: this paragraph still has issues
+    sol: I removed this, and reverted the paragraph to it's previous
+    version, because I think there were several issues.
+
     \begin{itemize}
         \item test discovery is not an aspect of BDD, only an emphasis
-            on automating things is an aspect of BDD, so that thing
-            e.g. work with CI.
+            on automating things is an aspect of BDD, so that
+            \emph{testing is more fun} and \emph{things e.g. work with
+            CI}.  This are two things, but both justify automation.
+            We only need this to justify our discussion of Cabal
+            integration and automatic test discovery.  If we remove
+            those, we do not state that ``automation is an important
+            aspect of BDD''.  This may be a solution.
         \item @mkl your previous version stated, that BDD includes
-            other things (ATDD!), but we only focus on TDD.  I think
-            meaning got lost now.
+            other things (ATDD!), but that we do not cover them.  This
+            is very important.  And I think meaning got lost with the
+            change, hence the revert.
     \end{itemize}
 
 BDD includes TDD, but with a terminology and mindset shifted towards
