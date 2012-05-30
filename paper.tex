@@ -326,17 +326,9 @@ The standard documentation mechanism for Haskell is
 Haddock.
 Haddock has markup support for code blocks.  And it is widely used to
 include properties and examples in documentation.
-
-\begin{quote}
-    sol: @kazu should we cite package documentation, to support this?
-    I'm aware of:
-    \begin{itemize}
-        \item filepath
-        \item containers
-    \end{itemize}
-\end{quote}
-
-Here is an example from the {\tt containers} packages.
+For instance, the {\tt filepath} package and
+the {\tt containers} package adopt this style.
+Here is an example from the latter.
 
 \begin{quote}
 \small
@@ -358,7 +350,9 @@ we still think that this particular usage has problems.
 
 \begin{quote}
     \emph{sol: I think the Haddock comment only contains properties.
-    So the argumentation is shaky?}
+    So the argumentation is shaky?} \\
+    \emph{kazu: My point is that we cannot tell which the author of packages
+   want to express, examples or properties.}
 \end{quote}
 
 If the equations above are examples, we cannot distinguish
