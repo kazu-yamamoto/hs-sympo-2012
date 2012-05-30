@@ -532,7 +532,16 @@ prop> Data.Map.null empty == True
 
 \noindent Of course, we allowed quantified properties by using closed
 lambda terms.
-Type signatures can be specified for each parameter:
+
+\begin{quote}
+\small
+\begin{alltt}
+prop> \verb|\|x -> null (takeExtension x) == \(\hookleftarrow\)
+            not (hasExtension x)
+\end{alltt}
+\end{quote}
+
+\noindent Type signatures can be specified for each parameter:
 
 \begin{quote}
 \small
