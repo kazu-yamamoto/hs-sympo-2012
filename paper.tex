@@ -469,6 +469,10 @@ Here is a summary of the problem:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Solution}
 
+\begin{quote}
+    \emph{kazu: We should explicitly say that we propose to Doctest as a BDD tool here..}
+\end{quote}
+
 To be able to specify evidence for users, we propose to add new
 markup to Haddock and to use Doctest integrated with QuickCheck. To
 describe evidence for developers, we propose to use Hspec also
@@ -493,14 +497,18 @@ community and integrate it with QuickCheck.
 %%%%%%%%%%%%%%%%
 \subsubsection{Markup for examples}
 
-\begin{quote}\begin{itemize}
+\begin{quote}
+\begin{itemize}
     \item
         We already added markup support for interactive examples to
         Haddock, back in 2010; and Doctest can verify them.
     \item
         But it is not possible to use properties in Haddock comments
         and automatically test them.
-\end{itemize} \end{quote}
+
+    \emph{kazu: I guess that it's enough to describe this in the Implementation Section.}
+\end{itemize}
+\end{quote}
 
 \noindent First, we introduce new Haddock markup for the example.
 In this paper, we use {\tt >>>} which is the same as Python's one.
