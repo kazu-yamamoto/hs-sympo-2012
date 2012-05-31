@@ -89,7 +89,7 @@ quality motivates Haskellers to write more test code.
 
 %%%% Describe the problem.
 
-Haskell~\cite{haskell} has a very strong type system, which ensures that most type errors are
+Haskell~\cite{haskell} has a strong type system, which ensures that most type errors are
 detected at compile time rather than runtime.  Thanks to this, we assume that
 programs written in Haskell have less bugs than programs written in programming
 languages that do not provide such a strong type system.
@@ -97,11 +97,9 @@ languages that do not provide such a strong type system.
 Unfortunately, the type system of Haskell does not always guarantee
 correct semantics.
 For example, it does not ensure that division by zero does not occur.
-Another example is laws of type classes.
-For instance, the {\tt Monoid} class has three Monoid laws
-that its instance \emph{should} satisfy
-but
-it is the programmers responsibility to ensure that
+An other example is, that instances of {\tt Monoid} \emph{should} be
+monoids in the mathematical sense, but the type system does not
+enforce this.  It is the programmers responsibility to ensure that
 instance definitions \emph{behave} as \emph{expected}.
 
 Haskell programmers, however, are apt to rely on the type system too
