@@ -523,6 +523,10 @@ For this purpose, we propose the followings:
 \item Define new Haddock markup for properties.
 \item Bring Doctest from the Python community to the Haskell
 community and integrate it with QuickCheck.
+Examples and properties in Haddock comments is automatically
+tested by the Doctest command.
+Its implementation will be discussed in Section~\ref{sec:doctest}.
+
 \end{itemize}
 
 %%%%%%%%%%%%%%%%
@@ -622,10 +626,6 @@ prop> sort xs == (sort . sort) (xs :: [Int])
 
 \noindent We call such properties \emph{implicitly quantified}.  The
 given property is implicitly quantified over \verb|xs|.
-
-Evidence in comments is automatically
-tested by the Doctest command. We also provided a library
-to do this job. Its implementation will discussed in Section~\ref{sec:doctest}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Code documentation}
