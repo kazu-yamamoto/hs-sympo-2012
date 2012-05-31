@@ -1002,18 +1002,18 @@ tests pass.
 file can contain multiple test suites, so it is possible to define test suites
 for Doctest and Hspec in the same cabal file.
 
-A driver for Hspec looks like so:
+As discussed in \ref{sec:solution-discovery}, we can use {\tt
+hspec-discover} to automatically generate a test driver for Hspec:
 
 \begin{quote}
 \small
 \begin{verbatim}
 -- file Spec.hs
-import Test.Hspec.Monadic
-main = hspec spec
+{-# OPTIONS_GHC -F -pgmF hspec-discover #-}
 \end{verbatim}
 \end{quote}
 
-\noindent And a corresponding Cabal test suite section like so:
+\noindent A corresponding Cabal test suite section looks like this:
 
 \begin{quote}
 \small
