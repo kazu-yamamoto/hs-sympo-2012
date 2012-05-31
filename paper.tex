@@ -170,28 +170,27 @@ contributions are:
 \item
     We originally implemented Haskell's version of Doctest, and
     extended Haddock's markup to support examples, back in 2010
-    (Section \ref{sec:haddock} and \ref{sec:doctest})
+    (Section~\ref{sec:haddock} and Section~\ref{sec:doctest})
 \item
     We added support for QuickCheck properties to Doctest, and extended
     Haddock's markup to support properties
-    (Section
-    \ref{sec:user-doc} and Section \ref{sec:doctest})
+    (Section~\ref{sec:user-doc} and Section~\ref{sec:doctest})
 
 \item
     We introduce a set of combinators to express expectations about
-    code examples for use with Hspec (Section \ref{sec:code-doc} and
-    Section \ref{sec:hspec-comb})
+    code examples for use with Hspec
+    (Section~\ref{sec:code-doc} and Section~\ref{sec:hspec-comb})
 
 \item
-    We improve CI support for Doctest and Hspec (Section
-    \ref{sec:TBD})
+    We improve CI support for Doctest and Hspec
+    (Section~\ref{sec:TBD})
 
     TBD:
     \emph{This relates to hspec-discover and Doctest's Cabal support.}
 
 \item
     We show best current practices of BDD in Haskell, using Doctest
-    and Hspec (Section \ref{ref:Best-current-practice})
+    and Hspec (Section~\ref{ref:Best-current-practice})
 
 \end{itemize}
 
@@ -473,7 +472,7 @@ Here is a summary of the problem:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Solution}
 
-As we explained in Section \ref{sec:problem},
+As we explained in Section~\ref{sec:problem},
 we use Doctest for user documentation and Hspec for code documentation.
 The following subsections explain two extensions to Haddock's markup.
 And combinators for expectations, that can be used with Hspec, are
@@ -763,7 +762,7 @@ evaluate (1 `div` 0) `shouldThrow` anyArithException
 We want to automatically discover all specs of a project, so that we
 can run them all together.  This requires to automatically generate
 boilerplate code, similar to what is shown in
-\ref{sec:problem-discovery}.
+Section~\ref{sec:problem-discovery}.
 
 We make creative use GHC's support for custom preprocessors for
 that.  With our solution, the developer creates a test driver, that only
@@ -902,7 +901,7 @@ next release of Doctest.
 \subsection{Hspec combinators for expectations}
 \label{sec:hspec-comb}
 
-\noindent All combinators introduced in \ref{sec:code-doc} have been
+\noindent All combinators introduced in Section~\ref{sec:code-doc} have been
 implemented.  They are available form Hackage\footnote{%
 http://hackage.haskell.org/package/hspec-shouldbe},
 and they will be incorporated into a future
@@ -926,7 +925,7 @@ shouldThrow ::
 \subsection{hspec-discover}
 \label{sec:implementation-discovery}
 
-As discussed in \ref{sec:solution-discovery}, we use a preprocessor to
+As discussed in Section~\ref{sec:solution-discovery}, we use a preprocessor to
 automatically generate test drivers for Hspec.  GHC invokes the
 preprocessor with three arguments:
 
@@ -1069,8 +1068,8 @@ tests pass.
 file can contain multiple test suites, so it is possible to define test suites
 for Doctest and Hspec in the same cabal file.
 
-As discussed in \ref{sec:solution-discovery}, we can use {\tt
-hspec-discover} to automatically generate a test driver for Hspec:
+As discussed in Section~\ref{sec:solution-discovery}, we can use
+{\tt hspec-discover} to automatically generate a test driver for Hspec:
 
 \begin{quote}
 \small
