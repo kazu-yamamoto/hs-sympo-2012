@@ -446,6 +446,7 @@ expect {launch_missiles}.to raise_error
 \noindent Neither Hspec nor HUnit provide a convenient equivalent.
 
 \subsection{Automatic discovery of specs}
+\label{sec:problem-discovery}
 
 It is a common convention to have one spec file for each source file.
 To run all specs for a given project together, it is necessary to
@@ -749,8 +750,42 @@ shouldThrow_ :: (NFData a, Exception e) =>
 \end{verbatim}\end{quote}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{\emph{optional} Automatic discovery of specs}
-TBD
+\subsection{Automatic discovery of specs}
+We want to automatically discover all specs of a project, so that we
+can run them all together.  This requires to automatically generate
+boilerplate code, similar to what is shown in
+\ref{sec:problem-discovery}.
+
+We make creative use GHC's mechanism for custom preprocessors for
+that.  With our solution, the developer creates test driver, that only
+contains a single line:
+
+\begin{quote}
+\small
+\begin{verbatim}
+{-# OPTIONS_GHC -F -pgmF hspec-discover #-}
+\end{verbatim}
+\end{quote}
+
+This tells GHC to run a preprocessor, \verb|hspec-discover| on the
+source file.  \verb|hspec-discover| finds all specs for a project, and
+generates a suitable test driver.
+
+This approach relies on the following conventions
+\begin{enumerate}
+    \item
+        Spec files have to be placed into the same directory as the
+        test driver, or into a subdirectory.
+    \item
+        The name of a spec file has to end in \verb|Spec.hs|, and the
+        module name has to match the file name.
+    \item
+        Each spec file has to provide a top-level binding \verb|spec|,
+        of type \verb|Spec|.
+\end{enumerate}
+
+It would be possible to lift some of those requirements.  But we think
+they are reasonable conventions, anyway.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -993,13 +1028,6 @@ test/BazSpec.hs
 \item We use a preprocessor (the {\tt hspec-discover} package\footnote{%
 http://hackage.haskell.org/package/hspec-discover}) to automatically generate this boilerplate.
 \end{itemize}
-
-\begin{quote}
-\small
-\begin{verbatim}
-{-# OPTIONS_GHC -F -pgmF hspec-discover #-}
-\end{verbatim}
-\end{quote}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Integrating multiple test suites}
