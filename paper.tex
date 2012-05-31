@@ -859,6 +859,13 @@ The implementation is trivial, so we will not further discuss it.
     interesting.  We can describe it, if we have time left.
 \end{quote}
 
+\begin{quote}
+\small
+\begin{verbatim}
+shouldThrow ::
+  Exception e => IO a -> Selector e -> Assertion
+\end{verbatim}
+\end{quote}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Best current practice}
@@ -1152,16 +1159,16 @@ source file.
     to combine the test suites manually.
 \end{quote}
 
-
 The {\tt testpack} package provides a function to check
-exception, similar to {\tt shouldThrow}.
+exception, similar to {\tt shouldThrow} described in Section~\ref{sec:hspec-comb}.
 
 \begin{quote}
 \small
 \begin{verbatim}
 assertRaises :: (Show a, Exception e, Show e, Eq e) =>
   String -> e -> IO a -> IO ()
-\end{verbatim}\end{quote}
+\end{verbatim}
+\end{quote}
 
 \noindent But it has several shortcomings:
 It only works for exceptions with an {\tt Eq} instance,
