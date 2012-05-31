@@ -1040,9 +1040,9 @@ http://hackage.haskell.org/package/hspec-discover}) to automatically generate th
     suites.  Where should we put this?
 \end{itemize}
 
-\noindent Cabals test feature can be used to automatically run tests~\cite{cabal}.  A cabal
+\noindent Cabal's test feature can be used to automatically run tests~\cite{cabal}.  A cabal
 file can contain multiple test suites, so it is possible to define test suites
-for Doctest and Hspec in a single cabal file.
+for Doctest and Hspec in the same cabal file.
 
 A driver for Hspec looks like so:
 
@@ -1204,9 +1204,9 @@ assertRaises :: (Show a, Exception e, Show e, Eq e) =>
 It only works for exceptions with an {\tt Eq} instance,
 but several standard exceptions (most
 prominently {\tt ErrorCall}) have no {\tt Eq} instance.
-It places an unnecessary {\tt Show} constraint on the
+And it places an unnecessary {\tt Show} constraint on the
 result of the {\tt IO} action, further limiting it's applicability.
-It only allows to expect specific values; expecting
+It only allows to expect specific values, expecting
 any exception of a certain type is not possible.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1215,17 +1215,27 @@ any exception of a certain type is not possible.
 TBD:
 
 \begin{itemize}
-\item We discussed how to carry out BDD in Haskell.
-\item We proposed to use Doctest for user documentation
-and Hspec for code documentation.
-\item We enhanced Haddock to support examples and properties,
-and implemented Doctest integrated with QuickCheck.
-\item We also supplied expectation combinators to Hspec.
-\item With these two tools, specification can also be used for
-documentation and automatic testing.
-\item test discovery
-\item This enhances the value of test code and would motivate
-Haskell programmers to write test code.
+\item
+    We discussed how to apply BDD to Haskell.
+\item
+    We proposed to use Doctest for user documentation and Hspec for
+    code documentation.
+\item
+    We added markup support for properties and examples to Haddock.
+    And we implemented Doctest, to verify examples and test properties
+    from Haddock comments.
+\item
+    We extend Hspec with a set of combinators for expectations.
+\item
+    With these two tools, specification can also be used for
+    documentation and automatic testing.
+\item
+    We describe a mechanism, that can automatically discover all specs
+    of a project.
+\item
+    We think that this enhances the value of test code, and we hope
+    that it will motivate Haskell programmers to write more and better
+    tests.
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
