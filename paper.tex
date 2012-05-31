@@ -907,18 +907,19 @@ shouldThrow ::
 \subsection{hspec-discover}
 \label{sec:implementation-discovery}
 
-As discussed in \ref{sec:solution-discovery} we use a preprocessor to automatically generate
-test drivers.  GHC invokes preprocessors with three arguments.
+As discussed in \ref{sec:solution-discovery}, we use a preprocessor to
+automatically generate test drivers.  GHC invokes preprocessors with
+three arguments.
 
 \begin{description}
     \item[{\tt src}]
-        The original source file.  A preprocessor usually does not
+        -- the original source file\\A preprocessor usually does not
         look at the content of this file.  It is only provided, so
         that it can be used in error messages.
     \item[{\tt cur}]
-        The file that holds the input for the preprocessor.
+        -- the file that holds the input for the preprocessor
     \item[{\tt dst}]
-        A path, where the preprocessor should write it's result to.
+        -- a path, where the preprocessor should write it's result to
 \end{description}
 
 
