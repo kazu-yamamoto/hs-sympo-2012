@@ -395,9 +395,12 @@ BDD frameworks use \emph{should} or \emph{must} instead of
 \emph{assert} to express expectations.  Here is an example that uses
 RSpec.
 
-\begin{quote}\small\begin{verbatim}
+\begin{quote}
+\small
+\begin{verbatim}
 [1, 2, 3].reverse.should eq([3, 2, 1])
-\end{verbatim}\end{quote}
+\end{verbatim}
+\end{quote}
 
 
 \noindent Hspec does not yet provide a mechanism to express
@@ -408,9 +411,12 @@ HUnit assertions instead.
 % \subsubsection{Hspec provides no mechanism to expect exceptions}
 Moreover RSpec provides a mechanism to expect exceptions.
 
-\begin{quote}\small\begin{verbatim}
+\begin{quote}
+\small
+\begin{verbatim}
 expect {launch_missiles}.to raise_error
-\end{verbatim}\end{quote}
+\end{verbatim}
+\end{quote}
 
 \noindent Neither Hspec nor HUnit provide a convenient equivalent.
 
@@ -614,59 +620,83 @@ describe evidence for developers.
 We propose several combinators which can be used to set expectations
 about the outcome of code examples.  These are built on top of HUnit:
 
-\begin{quote}\small\begin{verbatim}
+\begin{quote}
+\small
+\begin{verbatim}
 type Expectation = Assertion
-\end{verbatim}\end{quote}
+\end{verbatim}
+\end{quote}
 
 \noindent A common expectation is, that a value should be equal to an other
 value:
 
-\begin{quote}\small\begin{verbatim}
+\begin{quote}
+\small
+\begin{verbatim}
 x `shouldBe` 23
-\end{verbatim}\end{quote}
+\end{verbatim}
+\end{quote}
 
 \noindent This is just an other name for HUnit's \texttt{@?=}
 operator.  The type is:
 
-\begin{quote}\small\begin{verbatim}
+\begin{quote}
+\small
+\begin{verbatim}
 shouldBe :: (Show a, Eq a) => a -> a -> Expectation
-\end{verbatim}\end{quote}
+\end{verbatim}
+\end{quote}
 
 \noindent Or we may expect that a value should satisfies some
 predicate.
 
-\begin{quote}\small\begin{verbatim}
+\begin{quote}
+\small
+\begin{verbatim}
 x `shouldSatisfy` (< 23)
-\end{verbatim}\end{quote}
+\end{verbatim}
+\end{quote}
 
 \noindent The value is required to be in the \texttt{Show} class, so that a
 useful error message can be given when the predicate is not satisfied.
 
-\begin{quote}\small\begin{verbatim}
+\begin{quote}
+\small
+\begin{verbatim}
 shouldSatisfy :: Show a => a -> (a -> Bool)
   -> Expectation
-\end{verbatim}\end{quote}
+\end{verbatim}
+\end{quote}
 
 \noindent Code examples are often used to provide evidence for {\tt
 IO} actions, e.g.:
 
-\begin{quote}\small\begin{verbatim}
+\begin{quote}
+\small
+\begin{verbatim}
 launchMissiles >>=
   (`shouldBe` Left "not implemented")
-\end{verbatim}\end{quote}
+\end{verbatim}
+\end{quote}
 
 \noindent So we propose a shortcut for this common use case:
 
-\begin{quote}\small\begin{verbatim}
+\begin{quote}
+\small
+\begin{verbatim}
 launchMissiles `shouldReturn` Left "not implemented"
-\end{verbatim}\end{quote}
+\end{verbatim}
+\end{quote}
 
 \noindent Where \verb|shouldReturn| has the following type:
 
-\begin{quote}\small\begin{verbatim}
+\begin{quote}
+\small
+\begin{verbatim}
 shouldReturn :: (Show a, Eq a) => IO a -> a
   -> Expectation
-\end{verbatim}\end{quote}
+\end{verbatim}
+\end{quote}
 
 
 %%%%%%%%%%%%%%%%
@@ -675,41 +705,56 @@ shouldReturn :: (Show a, Eq a) => IO a -> a
 HUnit does not provide any versatile mechanism to state that an action
 should throw an exception.  So we propose a combinator for that.
 
-\begin{quote}\small\begin{verbatim}
+\begin{quote}
+\small
+\begin{verbatim}
 shouldThrow :: Exception e => IO a -> (e -> Bool)
   -> Expectation
-\end{verbatim}\end{quote}
+\end{verbatim}
+\end{quote}
 
 \noindent It takes an {\tt IO} action, and a predicate.  The predicate
 servers two purposes.  It selects the type of the expected exception,
 and constraints the value.  Here is an example:
 
-\begin{quote}\small\begin{verbatim}
+\begin{quote}
+\small
+\begin{verbatim}
 launchMissiles `shouldThrow` (== ExitFailure 1)
-\end{verbatim}\end{quote}
+\end{verbatim}
+\end{quote}
 
 \noindent And it can be used with predicates from {\tt
 System.IO.Error}, to require specific {\tt IOException}, e.g.  with
 {\tt isPermissionError}:
 
-\begin{quote}\small\begin{verbatim}
+\begin{quote}
+\small
+\begin{verbatim}
 launchMissiles `shouldThrow` isPermissionError
-\end{verbatim}\end{quote}
+\end{verbatim}
+\end{quote}
 
 \noindent To make it more convenient to expect any exception of a
 certain type, we provide type-restricted versions of {\tt (const
 True)} for all standard exceptions, e.g.:
 
-\begin{quote}\small\begin{verbatim}
+\begin{quote}
+\small
+\begin{verbatim}
 anyArithException :: ArithException -> Bool
 anyArithException = const True
-\end{verbatim}\end{quote}
+\end{verbatim}
+\end{quote}
 
 \noindent Which can be used like so:
 
-\begin{quote}\small\begin{verbatim}
+\begin{quote}
+\small
+\begin{verbatim}
 evaluate (1 `div` 0) `shouldThrow` anyArithException
-\end{verbatim}\end{quote}
+\end{verbatim}
+\end{quote}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -831,17 +876,23 @@ tested.  This requires the following steps.
 
 \noindent Here is the example from Section~\ref{sec:markup}:
 
-\begin{quote}\small\begin{verbatim}
+\begin{quote}
+\small
+\begin{verbatim}
 sort xs == (sort . sort) (xs :: [Int]))
-\end{verbatim}\end{quote}
+\end{verbatim}
+\end{quote}
 
 \noindent Both \verb|xs| and \verb|sort| are free variables, but
 \verb|sort| is bound by the module context.  So we need to close the
 term over \verb|xs|.
 
-\begin{quote}\small\begin{verbatim}
+\begin{quote}
+\small
+\begin{verbatim}
 \xs -> sort xs == (sort . sort) (xs :: [Int])
-\end{verbatim}\end{quote}
+\end{verbatim}
+\end{quote}
 
 The implementation is fully functional, and it will be included in the
 next release of Doctest.
