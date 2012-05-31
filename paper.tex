@@ -716,38 +716,9 @@ anyArithException = const True
 \noindent Which can be used like so:
 
 \begin{quote}\small\begin{verbatim}
-let x = 1 `div` 0 in (x `seq` return x)
-      `shouldThrow` anyArithException
+evaluate (1 `div` 0) `shouldThrow` anyArithException
 \end{verbatim}\end{quote}
 
-
-\begin{quote}
-    TBD:
-    \begin{itemize}
-        \item
-            This code snippet also illustrates how to deal with pure
-            functions.
-        \item
-            {\tt seq} forces the exception.
-        \item
-            If {\tt x} is in {\tt NFData}, you may want to use {\tt
-            deepseq} instead.
-        \item
-            The following would not work:
-\begin{quote}\small\begin{verbatim}
-(1 `div` 0) `shouldThrow` anyArithException
-\end{verbatim}\end{quote}
-        \item
-            We think that pure functions that throw exceptions is bad
-            API design.
-    \end{itemize}
-\end{quote}
-
-TBD: Should we propose:
-\begin{quote}\small\begin{verbatim}
-shouldThrow_ :: (NFData a, Exception e) =>
-  a -> (e -> Bool) -> Expectation
-\end{verbatim}\end{quote}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Automatic discovery of specs}
