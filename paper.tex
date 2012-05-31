@@ -157,17 +157,17 @@ the standard documentation mechanism for Haskell.
 It extracts \emph{interactive examples} from Haddock comments and
 verifies them automatically.
 
-We will show how to use Doctest and Hspec in combination, to design,
-document and test Haskell code.
-Both, Doctest and Hspec were missing some features.  So we extended
-them as needed.  In particular, our contributions are:
+We show how to use Doctest and Hspec in combination, to design,
+document and test Haskell code.  Both, Doctest and Hspec are missing
+some features.  So we extend them as needed.  In particular, our
+contributions are:
 
 \begin{itemize}
 \item
     We originally implemented Haskell's version of Doctest, and
     extended Haddock's markup to support examples, back in 2010
 \item
-    We added support for QuickCheck properties to Doctest and extended
+    We added support for QuickCheck properties to Doctest, and extended
     Haddock's markup to support properties
     (Section
     \ref{sec:user-doc} and Section \ref{sec:doctest})
@@ -185,15 +185,14 @@ them as needed.  In particular, our contributions are:
     \emph{This relates to hspec-discover and Doctest's Cabal support.}
 
 \item
-    We show best current practice of BDD in Haskell, using Doctest and
-    Hspec (Section \ref{ref:Best-current-practice})
+    We show best current practices of BDD in Haskell, using Doctest
+    and Hspec (Section \ref{ref:Best-current-practice})
 
 \end{itemize}
 
-\noindent Our BDD procedure
-can be used for design, documentation and automated testing.
-We hope that this kill-three-birds-with-one-stone aspect
-motivates Haskellers to write test code.
+\noindent Our approach can be used for design, documentation and
+automated testing.  We hope that this motivates Haskellers to write
+more and better tests.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Terminology}
@@ -910,10 +909,10 @@ Hackage\footnote{http://hackage.haskell.org/package/hspec-discover},
 and it will be incorporate into a future release of Hspec.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Best current practice}
+\section{Best current practices}
 \label{ref:Best-current-practice}
 
-This section show best current practice of
+This section show best current practices of
 BDD in Haskell.
 
 \subsection{Procedure of BDD}
