@@ -352,11 +352,6 @@ examples and test properties.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Hspec}
 
-
-\begin{quote}
-    TBD: introduce \emph{test driver}
-\end{quote}
-
 If we have evidence that does not fit into the user documentation, but
 would rather be part of a design document, we use Hspec\footnote{%
 Hspec was originally implemented by Trystan Spangler, and is now
@@ -370,8 +365,12 @@ with \texttt{it} and \texttt{describe}.
 \small
 \begin{verbatim}
 import Test.Hspec.Monadic
+
 main :: IO ()
-main = spec $ do
+main = hspec spec
+
+spec :: Spec
+spec = do
   describe "reverse" $ do
     it "reverses a list" $
       assertEqual "" [3, 2, 1] (reverse [1, 2, 3])
@@ -422,6 +421,10 @@ expect {launch_missiles}.to raise_error
 
 \subsection{Automatic discovery of specs}
 \label{sec:problem-discovery}
+
+\begin{quote}
+    TBD: introduce \emph{test driver}
+\end{quote}
 
 It is a common convention to have one spec file for each source file.
 To run all specs for a given project together, it is necessary to
