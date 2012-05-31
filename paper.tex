@@ -100,16 +100,17 @@ For example, it does not ensure that division by zero does not occur.
 An other example is, that instances of {\tt Monoid} \emph{should} be
 monoids in the mathematical sense, but the type system does not
 enforce this.  It is the programmers responsibility to ensure that
-instance definitions \emph{behave} as \emph{expected}.
+instance definitions \emph{behave} as \emph{expected}.  Hence
+automated testing is useful.
 
-Haskell programmers, however, are apt to rely on the type system too
-much and tend not to write test code.  For example, Haskell
-Platform 2011.4.0.0 contains 23 packages, not counting the 19 core
-libraries that come with GHC.  Only 8 of them have a test suite, 5
-provide example code, and 10 have neither tests nor examples.
-A lack of tests is not only a quality and maintainability issue.  It
-also is a lack of documentation.  Tests document how code is supposed
-to be used, and tests document the behavior of code.
+However, some widely used Haskell libraries do not have automated
+tests.  For example, the Haskell Platform 2011.4.0.0 contains 23
+packages, not counting the 19 core libraries that come with GHC.  Only
+8 of them have a test suite, 5 provide example code, and 10 have
+neither tests nor examples.  A lack of tests is not only a quality and
+maintainability issue.  It also is a lack of documentation.  Tests
+document how code is supposed to be used, and tests document the
+behavior of code.
 
 We agree that a function's type can reveal something about a
 function's behavior~\cite{free}, but
