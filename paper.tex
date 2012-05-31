@@ -131,45 +131,14 @@ but with a terminology and mindset shifted towards
 specification instead of testing.
 In BDD, specifications can be used for
 automatic testing.
-
-\begin{quote}
-    sol: maybe like so?  In addition to \emph{automating things}, this
-    would also motivate \ref{sec:code-doc}, which is IMHO not
-    motivated very well.
-
-    BDD is meant to be an enjoyable experience for the developer.
-    Compared to TDD it provides a much nicer syntax that
-    makes tests very easy to read.  And like TDD it puts emphasis on
-    test automation, to take work load from the shoulders of
-    developers.
-\end{quote}
-
+BDD is meant to be an enjoyable experience for the developer.
+Compared to TDD it provides a much nicer syntax that
+makes tests very easy to read.  And like TDD it puts emphasis on
+test automation, to take work load from the shoulders of
+developers.
 BDD-style TDD has been pioneered by
 RSpec~\cite{rspec}.  In this paper, we explore how to apply the TDD
 aspect of BDD to Haskell.
-
-\begin{quote}
-    BDD also includes other software development methods, such as
-    automatic test discovery and continuous integration~\cite{ci}.
-
-    sol: I removed this, and reverted the paragraph to it's previous
-    version, because I think there were several issues.
-
-    \begin{itemize}
-        \item test discovery is not an aspect of BDD, only an emphasis
-            on automating things is an aspect of BDD, so that
-            \emph{testing is more fun} and \emph{things e.g. work with
-            CI}.  This are two different things, but both justify automation.
-            We only need this to justify our discussion of Cabal
-            integration and automatic test discovery.  If we remove
-            those, we do not need to state that ``automation is an important
-            aspect of BDD''.  This may be a solution.
-        \item @mkl your previous version stated, that BDD includes
-            other things (ATDD!), but that we do not cover them.  This
-            is very important.  And I think that meaning got lost with
-            the change, hence the revert.
-    \end{itemize}
-\end{quote}
 
 
 In BDD, all behavior should be documented, together with some testable
@@ -539,11 +508,18 @@ Its implementation will be discussed in Section~\ref{sec:doctest}.
 In this paper, we use {\tt >>>} which is the same as Python's one.
 Here is an example:
 
+
+\begin{quote}
+    sol: @kazu should we make the Haddock examples in this section
+    valid Haddock comments?
+\end{quote}
+
 \begin{quote}
 \small
 \begin{verbatim}
->>> length []
-0
+-- |
+-- >>> length []
+-- 0
 \end{verbatim}
 \end{quote}
 
