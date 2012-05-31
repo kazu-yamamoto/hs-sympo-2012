@@ -458,7 +458,7 @@ Here is a summary of the problem:
 \begin{itemize}
 \item
     For user documentation,
-    Haddock does not have markups to describe evidence.
+    Haddock does not have markup to describe evidence.
 \item
     For code documentation,
     Hspec does not provide combinators to express expectations with
@@ -470,8 +470,9 @@ Here is a summary of the problem:
 
 As we explained in Section \ref{sec:problem},
 we use Doctest for user documentation and Hspec for code documentation.
-The following subsections explain two new markups of Haddock
-and evidence combinators for Hspec.
+The following subsections explain two extensions to Haddock's markup.
+And combinators for expectations, that can be used with Hspec, are
+introduced.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{User documentation}
@@ -509,7 +510,7 @@ Its implementation will be discussed in Section~\ref{sec:doctest}.
 \end{itemize}
 \end{quote}
 
-\noindent First, we introduce new Haddock markup for examples.
+\noindent First, we introduce new Haddock markup for interactive examples.
 In this paper, we use {\tt >>>} which is the same as Python's one.
 Here is an example:
 
@@ -552,7 +553,7 @@ It's worth explaining that we can specify operation sequences:
 
 %%%%%%%%%%%%%%%%
 \subsubsection{Markup for properties}
-\label{sec:markups}
+\label{sec:markup}
 
 \noindent To specify properties, we also propose new markup. In this paper, we
 use the {\tt prop>} prefix. We can write non-quantified properties as follows:
@@ -564,9 +565,9 @@ prop> Data.Map.null empty == True
 \end{verbatim}
 \end{quote}
 
-\noindent Of course, we allow quantified properties by using a
-lambda expression. The property example in Section~\ref{sec:doctest-haddock}
-can be written as follows:
+\noindent And it is possible to quantify properties by using a
+lambda expression. The property from Section~\ref{sec:doctest-haddock}
+can be written as:
 
 \begin{quote}
 \small
@@ -611,15 +612,15 @@ describe evidence for developers.
 %%%%%%%%%%%%%%%%
 \subsubsection{Setting expectations}
 
-We propose several combinators which can be used to express expectations
-about the outcome of examples.  These are built on top of HUnit.
+We propose several combinators which can be used to set expectations
+about the outcome of code examples.  These are built on top of HUnit:
 
 \begin{quote}\small\begin{verbatim}
 type Expectation = Assertion
 \end{verbatim}\end{quote}
 
 \noindent A common expectation is, that a value should be equal to an other
-value.
+value:
 
 \begin{quote}\small\begin{verbatim}
 x `shouldBe` 23
@@ -647,15 +648,15 @@ shouldSatisfy :: Show a => a -> (a -> Bool)
   -> Expectation
 \end{verbatim}\end{quote}
 
-\noindent Examples are often used to provide evidence for {\tt IO}
-actions.
+\noindent Code examples are often used to provide evidence for {\tt
+IO} actions, e.g.:
 
 \begin{quote}\small\begin{verbatim}
 launchMissiles >>=
   (`shouldBe` Left "not implemented")
 \end{verbatim}\end{quote}
 
-\noindent So we propose a shortcut for this common use case.
+\noindent So we propose a shortcut for this common use case:
 
 \begin{quote}\small\begin{verbatim}
 launchMissiles `shouldReturn` Left "not implemented"
@@ -682,7 +683,7 @@ shouldThrow :: Exception e => IO a -> (e -> Bool)
 
 \noindent It takes an {\tt IO} action, and a predicate.  The predicate
 servers two purposes.  It selects the type of the expected exception,
-and constraints the value.
+and constraints the value.  Here is an example:
 
 \begin{quote}\small\begin{verbatim}
 launchMissiles `shouldThrow` (== ExitFailure 1)
@@ -696,9 +697,9 @@ System.IO.Error}, to require specific {\tt IOException}, e.g.  with
 launchMissiles `shouldThrow` isPermissionError
 \end{verbatim}\end{quote}
 
-\noindent To make it more convenient, to expect any exception of a
+\noindent To make it more convenient to expect any exception of a
 certain type, we provide type-restricted versions of {\tt (const
-True)} for all standard exceptions.
+True)} for all standard exceptions, e.g.:
 
 \begin{quote}\small\begin{verbatim}
 anyArithException :: ArithException -> Bool
@@ -720,8 +721,8 @@ can run them all together.  This requires to automatically generate
 boilerplate code, similar to what is shown in
 \ref{sec:problem-discovery}.
 
-We make creative use GHC's mechanism for custom preprocessors for
-that.  With our solution, the developer creates test driver, that only
+We make creative use GHC's support for custom preprocessors for
+that.  With our solution, the developer creates a test driver, that only
 contains a single line:
 
 \begin{quote}
@@ -731,11 +732,11 @@ contains a single line:
 \end{verbatim}
 \end{quote}
 
-This tells GHC to run a preprocessor, \verb|hspec-discover| on the
+\noindent This tells GHC to run a preprocessor, \verb|hspec-discover|, on the
 source file.  \verb|hspec-discover| finds all specs for a project, and
 generates a suitable test driver.
 
-This approach relies on the following conventions
+This approach relies on the following conventions:
 \begin{enumerate}
     \item
         Spec files have to be placed into the same directory as the
@@ -744,12 +745,12 @@ This approach relies on the following conventions
         The name of a spec file has to end in \verb|Spec.hs|, and the
         module name has to match the file name.
     \item
-        Each spec file has to provide a top-level binding \verb|spec|,
+        Each spec file has to export a top-level binding \verb|spec|,
         of type \verb|Spec|.
 \end{enumerate}
 
-It would be possible to lift some of those requirements.  But we think
-they are reasonable conventions, anyway.
+\noindent It would be possible to lift some of those requirements.
+But we think they are reasonable conventions, anyway.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -758,14 +759,18 @@ they are reasonable conventions, anyway.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Haddock}
 
-Haddock version 2.7.2 or earlier provided markup syntax for
+\begin{quote}
+    TBD: This section needs more work, to get the wording right.
+\end{quote}
+
+Haddock version 2.7.2 and earlier provided markup syntax for
 code blocks, but did not provide any markup syntax for evidence.
-As we described, we implemented markup support for examples ({\tt >>>}) in 2010.
+As we described, we implemented markup support for interactive examples ({\tt >>>}) in 2010.
 It is available in Haddock version 2.8 or later.
 We also extended Haddock to support markup for properties ({\tt prop>}) which
 will be available with a future release of Haddock.
-Both examples and properties in Haddock comments are pretty-printed when
-generating documentation, (e.g. as HTML).
+Both interactive examples and properties in Haddock comments are
+include into generated documentation.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% \subsection{QuickCheck}
@@ -787,9 +792,9 @@ generating documentation, (e.g. as HTML).
 \subsection{Doctest}
 \label{sec:doctest}
 
-To extract evidence from Haddock markup,
-Doctest used Haddock API in the past.
-Since Each release of Haddock supports only the latest version of GHC,
+To extract evidence from Haddock comments,
+Doctest used the Haddock API in the past.
+Since each release of Haddock supports only the latest version of GHC,
 it is difficult to support old versions of GHC with Haddock API.
 Doctest is now directly using GHC API for portability.
 
@@ -804,7 +809,7 @@ Doctest reuses the same GHCi session for all examples.
 Examples from the same Haddock comment are grouped together,
 and share the same scope.
 The scope is cleared with \verb|:reload| before a new
-Example group is started.
+example group is started.
 
 \subsubsection{Testing properties}
 
@@ -824,7 +829,7 @@ tested.  This requires the following steps.
         failed
 \end{enumerate}
 
-\noindent Here is the example in Section~\ref{sec:markups} again:
+\noindent Here is the example from Section~\ref{sec:markup}:
 
 \begin{quote}\small\begin{verbatim}
 sort xs == (sort . sort) (xs :: [Int]))
@@ -847,8 +852,8 @@ next release of Doctest.
 \label{sec:hspec-comb}
 
 \noindent All combinators introduced in \ref{sec:code-doc} have been
-implemented in the {\tt hspec-shouldbe} package\footnote{%
-http://hackage.haskell.org/package/hspec-shouldbe};
+implemented.  They are available form Hackage\footnote{%
+http://hackage.haskell.org/package/hspec-shouldbe},
 and they will be incorporated into a future
 release of Hspec.
 The implementation is straightforward, so we will not further discuss
@@ -867,21 +872,21 @@ shouldThrow ::
 \end{verbatim}
 \end{quote}
 
-\newpage % FIXME
 \subsection{hspec-discover}
 \label{sec:implementation-discovery}
 
 As discussed in \ref{sec:solution-discovery}, we use a preprocessor to
-automatically generate test drivers.  GHC invokes preprocessors with
-three arguments.
+automatically generate test drivers for Hspec.  GHC invokes the
+preprocessor with three arguments:
 
 \begin{description}
     \item[{\tt src}]
-        -- the original source file\\A preprocessor usually does not
+        -- path to the original source file\\
+        A preprocessor usually does not
         look at the content of this file.  It is only provided, so
         that it can be used in error messages.
     \item[{\tt cur}]
-        -- the file that holds the input for the preprocessor
+        -- path to a file that holds the input for the preprocessor
     \item[{\tt dst}]
         -- a path, where the preprocessor should write it's result to
 \end{description}
@@ -889,11 +894,12 @@ three arguments.
 
 \noindent A typical preprocessor reads the content of {\tt cur},
 processes it, and writes the result to {\tt dst}.  If something goes
-wrong, it uses {\tt src} in error messages.
+wrong, it uses {\tt src} in error messages to refer to the source
+file.
 
 \verb|hspec-discover| ignores {\tt cur} altogether.  It uses the
 directory component of {\tt src}, to find all files that are in the
-same directory as {\tt src}, or any subdirectories.  It than generates
+same directory as the source file, or in any subdirectories.  It then generates
 a test driver from all files that end in {\tt Spec.hs}.
 
 A fully functional implementations is available from
@@ -946,6 +952,11 @@ reverse = undefined
 Also, we write code documentation with Hspec:
 
 \begin{quote}
+    sol: TBD. @kazu, the descriptions make no sense, can you try to
+    make them more precise?
+\end{quote}
+
+\begin{quote}
 \small
 \begin{verbatim}
 describe "reverse" $ do
@@ -971,8 +982,8 @@ reverse = foldl (flip (:)) []
 \end{verbatim}
 \end{quote}
 
-\noindent Now we run test suites until
-all test failures disappear.
+\noindent Now we run tests, and improve our implementation, until all
+tests pass.
 
 \subsection{Automatic discovery of specs}
 
@@ -980,9 +991,6 @@ all test failures disappear.
     \emph{should emphasize ``automatically discover tests''}
 \end{quote}
 
-\begin{quote}
-\emph{This is optional, so we can skip it, if necessary.}
-\end{quote}
 
 \noindent We think the following are good conventions for organizing specs:
 \begin{itemize}
