@@ -788,30 +788,24 @@ generating documentation, (e.g. as HTML).
 \subsection{Doctest}
 \label{sec:doctest}
 
+To extract evidence from Haddock markup,
+Doctest used Haddock API in the past.
+Since Each release of Haddock supports only the latest version of GHC,
+it is difficult to support old versions of GHC with Haddock API.
+Doctest is now directly using GHC API for portability.
+
 \subsubsection{Testing examples}
 
-\begin{itemize}
-    \item
-        Doctest uses the GHC API to extract Haddock comments.
-    \item
-        It uses the GHC API directly, so that it can more easily
-        support old GHC versions.  Each release of Haddock only
-        supports the latest GHC version.
-    \item
-        Doctest use GHCi to verify examples.
-    \item
-        It reuses the same GHCi session for all examples.
-    \item
-        Examples from the same Haddock comment are grouped together,
-        and share the same scope.
-    \item
-        The scope is cleared with \verb|:reload| before a new
-        Example group is started.
-    \item
-\end{itemize}
+To verify examples, Doctest uses GHCi.
+Test is done by comparing result string in Haddock notation and
+result string from GHCi.
+Since verification based on string comparison, exceptions can be handled.
 
-Since test is done by comparing result string in Haddock notation and
-result string from GHCi, exceptions can be handled.
+Doctest reuses the same GHCi session for all examples in a module.
+Examples from the same Haddock comment are grouped together,
+and share the same scope.
+The scope is cleared with \verb|:reload| before a new
+Example group is started.
 
 \subsubsection{Testing properties}
 
