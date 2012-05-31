@@ -751,6 +751,7 @@ shouldThrow_ :: (NFData a, Exception e) =>
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Automatic discovery of specs}
+\label{sec:solution-discovery}
 We want to automatically discover all specs of a project, so that we
 can run them all together.  This requires to automatically generate
 boilerplate code, similar to what is shown in
@@ -904,8 +905,9 @@ shouldThrow ::
 
 \newpage % FIXME
 \subsection{hspec-discover}
+\label{sec:implementation-discovery}
 
-As discussed in \ref{} we use a preprocessor to automatically generate
+As discussed in \ref{sec:solution-discovery} we use a preprocessor to automatically generate
 test drivers.  GHC invokes preprocessors with three arguments.
 
 \begin{description}
