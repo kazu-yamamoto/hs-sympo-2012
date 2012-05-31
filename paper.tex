@@ -190,7 +190,7 @@ contributions are:
 
 \item
     We show best current practices of BDD in Haskell, using Doctest
-    and Hspec (Section~\ref{ref:Best-current-practice})
+    and Hspec (Section~\ref{sec:best-current-practice})
 
 \end{itemize}
 
@@ -700,6 +700,7 @@ shouldReturn :: (Show a, Eq a) => IO a -> a
 
 %%%%%%%%%%%%%%%%
 \subsubsection{Expecting exceptions}
+\label{sec:expacting-exceptions}
 
 HUnit does not provide any versatile mechanism to state that an action
 should throw an exception.  So we propose a combinator for that.
@@ -958,7 +959,7 @@ and it will be incorporate into a future release of Hspec.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Best current practices}
-\label{ref:Best-current-practice}
+\label{sec:best-current-practice}
 
 This section show best current practices of
 BDD in Haskell.
@@ -1214,7 +1215,7 @@ source file.
 \end{quote}
 
 The {\tt testpack} package provides a function to check
-exception, similar to {\tt shouldThrow} described in Section~\ref{todo}.
+exception, similar to {\tt shouldThrow} described in Section~\ref{sec:expacting-exceptions}.
 
 \begin{quote}
 \small
