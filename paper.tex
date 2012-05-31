@@ -183,7 +183,7 @@ contributions are:
 
 \item
     We improve CI support for Doctest and Hspec
-    (Section~\ref{sec:TBD})
+    (Section~\ref{sec:solution-discovery} and Section~\ref{sec:implementation-discovery})
 
     TBD:
     \emph{This relates to hspec-discover and Doctest's Cabal support.}
@@ -760,6 +760,7 @@ evaluate (1 `div` 0) `shouldThrow` anyArithException
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Automatic discovery of specs}
 \label{sec:solution-discovery}
+
 We want to automatically discover all specs of a project, so that we
 can run them all together.  This requires to automatically generate
 boilerplate code, similar to what is shown in
