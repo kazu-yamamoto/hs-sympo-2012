@@ -902,6 +902,37 @@ shouldThrow ::
 \end{verbatim}
 \end{quote}
 
+\newpage % FIXME
+\subsection{hspec-discover}
+
+As discussed in \ref{} we use a preprocessor to automatically generate
+test drivers.  GHC invokes preprocessors with three arguments.
+
+\begin{description}
+    \item[{\tt src}]
+        The original source file.  A preprocessor usually does not
+        look at the content of this file.  It is only provided, so
+        that it can be used in error messages.
+    \item[{\tt cur}]
+        The file that holds the input for the preprocessor.
+    \item[{\tt dst}]
+        A path, where the preprocessor should write it's result to.
+\end{description}
+
+
+\noindent A typical preprocessor reads the content of {\tt cur},
+processes it, and writes the result to {\tt dst}.  If something goes
+wrong, it uses {\tt src} in error messages.
+
+\verb|hspec-discover| ignores {\tt cur} altogether.  It uses the
+directory component of {\tt src}, to find all files that are in the
+same directory as {\tt src}, or any subdirectories.  It than generates
+a test driver from all files that end in {\tt Spec.hs}.
+
+A fully functional implementations is available from
+Hackage\footnote{http://hackage.haskell.org/package/hspec-discover},
+and it will be incorporate into a future release of Hspec.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Best current practice}
 \label{ref:Best-current-practice}
