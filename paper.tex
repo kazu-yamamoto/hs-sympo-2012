@@ -89,6 +89,7 @@ quality motivates Haskellers to write more test code.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
+\label{sec:introduction}
 
 %%%% Describe the problem.
 
@@ -297,19 +298,11 @@ BDD tools can be used to document the behavior of a system in a way that
 is similar to a specification.  All facets of the system should be
 described with evidence, including every possible corner case.
 
+As we discussed in Section~\ref{sec:introduction},
 We think that some evidence is useful as user documentation.
 But there is also evidence, that is not
 useful as user documentation.  E.g. that a particular \texttt{Monoid}
 instance is a monoid in the mathematical sense is self-evident.
-
-\begin{quote}
-    kazu: Monoid is already described in Introduction. Why is this
-    repeated? And ``code documentation'' is aslo already dicussed in
-    Introduction. I think we can use ``code documentation'' here.
-
-    sol: We reuse Monoid here, but we make a different point.  So this
-    still adds something, and I think we need it.
-\end{quote}
 
 We propose to use Doctest and Haddock for evidence that is useful as
 user documentation, and Hspec for evidence that is not useful as user
