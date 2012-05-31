@@ -986,52 +986,6 @@ reverse = foldl (flip (:)) []
 \noindent Now we run tests, and improve our implementation, until all
 tests pass.
 
-\subsection{Automatic discovery of specs}
-
-\begin{quote}
-    \emph{should emphasize ``automatically discover tests''}
-\end{quote}
-
-
-\noindent We think the following are good conventions for organizing specs:
-\begin{itemize}
-    \item create a separate spec file for each source file
-    \item append {\tt Spec.hs} to the name of spec files
-\end{itemize}
-
-\noindent If we have a source tree like so:
-
-\begin{quote}
-\small
-\begin{verbatim}
-src/Foo.hs
-src/Foo/Bar.hs
-src/Baz.hs
-\end{verbatim}
-\end{quote}
-
-\noindent We would end up with the following spec files.
-
-\begin{quote}
-\small
-\begin{verbatim}
-test/FooSpec.hs
-test/Foo/BarSpec.hs
-test/BazSpec.hs
-\end{verbatim}
-\end{quote}
-
-\begin{itemize}
-\item We still want to combine those specs into a single spec.
-\item By convention we put the combined spec into test/Spec.hs
-\end{itemize}
-
-
-\begin{itemize}
-\item We use a preprocessor (the {\tt hspec-discover} package\footnote{%
-http://hackage.haskell.org/package/hspec-discover}) to automatically generate this boilerplate.
-\end{itemize}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Integrating multiple test suites}
 
