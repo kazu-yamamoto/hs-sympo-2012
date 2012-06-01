@@ -1103,9 +1103,9 @@ fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
 
 So far, so good.  We have an implementaion of the Fibonacci function
 that swiftly calculates correct values for all positive integers.
-But what about negative ones? Our implementation uses the list index
-operator {\tt (!!)} which is a partial function that throws an
-exeption for negative indexes.  Let's specify that behaviour.
+But what about negative ones? Let's assume that we want our
+implementation to throw an exception in this case. We would
+specify it like this.
 
 \begin{quote}
 \small
@@ -1115,15 +1115,17 @@ it "throws ErrorCall on negative input" $ do
 \end{verbatim}
 \end{quote}
 
-\noindent Throwing exceptions from pure code is considered poor
-design, so we guard the {\tt (!!)} operator against negative
-indexes.
+\noindent Our implementation already fulfils this spec, so we are
+fine. Some time later however, the one person in our team that knows
+more about Haskell than we do, convinces us that throwing exceptions
+from pure code is considered poor design. Hence, we change the
+specification so that zero should be the result for negative inputs.
 
 \begin{quote}
 \small
 \begin{verbatim}
-fib n | n < 0     = 0
-      | otherwise = fibs !! n
+it "returns 0 on negative input" $ do
+  fib (-10) `shouldBe` 0
 \end{verbatim}
 \end{quote}
 
@@ -1132,8 +1134,8 @@ fib n | n < 0     = 0
 \begin{quote}
 \small
 \begin{verbatim}
-it "returns 0 on negative input" $ do
-  fib (-10) `shouldBe` 0
+fib n | n < 0     = 0
+      | otherwise = fibs !! n
 \end{verbatim}
 \end{quote}
 
@@ -1152,10 +1154,11 @@ it "returns 0 on negative input" $ do
 
 \noindent This concludes our example coding session.  We have seen how
 to utilize behavior driven development to incrementally build a small
-library.  The combinators {\tt shouldBe}, {\tt shouldReturn} and {\tt
-shouldThrow} can be used to specify behavior of functions in an
-intuitive, easy to read manner.  The final version of our library
-looks like this.
+library.  We always extend or adapt the specification and watch it
+fail first.  Then, we fix the implementation.  The combinators {\tt
+shouldBe}, {\tt shouldReturn} and {\tt shouldThrow} can be used to
+specify behavior of functions in an intuitive, easy to read manner.
+The final version of our library looks like this.
 
 \begin{quote}
 \small
