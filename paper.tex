@@ -1310,6 +1310,9 @@ test-suite doctests
 \section{Open problems and future work}
 
 
+\begin{quote}
+    TBD: A library for reusable pieces of specification would be
+    useful.
 \begin{itemize}
     \item
         In section~\ref{sec:reusable-specs}, we showed how to reuse
@@ -1322,29 +1325,25 @@ test-suite doctests
         {\tt
         checkers}\footnote{http://hackage.haskell.org/package/checkers})
 \end{itemize}
+\end{quote}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Source locations for failing examples}
+When Hspec finds evidence that does not hold, it reports the
+corresponding behavior to the developer.  It would be useful to
+include the source file and location where the failing evidence is
+defined, so that the developer can find it immediately.
+Extending GHC with a mechanism similar to JHC's
+\verb|SRCLOC_ANNOTATE| pragma\footnote{%
+http://repetae.net/computer/jhc/jhc.shtml} would allow to solve this.
 
-TBD:
 
-We do not get source locations for failing tests. Doctest solves this.
-Something like JHC's
-\verb|SRCLOC_ANNOTATE|
-pragma\footnote{%
-http://repetae.net/computer/jhc/jhc.shtml} could help
-for Hspec/QuickCheck/HUnit.
+\begin{quote}
+    sol: should we just remove the next paragraph?
+\end{quote}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{TBD}
-
-\begin{itemize}
-    \item
-        Feedback for failing QuickCheck properties is not always as
-        useful as it could be -> combinators that use QuickCheck's
-        Result type could help
-    \item
-\end{itemize}
+Feedback for failing QuickCheck properties is not always as useful as
+it could be.
+Combinators, similar to {\tt shouldBe}, that construct QuickCheck {\tt
+Result}s could improve the situation.
 
 \begin{quote}
     TBD: add ``The Cucumber Book'' to the bibliography as {\tt
