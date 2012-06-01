@@ -1166,7 +1166,53 @@ fail,  and then fix the implementation.  The combinators {\tt
 shouldBe}, {\tt shouldReturn} and {\tt shouldThrow} can be used to
 specify behavior of functions in an intuitive, easy to read manner.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Reusable pieces of specification}
+\label{sec:reusable-specs}
 
+Reusable spec is an idea to scrap boilerplate of evidence.
+For instance, without reusable spec,
+each developer of an instance of a type class should
+express evidence for its laws.
+Since instances of a type class share API,
+we can avoid such boilerplate.
+The following is an example to implement
+evidence for Monoid laws:
+
+\begin{quote}
+\small
+\begin{verbatim}
+shouldSatisfyMonoidLaws ::
+  (Eq a, Show a, Monoid a, Arbitrary a) => a -> Specs
+shouldSatisfyMonoidLaws t = do
+  describe "mempty" $ do
+    it "is a left identity" $ property $ \x ->
+      mempty <> x == x `asTypeOf` t
+
+    it "is a right identity" $ property $ \x ->
+      x <> mempty == x `asTypeOf` t
+
+  describe "<>" $ do
+    it "is associative" $ property $ \x y z ->
+      (x <> y) <> z == x <> (y <> z) `asTypeOf` t
+\end{verbatim}
+\end{quote}
+
+\noindent This can be used to document and test arbitrary Monoid
+instances.
+Here is an example how to use it for lists:
+
+\begin{quote}
+\small
+\begin{verbatim}
+describe "List as a Monoid" $
+  shouldSatisfyMonoidLaws (undefined :: [Int])
+\end{verbatim}
+\end{quote}
+
+\noindent We have already implemented this experimentally.
+We should ensure the practicality of reusable spec and
+prepare reusable spec to cover variety of type classes.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Cabal integration}
@@ -1260,52 +1306,19 @@ test-suite doctests
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Open problems and future work}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Reusable pieces of specification}
 
-Reusable spec is an idea to scrap boilerplate of evidence.
-For instance, without reusable spec,
-each developer of an instance of a type class should
-express evidence for its laws.
-Since instances of a type class share API,
-we can avoid such boilerplate.
-The following is an example to implement
-evidence for Monoid laws:
-
-\begin{quote}
-\small
-\begin{verbatim}
-shouldSatisfyMonoidLaws ::
-  (Eq a, Show a, Monoid a, Arbitrary a) => a -> Specs
-shouldSatisfyMonoidLaws t = do
-  describe "mempty" $ do
-    it "is a left identity" $ property $ \x ->
-      mempty <> x == x `asTypeOf` t
-
-    it "is a right identity" $ property $ \x ->
-      x <> mempty == x `asTypeOf` t
-
-  describe "<>" $ do
-    it "is associative" $ property $ \x y z ->
-      (x <> y) <> z == x <> (y <> z) `asTypeOf` t
-\end{verbatim}
-\end{quote}
-
-\noindent This can be used to document and test arbitrary Monoid
-instances.
-Here is an example how to use it for lists:
-
-\begin{quote}
-\small
-\begin{verbatim}
-describe "List as a Monoid" $
-  shouldSatisfyMonoidLaws (undefined :: [Int])
-\end{verbatim}
-\end{quote}
-
-\noindent We have already implemented this experimentally.
-We should ensure the practicality of reusable spec and
-prepare reusable spec to cover variety of type classes.
+\begin{itemize}
+    \item
+        In section~\ref{sec:reusable-specs}, we showed how to reuse
+        pieces of specification.
+    \item
+        It would be possible and useful to write a library that
+        provides reusable pieces of specification, for many of
+        Haskell's standard classes.
+        (similar in purpose to
+        {\tt
+        checkers}\footnote{http://hackage.haskell.org/package/checkers})
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Source locations for failing examples}
