@@ -989,7 +989,7 @@ fib = const 55
 \end{verbatim}
 \end{quote}
 
-\noindent This first step might appear useless, but as of now we
+\noindent This first step might appear excessively trivial, but as of now we
 already have made some choices with regard to the API of our library.
 By giving a usage example, we were forced to think about which
 arguments our function takes.  We can now run Doctest to verify that
@@ -1028,19 +1028,19 @@ main = hspec $ do
 \end{verbatim}
 \end{quote}
 
-\noindent Of course, this spec fails when we run it,
+\noindent Of course this spec fails when we run it,
 
 \begin{quote}
 \small
 \begin{verbatim}
-$ runhaskell Fib.hs
+$ runhaskell FibSpec.hs
 fib
  - calculates arbitrary Fibonacci numbers FAILED [1]
 \end{verbatim}
 \end{quote}
 
 \noindent so we add a working implementation.  Both Doctest and Hspec
-report success after this.
+report success after that.
 
 \begin{quote}
 \small
@@ -1055,7 +1055,7 @@ fib n = fib (n - 1) + fib (n - 2)
 \subsubsection{Step 3}
 
 As the seasoned Haskeller might have already noticed, our
-implementation is quite inefficient, as can be proved by this
+implementation is quite inefficient, as made evident by this
 specification:
 
 \begin{quote}
@@ -1072,7 +1072,7 @@ it "is efficient" $ do
 \begin{quote}
 \small
 \begin{verbatim}
-$ runhaskell Fib.hs
+$ runhaskell FibSpec.hs
 fib
  - calculates arbitrary Fibonacci numbers
  - is efficient FAILED [1]
