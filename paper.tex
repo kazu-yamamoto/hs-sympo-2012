@@ -988,11 +988,11 @@ fib = const 55
 \end{verbatim}
 \end{quote}
 
-This first step might appear useless, but as of now we already have
-made some choices with regard to the API of our library.  By giving a
-usage example, we were forced to think about which arguments our
-function takes.  We can now run Doctest to verify that the example
-works.
+\noindent This first step might appear useless, but as of now we
+already have made some choices with regard to the API of our library.
+By giving a usage example, we were forced to think about which
+arguments our function takes.  We can now run Doctest to verify that
+the example works.
 
 \begin{quote}
 \small
@@ -1006,8 +1006,8 @@ Examples: 1  Tried: 1  Errors: 0  Failures: 0
 
 \subsection{Step 2}
 
-We add a specification that forces our function to actually calculate
-fibonacci numbers.
+In the next step, we add a specification that forces our function to
+actually calculate fibonacci numbers.
 
 \begin{quote}
 \small
@@ -1031,7 +1031,7 @@ main = hspec $ do
 \end{verbatim}
 \end{quote}
 
-\noindent Of course, this test now fails when we run it,
+\noindent Of course, this spec fails when we run it,
 
 \begin{quote}
 \small
@@ -1043,7 +1043,7 @@ fib
 \end{quote}
 
 \noindent so we add a working implementation.  Both Doctest and Hspec
-are happy now.
+report success after this.
 
 \begin{quote}
 \small
