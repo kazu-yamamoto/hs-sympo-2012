@@ -957,6 +957,7 @@ and it will be incorporate into a future release of Hspec.
 \section{Best current practices}
 \label{sec:best-current-practice}
 
+\subsection{Applying BDD to Haskell: An Example}
 This section shows how behaviour driven development works in practice,
 by means of the Fibonacci function.  Of course this is a very simple
 example, but the method is also applicable to more sophisticated
@@ -969,7 +970,7 @@ incremental updates.  The reader is asked to substitute code parts as
 appropriate.
 
 
-\subsection{Step 1}
+\subsubsection{Step 1}
 
 We start with the function's documentation, which gives a usage
 example, together with the simplest possible implementation that makes
@@ -1004,7 +1005,7 @@ Examples: 1  Tried: 1  Errors: 0  Failures: 0
 \end{quote}
 
 
-\subsection{Step 2}
+\subsubsection{Step 2}
 
 In the next step, we add a specification that forces our function to
 actually calculate Fibonacci numbers.
@@ -1051,7 +1052,7 @@ fib n = fib (n - 1) + fib (n - 2)
 \end{quote}
 
 
-\subsection{Step 3}
+\subsubsection{Step 3}
 
 As the seasoned Haskeller might have already noticed, our
 implementation is quite inefficient, as can be proved by this
@@ -1090,7 +1091,7 @@ fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
 \end{quote}
 
 
-\subsection{Step 4}
+\subsubsection{Step 4}
 
 So far, so good.  We have an implementaion of the Fibonacci function
 that swiftly calculates correct values for all positive integers.
