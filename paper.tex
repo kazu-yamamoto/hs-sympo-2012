@@ -957,79 +957,253 @@ and it will be incorporate into a future release of Hspec.
 \section{Best current practices}
 \label{sec:best-current-practice}
 
-This section show best current practices of
-BDD in Haskell.
+This section shows how behaviour driven development works in practice,
+by means of the fibonacci function.  Of course this is a very simple
+example, and the reader is encouraged to imagine a more sophisticated
+library, where design decisions might not be as obvious as here.
 
-\subsection{Procedure of BDD}
+We present a step-by-step refinement of a single file {\tt Fib.hs}
+that contains both implementation and specs.  Each line of code is
+only given once when introduced, subsequent code snippets are
+incremental updates.  The reader is asked to substitute code parts as
+appropriate.
 
-First, we write a signature and leave the definition of the function undefined.
+
+\subsection{Step 1}
+
+We start with the function's documentation, which gives a usage
+example, together with the simplest possible implementation that makes
+the example work.
 
 \begin{quote}
 \small
 \begin{verbatim}
-reverse :: [a] -> [a]
-reverse = undefined
-\end{verbatim}
-\end{quote}
-
-\noindent Next we write user documentation in Haddock markup:
-
-\begin{quote}
-\small
-\begin{alltt}
--- |
--- 'reverse' @xs@ returns the elements of @xs@
--- in reverse order. @xs@ must be finite.
+module Fib where
+-- | Calculate Fibonacci numbers.
 --
--- >>> reverse [1,2,3]
--- [3,2,1]
+-- >>> fib 10
+-- 55
+fib :: Int -> Integer
+fib = const 55
+\end{verbatim}
+\end{quote}
+
+This first step might appear useless, but as of now we already have
+made some choices with regard to the API of our library.  By giving a
+usage example, we were forced to think about which arguments our
+function takes.  We can now run Doctest to verify that the example
+works.
+
+\begin{quote}
+\small
+\begin{verbatim}
+$ doctest Fib.hs
+There is one test, with one single interaction.
+Examples: 1  Tried: 1  Errors: 0  Failures: 0
+\end{verbatim}
+\end{quote}
+
+
+\subsection{Step 2}
+
+We add a specification that forces our function to actually calculate
+fibonacci numbers.
+
+\begin{quote}
+\small
+\begin{verbatim}
+import Control.Applicative
+import Test.Hspec.ShouldBe
+import Test.QuickCheck
+
+-- small non-negative numbers
+newtype Small = Small Int
+  deriving Show
+
+instance Arbitrary Small where
+  arbitrary = Small . (`mod` 10) <$> arbitrary
+
+main = hspec $ do
+  describe "fib" $ do
+    it "calculates arbitrary Fibonacci numbers" $ do
+      property $ \(Small n) ->
+        fib n == fib (n + 2) - fib (n + 1)
+\end{verbatim}
+\end{quote}
+
+\noindent Of course, this test now fails when we run it,
+
+\begin{quote}
+\small
+\begin{verbatim}
+$ runhaskell Fib.hs
+fib
+ - calculates arbitrary Fibonacci numbers FAILED [1]
+\end{verbatim}
+\end{quote}
+
+\noindent so we add a working implementation.  Both Doctest and Hspec
+are happy now.
+
+\begin{quote}
+\small
+\begin{verbatim}
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n - 1) + fib (n - 2)
+\end{verbatim}
+\end{quote}
+
+
+\subsection{Step 3}
+
+As the seasoned Haskeller might have already noticed, our
+implementation is quite inefficient, as can be proved by this
+specification:
+
+\begin{quote}
+\small
+\begin{verbatim}
+import Control.Exception
+import System.Timeout
+
+it "is efficient" $ do
+  timeout 10000
+      (evaluate $ fib 32) `shouldReturn` Just 2178309
+\end{verbatim}
+\end{quote}
+
+\noindent When we run it, hspec tells us
+
+\begin{quote}
+\small
+\begin{verbatim}
+$ runhaskell Fib.hs
+fib
+ - calculates arbitrary Fibonacci numbers
+ - is efficient FAILED [1]
+\end{verbatim}
+\end{quote}
+
+\noindent and we respond with an efficient implementation.
+
+\begin{quote}
+\small
+\begin{verbatim}
+import Data.List
+
+fib :: Int -> Integer
+fib n = fibs !! n
+fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
+\end{verbatim}
+\end{quote}
+
+
+\subsection{Step 4}
+
+So far, so good.  We have an implementaion of the fibonacci function
+that swiftly calculates correct values for all positive integers.
+But what about negative ones? Our implementation uses the list index
+operator {\tt (!!)} which is a partial function that throws an
+exeption for negative indexes.  Let's specify that behaviour.
+
+\begin{quote}
+\small
+\begin{verbatim}
+it "throws ErrorCall on negative input" $ do
+  evaluate (fib (-10)) `shouldThrow` anyErrorCall
+\end{verbatim}
+\end{quote}
+
+\noindent Throwing exceptions from pure code is considered bad
+practice, so we guard the {\tt (!!)} operator against negative
+indexes.
+
+\begin{quote}
+\small
+\begin{verbatim}
+fib n | n < 0     = 0
+      | otherwise = fibs !! n
+\end{verbatim}
+\end{quote}
+
+\noindent Now our specification fails, so we adapt it accordingly.
+
+\begin{quote}
+\small
+\begin{verbatim}
+it "returns 0 on negative input" $ do
+  fib (-10) `shouldBe` 0
+\end{verbatim}
+\end{quote}
+
+\noindent In fact, it is the case that fib returns 0 for all negative
+numbers.
+
+\begin{quote}
+\small
+\begin{verbatim}
+it "returns 0 on negative input" $ do
+  property $ \n -> n < 0 ==>
+    fib n == 0
+\end{verbatim}
+\end{quote}
+
+
+\noindent This concludes our example coding session.  We have seen how
+to utilize behavior driven development to incrementally build a small
+library.  The combinators {\tt shouldBe}, {\tt shouldReturn} and {\tt
+shouldThrow} can be used to specify behavior of functions in an
+intuitive, easy to read manner.  The final version of our library
+looks like this.
+
+\begin{quote}
+\small
+\begin{verbatim}
+module Fib where
+import Control.Applicative
+import Control.Exception
+import Data.List
+import System.Timeout
+import Test.Hspec.ShouldBe
+import Test.QuickCheck
+
+-- | Calculate Fibonacci numbers.
 --
--- prop> reverse [] == reverse []
--- prop> reverse (xs ++ ys) == reverse ys ++ \(\hookleftarrow\)
-                               reverse (xs::[Int])
--- prop> reverse (reverse xs) == (xs::[Int])
+-- >>> fib 10
+-- 55
+fib :: Int -> Integer
+fib n | n < 0     = 0
+      | otherwise = fibs !! n
 
-reverse :: [a] -> [a]
-reverse = undefined
-\end{alltt}
-\end{quote}
+fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
 
-\noindent We should execute Doctest to ensure no syntax errors.
-Also, we write code documentation with Hspec:
+-- small non-negative numbers
+newtype Small = Small Int
+  deriving Show
 
-\begin{quote}
-    sol: TBD. @kazu, the descriptions make no sense, can you try to
-    make them more precise?
-\end{quote}
+instance Arbitrary Small where
+  arbitrary = Small . (`mod` 1000) <$> arbitrary
 
-\begin{quote}
-\small
-\begin{verbatim}
-describe "reverse" $ do
-  it "returns the first element in the last" $
-    property $ \xs -> not (null xs) ==>
-      head (reverse xs) == last (xs :: [Int])
+main = hspec $ do
+  describe "fib" $ do
+    it "calculates arbitrary Fibonacci numbers" $ do
+      property $ \(Small n) ->
+        fib n == fib (n + 2) - fib (n + 1)
 
-  it "returns the last element in the first" $
-    property $ \xs -> not (null xs) ==>
-      last (reverse xs) == head (xs :: [Int])
+    it "is efficient" $ do
+      timeout 10000 (evaluate $ fib 32)
+          `shouldReturn` Just 2178309
+
+    it "returns 0 on negative input" $ do
+      property $ \n -> n < 0 ==>
+        fib n == 0
 \end{verbatim}
 \end{quote}
 
-\noindent Also, we should execute this Hspec module
-to ensure no syntax errors.
-Then we implement the function.
 
-\begin{quote}
-\small
-\begin{verbatim}
-reverse :: [a] -> [a]
-reverse = foldl (flip (:)) []
-\end{verbatim}
-\end{quote}
 
-\noindent Now we run tests, and improve our implementation, until all
-tests pass.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Cabal integration}
