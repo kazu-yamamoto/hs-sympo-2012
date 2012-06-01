@@ -1206,12 +1206,17 @@ at this moment.
 Hspec's mechanism for evidence is extensible, and it would be easy to
 add support for SmallCheck.
 
-The {\tt test-framework} family is a TDD tool,
-which currently integrates HUnit, QuickCheck, SmallCheck, and Doctest.
-Automatic test discovery based on prefixes of function name
-and is implemented using Template Haskell~\cite{template-haskell}.
-All examples and properties must be written in a single
-source file.
+The {\tt test-framework} family is a TDD tool, which currently
+integrates HUnit, QuickCheck, SmallCheck, and Doctest.
+There is support for automatic test discovery that relies on naming
+conventions for test functions\footnote{%
+http://hackage.haskell.org/package/test-framework-th}.  It is
+implemented with Template Haskell~\cite{template-haskell}, and it only
+works within a single source file.  Automatic discovery across
+multiple source files is not possible with a mechanism that is based
+on Template Haskell, because Template Haskell can not generate import
+statements\footnote{%
+See http://hackage.haskell.org/trac/ghc/ticket/1475 }.
 
 The {\tt testpack} package provides a combinator to expect exceptions,
 similar to {\tt shouldThrow} from
