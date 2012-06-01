@@ -1186,16 +1186,29 @@ for Hspec/QuickCheck/HUnit.
 \subsection{TBD}
 
 \begin{itemize}
-    \item \emph{optional}: Bridging the gap between HUnit and QuickCheck
     \item
         Feedback for failing QuickCheck properties is not always as
         useful as it could be -> combinators that use QuickCheck's
         Result type could help
     \item
-        Are more high-lever approaches to BDD, akin to Ruby's
-        Cucumber, applicable to Haskell? (Observation: Cucumber's
-        approach is tightly tied to OO)
 \end{itemize}
+
+\begin{quote}
+    TBD: add ``The Cucumber Book'' to the bibliography as {\tt
+    cucumber-book}.
+\end{quote}
+
+Cucumber~\cite{cucumber-book} is a higher-level approach to BDD for Ruby, and
+it is typically used in combination with RSpec.
+It focuses on user stories, to assist the developer in delivering
+value to the stakeholder.
+There is nothing comparable to Cucumber for Haskell yet.  And we think
+it would be interesting to explore, whether it is possible to apply
+Cucumber's approach to BDD to Haskell.
+
+Are more high-lever approaches to BDD, akin to Ruby's Cucumber,
+applicable to Haskell? (Observation: Cucumber's approach is tightly
+tied to OO)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Related work}
