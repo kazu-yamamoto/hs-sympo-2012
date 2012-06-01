@@ -11,9 +11,10 @@ import Test.QuickCheck
 -- >>> fib 10
 -- 55
 fib :: Int -> Integer
-fib n = xs !! n
-  where
-    xs = 0 : 1 : zipWith (+) xs (tail xs)
+fib n = fibs !! n
+
+
+fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
 
 -- small non-negative numbers
 newtype Small = Small Int
@@ -31,5 +32,5 @@ main = hspec $ do
     it "is efficient" $ do
       timeout 10000 (evaluate $ fib 32) `shouldReturn` Just 2178309
 
-    it "throws an exception on negative input" $ do
-      evaluate (fib (-10)) `shouldThrow` anyException
+    it "throws ErrorCall on negative input" $ do
+      evaluate (fib (-10)) `shouldThrow` anyErrorCall

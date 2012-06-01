@@ -11,9 +11,10 @@ import Test.QuickCheck
 -- >>> fib 10
 -- 55
 fib :: Int -> Integer
-fib n = xs !! n
-  where
-    xs = 0 : 1 : zipWith (+) xs (tail xs)
+fib n = fibs !! n
+
+
+fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
 
 -- small non-negative numbers
 newtype Small = Small Int
