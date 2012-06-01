@@ -1053,8 +1053,9 @@ tests pass.
 file can contain multiple test suites, so it is possible to define test suites
 for Doctest and Hspec in the same cabal file.
 
-As discussed in Section~\ref{sec:solution-discovery}, we can use
-{\tt hspec-discover} to automatically generate a test driver for Hspec:
+As discussed in Section~\ref{sec:solution-discovery},
+{\tt hspec-discover} can be used to automatically generate a test
+driver for Hspec:
 
 \begin{quote}
 \small
@@ -1076,18 +1077,41 @@ test-suite spec
 \end{verbatim}
 \end{quote}
 
-\noindent A driver for Doctest looks like so:
+\noindent Doctest provides both, an executable and a library.  The library
+exposes a function \verb|doctest| of type:
+
+
+\begin{quote}
+\small
+\begin{verbatim}
+doctest :: [String] -> IO ()
+\end{verbatim}
+\end{quote}
+
+\noindent Doctest's own `main` is simply:
+\begin{quote}
+\small
+\begin{verbatim}
+main = getArgs >>= doctest
+\end{verbatim}
+\end{quote}
+
+
+
+\noindent Consequently, it is possible to create a custom executable
+for a project, by passing all command-line arguments that are required
+for that project to `doctest`.  A simple example looks like this:
 
 \begin{quote}
 \small
 \begin{verbatim}
 -- file doctests.hs
 import Test.DocTest
-main = doctest ["src/Main.hs"]
+main = doctest ["--optghc=isrc", "src/Main.hs"]
 \end{verbatim}
 \end{quote}
 
-\noindent And a corresponding Cabal test suite section like so:
+\noindent And a corresponding Cabal test suite section like this:
 
 \begin{quote}
 \small
