@@ -383,8 +383,9 @@ The \texttt{describe} function combines a list of specs into a larger spec.
 % It can be used to organize a spec as a tree.
 % Internally, a \texttt{Writer} is used to build up specs in a monadic way.
 A spec can be run with the \texttt{hspec} function.  When a spec is
-run, all evidence is tested.  Behavior with evidence that does not
-hold is reported to the developer.
+run, all evidence is tested, and a report is generated.
+Behavior with evidence that does not hold is marked in the generated
+report as {\tt FAILED}.
 
 %%%%%%%%%%%%%%%%
 % \subsubsection{Hspec does not provide a mechanism for expectations}
