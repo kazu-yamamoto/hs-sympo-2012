@@ -1125,7 +1125,7 @@ it "throws ErrorCall on negative input" $ do
 fine. Some time later however, the one person in our team that knows
 more about Haskell than we do, convinces us that throwing exceptions
 from pure code is considered poor design. Hence, we change the
-specification so that zero should be the result for negative inputs.
+specification so that negative inputs should have zero as result.
 
 \begin{quote}
 \small
@@ -1146,8 +1146,8 @@ fib n | n < 0     = 0
 \end{verbatim}
 \end{quote}
 
-\noindent In fact, it is the case that fib returns 0 for all negative
-numbers.
+\noindent In fact, should be the case that fib returns 0 for all
+negative numbers.
 
 \begin{quote}
 \small
@@ -1159,12 +1159,14 @@ it "returns 0 on negative input" $ do
 \end{quote}
 
 
-\noindent This concludes our example coding session.  We have seen how
-to utilize behavior driven development to incrementally build a small
-library.  We always extend or adapt the specification first, watch it
-fail,  and then fix the implementation.  The combinators {\tt
-shouldBe}, {\tt shouldReturn} and {\tt shouldThrow} can be used to
-specify behavior of functions in an intuitive, easy to read manner.
+\noindent Again, our implementation already fulfils that spec.
+
+This concludes our example coding session.  We have seen how to utilize
+behavior driven development to incrementally build a small library.
+We always extend or adapt the specification first, watch it fail,  and
+then tighten the implementation.  The combinators {\tt shouldBe}, {\tt
+shouldReturn} and {\tt shouldThrow} can be used to specify behavior of
+functions in an intuitive, easy to read manner.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Reusable pieces of specification}
