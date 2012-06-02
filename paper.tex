@@ -1196,14 +1196,40 @@ functions in an intuitive, easy to read manner.
 \subsection{Reusable pieces of specification}
 \label{sec:reusable-specs}
 
-Reusable spec is an idea to scrap boilerplate of evidence.
-For instance, without reusable spec,
-each developer of an instance of a type class should
-express evidence for its laws.
-Since instances of a type class share API,
-we can avoid such boilerplate.
-The following is an example to implement
-evidence for Monoid laws:
+RSpec provides an explicit mechanism to facilitate reuse of pieces of
+specification.~\cite{rspec}
+In Haskell we get reusability for free, it does not require any
+explicit support from Hspec.
+
+\begin{quote}
+  TBD: not sure, if this adds anything
+
+This not only shows that functional programming can deliver what OO
+has always claimed, but it is also awfully useful.
+\end{quote}
+
+Here is a specification that documents that a list is a monoid:
+
+\begin{quote}
+\small
+\begin{verbatim}
+spec = do
+  describe "List as a Monoid" $ do
+    describe "mempty" $ do
+      it "is a left identity" $ property $ \x ->
+        mempty <> x == x
+
+      it "is a right identity" $ property $ \x ->
+        x <> mempty == x
+
+    describe "<>" $ do
+      it "is associative" $ property $ \x y z ->
+        (x <> y) <> z == x <> (y <> z)
+\end{verbatim}
+\end{quote}
+
+\noindent And it is possible to to make this specification reusable,
+by abstracting over the type:
 
 \begin{quote}
 \small
@@ -1225,20 +1251,16 @@ shouldSatisfyMonoidLaws t = do
 \end{quote}
 
 \noindent This can be used to document and test arbitrary Monoid
-instances.
-Here is an example how to use it for lists:
+instances, the specification from above would become:
 
 \begin{quote}
 \small
 \begin{verbatim}
-describe "List as a Monoid" $
-  shouldSatisfyMonoidLaws (undefined :: [Int])
+spec = do
+  describe "List as a Monoid" $ do
+    shouldSatisfyMonoidLaws (undefined :: [Int])
 \end{verbatim}
 \end{quote}
-
-\noindent We have already implemented this experimentally.
-We should ensure the practicality of reusable spec and
-prepare reusable spec to cover variety of type classes.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Cabal integration}
@@ -1350,6 +1372,10 @@ test-suite doctests
         (similar in purpose to
         {\tt
         checkers}\footnote{http://hackage.haskell.org/package/checkers})
+      \item copied here from Section~\ref{sec:reuseable-pecs}:
+        We should ensure the practicality of reusable spec and
+        prepare reusable spec to cover variety of type classes.
+
 \end{itemize}
 \end{quote}
 
