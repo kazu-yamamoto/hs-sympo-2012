@@ -538,8 +538,9 @@ can be written as:
 
 \noindent The $\hookleftarrow$ symbol denotes line continuation.
 
-GHCi's type defaulting~\footnote{%
-http://www.haskell.org/ghc/docs/7.4.1/html/users\_guide/interactive-evaluation.html} applies to properties.  If a default type is
+GHCi's type defaulting\footnote{%
+\url{http://www.haskell.org/ghc/docs/7.4.1/html/users_guide/interactive-evaluation.html#extended-default-rules}
+} applies to properties.  If a default type is
 not suitable, explicit type-signatures can be used:
 
 \begin{quote}
@@ -888,7 +889,7 @@ Cabal's test feature.
 \label{sec:bcp-example}
 This section shows how behavior driven development works in practice,
 by means of the Fibonacci function.  This is a very simple
-example, but the method is also applicable to more sophisticated
+example, but the method is also applicable to more complicated
 situations where design decisions might not be as obvious as here.
 
 We present a step-by-step refinement of a library, and a corresponding
@@ -915,9 +916,9 @@ fib = const 55
 \end{quote}
 
 \noindent This first step might appear excessively trivial, but as of now we
-already have made some choices with regard to the API of our library.
+already have made some choices with regard to the API of the library.
 By giving a usage example, we were forced to think about which
-arguments our function takes.  We can now run Doctest to verify that
+arguments the function takes.  We can now run Doctest to verify that
 the example works.
 
 \begin{quote}
@@ -1060,7 +1061,8 @@ so that negative input values should result in zero.
 \small
 \begin{verbatim}
 it "returns 0 on negative input" $ do
-  fib (-10) `shouldBe` 0
+  property $ \n -> n < 0 ==>
+    fib n == 0
 \end{verbatim}
 \end{quote}
 
@@ -1075,22 +1077,7 @@ fib n | n < 0     = 0
 \end{verbatim}
 \end{quote}
 
-\noindent It should be the case that fib returns 0 for all negative
-numbers, so we state that in the specification:
-
-\begin{quote}
-\small
-\begin{verbatim}
-it "returns 0 on negative input" $ do
-  property $ \n -> n < 0 ==>
-    fib n == 0
-\end{verbatim}
-\end{quote}
-
-
-\noindent Again, our implementation already fulfils that spec.
-
-This concludes our example.  We have seen how to utilize
+\noindent This concludes our example.  We have seen how to utilize
 behavior driven development to incrementally build a small library.
 We always extend or adapt the specification first, watch it fail,  and
 then tighten the implementation.  The combinators {\tt shouldBe}, {\tt
