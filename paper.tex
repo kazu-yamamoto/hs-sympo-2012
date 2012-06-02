@@ -1043,7 +1043,15 @@ newtype Small = Small Int
 
 instance Arbitrary Small where
   arbitrary = Small . (`mod` 10) <$> arbitrary
+\end{verbatim}
+\end{quote}
 
+\noindent TBD: can we put some useful text here, so that the code
+example is divided into two pieces, and hence each piece is smaller?
+
+\begin{quote}
+\small
+\begin{verbatim}
 main = hspec spec
 
 spec = do
