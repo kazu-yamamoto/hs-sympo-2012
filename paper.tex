@@ -313,7 +313,7 @@ See e.g. the documentation of
 {\tt containers},
 {\tt filepath},
 {\tt bytestring} or
-{\tt text}}.
+{\tt text}.}.
 Here is an example from the {\tt filepath} package.
 
 \begin{quote}
@@ -372,9 +372,11 @@ spec = do
 
 \noindent The {\tt it} function combines a text description for a
 behavior and some evidence (a code example or a property) into a spec.
-Code examples can be arbitrary HUnit assertions.  Properties must be of type {\tt
-Property}; QuickCheck's \texttt{property} function can be used to turn
-an arbitrary property into a \texttt{Property}.
+Code examples can be arbitrary HUnit test cases\footnote{%
+Wrapping the test case with HUnit's {\tt TestCase} constructor is not
+necessary.}.  Properties must be of type {\tt
+Property}.  QuickCheck's \texttt{property} function can be used to turn
+an arbitrary properties into values of type \texttt{Property}.
 
 The \texttt{describe} function combines a list of specs into a larger spec.
 % It can be used to organize a spec as a tree.
