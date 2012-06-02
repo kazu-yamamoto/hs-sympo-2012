@@ -1216,14 +1216,14 @@ spec = do
   describe "List as a Monoid" $ do
     describe "mempty" $ do
       it "is a left identity" $ property $ \x ->
-        mempty <> x == x
+        mempty <> x == (x :: [Int])
 
       it "is a right identity" $ property $ \x ->
-        x <> mempty == x
+        x <> mempty == (x :: [Int])
 
     describe "<>" $ do
       it "is associative" $ property $ \x y z ->
-        (x <> y) <> z == x <> (y <> z)
+        (x <> y) <> z == (x <> (y <> z) :: [Int])
 \end{verbatim}
 \end{quote}
 
