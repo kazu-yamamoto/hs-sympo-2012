@@ -933,8 +933,7 @@ situations where design decisions might not be as obvious as here.
 
 We present a step-by-step refinement of a library, and a corresponding
 spec.  Each line of code is only given once when introduced,
-subsequent code fragments are incremental updates.  The reader is
-asked to substitute code parts as appropriate.
+subsequent code fragments are incremental updates.
 
 \subsubsection{Starting with a minimal implementation}
 
@@ -1115,8 +1114,8 @@ fib n | n < 0     = 0
 \end{verbatim}
 \end{quote}
 
-\noindent In fact, it should be the case that fib returns 0 for all
-negative numbers.
+\noindent It should be the case that fib returns 0 for all negative
+numbers, so we state that in the specification:
 
 \begin{quote}
 \small
@@ -1130,7 +1129,7 @@ it "returns 0 on negative input" $ do
 
 \noindent Again, our implementation already fulfils that spec.
 
-This concludes our example coding session.  We have seen how to utilize
+This concludes our example.  We have seen how to utilize
 behavior driven development to incrementally build a small library.
 We always extend or adapt the specification first, watch it fail,  and
 then tighten the implementation.  The combinators {\tt shouldBe}, {\tt
