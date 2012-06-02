@@ -851,16 +851,16 @@ Doctest now uses the GHC API directly for portability.
 
 \subsubsection{Testing examples}
 
-To verify examples, Doctest uses GHCi.
-Test is done by comparing result string in Haddock notation and
-result string from GHCi.
-Since verification based on string comparison, exceptions can be handled.
+Doctest uses GHCi to verify examples.  Verification is done by
+comparing the expected output given in the Haddock comment with the
+actual output of GHCi.  Since verification is based on string
+comparison, exceptions can be handled.
 
 Doctest reuses the same GHCi session for all examples.
 Examples from the same Haddock comment are grouped together,
 and share the same scope.
-The scope is cleared with \verb|:reload| before a new
-example group is started.
+Doctest clears the scope with \verb|:reload| before it tests a new
+example group.
 
 \subsubsection{Testing properties}
 
