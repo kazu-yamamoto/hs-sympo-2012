@@ -1234,7 +1234,7 @@ by abstracting over the type:
 \small
 \begin{verbatim}
 shouldSatisfyMonoidLaws ::
-  (Eq a, Show a, Monoid a, Arbitrary a) => a -> Specs
+  (Eq a, Show a, Monoid a, Arbitrary a) => a -> Spec
 shouldSatisfyMonoidLaws t = do
   describe "mempty" $ do
     it "is a left identity" $ property $ \x ->
