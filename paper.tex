@@ -1116,6 +1116,18 @@ fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
 \end{verbatim}
 \end{quote}
 
+\noindent TBD: With a much more efficient implementation at hand, we
+can also adapt our definition of ``small non-negative number'', so
+that a wide range of input values is tested:
+
+\begin{quote}
+\small
+\begin{verbatim}
+instance Arbitrary Small where
+  arbitrary = Small . (`mod` 1000) <$> arbitrary
+\end{verbatim}
+\end{quote}
+
 
 \subsubsection{Step 4}
 
