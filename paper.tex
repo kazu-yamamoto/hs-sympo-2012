@@ -553,8 +553,8 @@ exceptions:
 \subsubsection{Markup for properties}
 \label{sec:markup}
 
-\noindent To specify properties, we also propose new markup. In this paper, we
-use the {\tt prop>} prefix. We can write non-quantified properties as follows:
+\noindent To specify properties, we also introduce new markup. A line
+starting with ``{\tt prop>}'' indicates a property.
 
 \begin{quote}
 \small
@@ -564,7 +564,7 @@ use the {\tt prop>} prefix. We can write non-quantified properties as follows:
 \end{verbatim}
 \end{quote}
 
-\noindent And it is possible to quantify properties by using a
+\noindent It is possible to quantify properties by using a
 lambda expression. The property from Section~\ref{sec:doctest-haddock}
 can be written as:
 
@@ -577,10 +577,15 @@ can be written as:
 \end{alltt}
 \end{quote}
 
-\noindent Note that the $\hookleftarrow$ symbol denotes line
-continuation.
-If a default type is not suitable, expression type-signatures can be
-specified for each parameter:
+\noindent The $\hookleftarrow$ symbol denotes line continuation.
+
+GHCi's type defaulting~\cite{ghc-manual} applies to properties.  If a default type is
+not suitable explicit type-signatures can be used:
+
+\begin{quote}
+    TBD: @kazu, can you add this to the bib:
+    \url{http://www.haskell.org/ghc/docs/7.4.1/html/users_guide/interactive-evaluation.html}
+\end{quote}
 
 \begin{quote}
 \small
@@ -590,8 +595,8 @@ specified for each parameter:
 \end{verbatim}
 \end{quote}
 
-\noindent Since the right hand side of {\tt ->} is verbose as documentation,
-lambda terms without the lambda prefix are also allowed:
+\noindent Since the lambda abstraction adds nothing to the
+documentation, it can be omitted:
 
 \begin{quote}
 \small
@@ -602,7 +607,7 @@ lambda terms without the lambda prefix are also allowed:
 \end{quote}
 
 \noindent We call such properties \emph{implicitly quantified}.  The
-given property is implicitly quantified over \verb|xs|.
+given property is implicitly quantified over {\tt xs}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Code documentation}
