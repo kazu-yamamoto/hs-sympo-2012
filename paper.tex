@@ -95,10 +95,10 @@ languages that do not provide such a strong type system.
 Unfortunately, the type system of Haskell does not always guarantee
 correct semantics.
 For example, it does not ensure that division by zero does not occur.
-An other example is, that instances of {\tt Monoid} \emph{should} be
+Another example is, that instances of {\tt Monoid} should be
 monoids in the mathematical sense, but the type system does not
 enforce this.  It is the programmers responsibility to ensure that
-instance definitions \emph{behave} as \emph{expected}.  Hence
+instance definitions behave as expected.  Hence
 automated testing is useful.
 
 However, some widely used Haskell libraries do not have automated
@@ -108,7 +108,7 @@ packages, not counting the 19 core libraries that come with GHC.  Only
 neither tests nor examples.  A lack of tests is not only a quality and
 maintainability issue.  It also is a lack of documentation.  Tests
 document how code is supposed to be used, and tests document the
-behavior of code.
+\emph{behavior} of code.
 
 In other programming language communities, behavior driven development
 (BDD) is getting much attention, and is slowly replacing test driven
@@ -145,7 +145,7 @@ It can verify examples and test properties, and it can create an
 informal specification document from that.
 
 Hspec is thus useful for \emph{code documentation}, but we observed that parts
-of a specification can be useful as user documentation. To that end,
+of a specification can be useful as \emph{user documentation}. To that end,
 Python's {\tt doctest} module~\cite{doctest} is of interest for us.
 It is not commonly described as a BDD tool, but we think it can be
 used for BDD.
@@ -171,7 +171,7 @@ contributions are:
     (Section~\ref{sec:user-doc} and Section~\ref{sec:doctest})
 
 \item
-    We introduce a set of combinators to express expectations about
+    We introduce a set of combinators to express \emph{expectations} about
     code examples for use with Hspec
     (Section~\ref{sec:code-doc} and Section~\ref{sec:hspec-comb})
 
@@ -225,33 +225,13 @@ We use the following terminology:
     A spec is similar to a test suite in TDD.  But it is written with
     specification terminology, and produces a specification document
     when run.
-\end{description}
-
-
-\begin{quote}
-    \emph TBD: Check, terminology for consistency, and remove
-    unnecessary terminology (if any).  This has to be done as one of
-    the last steps.
-\end{quote}
-
-\begin{description}
-\item[developer]
-    A programmer who develops a library.
-
-\item[user]
-    A programmer who uses a library.
-
 
 \item[user documentation]
-    Explanation of functions for users.
+    User documentation means the documentation for users of a library.
+
 \item[code documentation]
-    Explanation of functions for developers.
-
-\item[non-quantified property]
-    Property which does not take parameters.
-
-\item[quantified property]
-    Property which takes parameters.
+    Code documentation means a detailed description, or specification,
+    of a library.
 
 \end{description}
 
@@ -397,7 +377,7 @@ RSpec.
 
 
 \noindent Hspec does not yet provide a mechanism to express
-\emph{expectations} with that terminology.  The developer has to use
+expectations with that terminology.  The developer has to use
 HUnit assertions instead.
 
 %%%%%%%%%%%%%%%%
@@ -1416,11 +1396,11 @@ spec = do
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \acks
 
-We are grateful to David Waern, Haddock's maintainer, for reviewing and
-accepting our patches to Haddock.
-We would like to thank
-Nick Smallbone for having improved QuickCheck so that
-non-quantified properties are tested just once.
+We are grateful to David Waern, Haddock's maintainer, for reviewing
+and accepting our patches to Haddock.
+%We would like to thank
+%Nick Smallbone for having improved QuickCheck so that
+%non-quantified properties are tested just once.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
