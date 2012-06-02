@@ -844,10 +844,10 @@ included in the generated documentation.
 \label{sec:doctest}
 
 To extract evidence from Haddock comments,
-Doctest used the Haddock API in the past.
-Since each release of Haddock supports only the latest version of GHC,
-it is difficult to support old versions of GHC with Haddock API.
-Doctest is now directly using GHC API for portability.
+Doctest initially used the Haddock API.
+Since each release of Haddock only supports the latest version of GHC,
+it was difficult to support old versions of GHC with Doctest.
+Doctest now uses the GHC API directly for portability.
 
 \subsubsection{Testing examples}
 
