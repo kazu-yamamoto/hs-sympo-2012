@@ -996,7 +996,6 @@ the example work.
 \begin{quote}
 \small
 \begin{verbatim}
-module Fib where
 -- | Calculate Fibonacci numbers.
 --
 -- >>> fib 10
@@ -1045,7 +1044,9 @@ newtype Small = Small Int
 instance Arbitrary Small where
   arbitrary = Small . (`mod` 10) <$> arbitrary
 
-main = hspec $ do
+main = hspec spec
+
+spec = do
   describe "fib" $ do
     it "calculates arbitrary Fibonacci numbers" $ do
       property $ \(Small n) ->
