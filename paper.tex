@@ -316,7 +316,7 @@ user documentation, and Hspec for evidence that is not useful as user
 documentation.  The following subsections discuss problems that we
 have to solve before we can do this.
 
-\subsection{Doctest and Haddock}
+\subsection{Haddock}
 \label{sec:doctest-haddock}
 
 Haddock has markup support for code blocks, and code blocks are widely used
@@ -345,10 +345,6 @@ block contains a property.  And it would be useful to have a tool that
 automatically extracts and tests the property.
 But writing such a tool is hard, because it is not easy to decide
 whether the code block is a property, an example, or something else.
-
-So, we need common syntax to describe examples and properties
-independently in Haddock. Doctest should automatically verify
-examples and test properties.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Hspec}
