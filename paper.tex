@@ -834,6 +834,15 @@ Doctest now uses the GHC API directly for portability.
 
 \subsubsection{Testing examples}
 
+\begin{quote}
+    TBD: We read both, stdout + stderr from GHCi and compare that with the
+    expected result.  On Windows, only stdout works (IIRC, when an
+    example causes output to stderr on windows, doctest exits with an
+    error, see http://hackage.haskell.org/trac/ghc/ticket/5761).
+
+    sol: relevant?
+\end{quote}
+
 Doctest uses GHCi to verify examples.  Verification is done by
 comparing the expected output given in the Haddock comment with the
 actual output of GHCi.  Since verification is based on string
