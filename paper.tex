@@ -83,10 +83,6 @@ more and better tests.
 \label{sec:introduction}
 
 %%%% Describe the problem.
-\begin{itemize}
-    \item ref to appendix
-\end{itemize}
-
 Haskell~\cite{haskell} has a strong type system, which ensures that most type errors are
 detected at compile time rather than runtime.  Thanks to this, we assume that
 programs written in Haskell have less bugs than programs written in programming
@@ -894,13 +890,14 @@ Cabal's test feature.
 \subsection{Applying BDD to Haskell: An Example}
 \label{sec:bcp-example}
 This section shows how behavior driven development works in practice,
-by means of the Fibonacci function.  Of course this is a very simple
+by means of the Fibonacci function.  This is a very simple
 example, but the method is also applicable to more sophisticated
 situations where design decisions might not be as obvious as here.
 
 We present a step-by-step refinement of a library, and a corresponding
 spec.  Each line of code is only given once when introduced,
-subsequent code fragments are incremental updates.
+subsequent code fragments are incremental updates.  Appendix
+\ref{sec:appendix-code} contains the complete code of this section.
 
 \subsubsection{Starting with a minimal implementation}
 
