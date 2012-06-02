@@ -385,22 +385,21 @@ spec = do
 behavior and some evidence (a code example or a property) into a spec.
 Code examples can be arbitrary HUnit test cases\footnote{%
 Wrapping the test case with HUnit's {\tt TestCase} constructor is not
-necessary.}.  Properties must be of type {\tt
-Property}.  QuickCheck's \texttt{property} function can be used to turn
-arbitrary properties into values of type \texttt{Property}.
+necessary.}.  If a property is used as evidence, it must be wrapped
+with QuickCheck's {\tt property} function.
 
 The \texttt{describe} function combines a list of specs into a larger spec.
 % It can be used to organize a spec as a tree.
 % Internally, a \texttt{Writer} is used to build up specs in a monadic way.
 A spec can be run with the \texttt{hspec} function.  When a spec is
 run, all evidence is tested, and a report is generated.  Behavior with
-evidence that does not hold is marked as {\tt FAILED} in the generated
+evidence that does not hold is marked as {\tt FAILED} in the
 report.
 
 %%%%%%%%%%%%%%%%
 % \subsubsection{Hspec does not provide a mechanism for expectations}
-BDD frameworks use \emph{should} or \emph{must} instead of
-\emph{assert} to express expectations.  Here is an example that uses
+BDD frameworks use ``should'' or ``must'' instead of
+``assert'' to express expectations.  Here is an example that uses
 RSpec.
 
 \begin{quote}
