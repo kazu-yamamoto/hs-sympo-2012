@@ -1145,13 +1145,6 @@ specification~\cite{rspec}.
 In Haskell we get reusability for free, it does not require any
 explicit support from Hspec.
 The following example illustrates this.
-
-\begin{quote}
-  TBD: not sure, if this adds anything
-
-This not only shows that functional programming can deliver what OO
-has always claimed, but it is also awfully useful.
-\end{quote}
 Here is a specification that documents that a list is a monoid:
 
 \begin{quote}
@@ -1254,7 +1247,7 @@ test-suite spec
 \end{quote}
 
 \noindent Doctest provides both, an executable and a library.  The library
-exposes a function \verb|doctest| of type:
+exposes a function ``{\tt doctest}'' of type:
 
 
 \begin{quote}
@@ -1264,7 +1257,7 @@ doctest :: [String] -> IO ()
 \end{verbatim}
 \end{quote}
 
-\noindent Doctest's own `main` is simply:
+\noindent Doctest's own {\tt main} is simply:
 \begin{quote}
 \small
 \begin{verbatim}
@@ -1276,7 +1269,7 @@ main = getArgs >>= doctest
 
 \noindent Consequently, it is possible to create a custom executable
 for a project, by passing all command-line arguments that are required
-for that project to `doctest`.  A simple example looks like this:
+for that project to {\tt doctest}.  A simple example looks like this:
 
 \begin{quote}
 \small
