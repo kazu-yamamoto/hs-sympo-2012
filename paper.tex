@@ -1096,8 +1096,8 @@ specification:
 \small
 \begin{verbatim}
 it "is efficient" $ do
-  timeout 10000
-      (evaluate $ fib 32) `shouldReturn` Just 2178309
+  timeout 10000 (evaluate $ fib 32)
+    `shouldReturn` Just 2178309
 \end{verbatim}
 \end{quote}
 
@@ -1498,6 +1498,64 @@ mechanis that can automatically discover all specs of a project.  We
 think that our approach enhances the value of test code, and hope
 that three-in-one aspect will motivate Haskell programmers to write
 more and better test code.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+\section{TBD}
+
+\begin{quote}
+\small
+\begin{verbatim}
+-- file Fib.hs
+module Fib (fib) where
+
+-- | Calculate Fibonacci numbers.
+--
+-- >>> fib 10
+-- 55
+fib :: Int -> Integer
+fib n | n < 0     = 0
+      | otherwise = fibs !! n
+
+fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
+
+
+-- file FibSpec.hs
+module FibSpec (main, spec) where
+
+import Control.Applicative
+import Control.Exception
+import System.Timeout
+
+import Test.QuickCheck
+import Test.Hspec.ShouldBe
+
+import Fib
+
+-- small non-negative numbers
+newtype Small = Small Int
+  deriving Show
+
+instance Arbitrary Small where
+  arbitrary = Small . (`mod` 1000) <$> arbitrary
+
+main = hspec spec
+
+spec = do
+  describe "fib" $ do
+    it "calculates arbitrary Fibonacci numbers" $ do
+      property $ \(Small n) ->
+        fib n == fib (n + 2) - fib (n + 1)
+
+    it "is efficient" $ do
+      timeout 10000 (evaluate $ fib 32)
+        `shouldReturn` Just 2178309
+
+    it "returns 0 on negative input" $ do
+      property $ \n -> n < 0 ==>
+        fib n == 0
+\end{verbatim}
+\end{quote}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \acks
