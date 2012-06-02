@@ -1137,7 +1137,7 @@ instance Arbitrary Small where
 \end{quote}
 
 
-\subsubsection{Dealing with invalid input}
+\subsubsection{Handling invalid input}
 
 So far, so good.  We have an implementation of the Fibonacci function
 that swiftly calculates correct values for all non-negative integers.
@@ -1154,7 +1154,11 @@ it "throws ErrorCall on negative input" $ do
 \end{quote}
 
 \noindent Our implementation already fulfils this spec, so we are
-fine. Some time later however, the one person in our team that knows
+fine.
+
+\subsubsection{Dealing with specification changes}
+
+Some time later however, the one person in our team that knows
 more about Haskell than we do, convinces us that throwing exceptions
 from pure code is considered poor design. Hence, we change the
 specification so that negative inputs should have zero as result.
