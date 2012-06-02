@@ -354,9 +354,12 @@ would rather be part of a design document, we use Hspec\footnote{%
 Hspec was originally implemented by Trystan Spangler, and is now
 maintained by one of the authors.}.
 
-Hspec provides an EDSL for defining specs.  A spec organizes evidence
+Hspec provides an EDSL for defining specs.  A \emph{spec} organizes evidence
 in a tree structure (or a forest, to be accurate), and is defined
 with \texttt{it} and \texttt{describe}.
+
+Here is an example that specifies some behavior of the {\tt reverse}
+function.
 
 \begin{quote}
 \small
@@ -384,7 +387,7 @@ Code examples can be arbitrary HUnit test cases\footnote{%
 Wrapping the test case with HUnit's {\tt TestCase} constructor is not
 necessary.}.  Properties must be of type {\tt
 Property}.  QuickCheck's \texttt{property} function can be used to turn
-an arbitrary properties into values of type \texttt{Property}.
+arbitrary properties into values of type \texttt{Property}.
 
 The \texttt{describe} function combines a list of specs into a larger spec.
 % It can be used to organize a spec as a tree.
