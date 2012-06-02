@@ -1092,10 +1092,9 @@ fine.
 
 \subsubsection{Dealing with specification changes}
 
-Some time later however, the one person in our team that knows
-more about Haskell than we do, convinces us that throwing exceptions
-from pure code is considered poor design. Hence, we change the
-specification so that negative input values should result in zero.
+At some point, we realize that throwing an exception on invalid input
+is not suitable for our use-case.  Hence, we change the specification,
+so that negative input values should result in zero.
 
 \begin{quote}
 \small
