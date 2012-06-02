@@ -981,13 +981,12 @@ by means of the Fibonacci function.  Of course this is a very simple
 example, but the method is also applicable to more sophisticated
 situations where design decisions might not be as obvious as here.
 
-We present a step-by-step refinement of a library
-that, and a corresponding spec.  Each line of code is
-only given once when introduced, subsequent code fragments are
-incremental updates.  The reader is asked to substitute code parts as
-appropriate.
+We present a step-by-step refinement of a library, and a corresponding
+spec.  Each line of code is only given once when introduced,
+subsequent code fragments are incremental updates.  The reader is
+asked to substitute code parts as appropriate.
 
-\subsubsection{Start with a minimal implementation}
+\subsubsection{Starting with a minimal implementation}
 
 We start with the function's documentation, which gives a usage
 example, together with the simplest possible implementation that makes
@@ -1020,38 +1019,23 @@ Examples: 1  Tried: 1  Errors: 0  Failures: 0
 \end{quote}
 
 
-\subsubsection{Get it right}
+\subsubsection{Getting it right}
 
-In the next step, we add a specification that forces our function to
-actually calculate Fibonacci numbers.
-
-
-\begin{quote}
-    TBD: do we want to add something like this?
-
-    At this stage we do not think about invalid input or performance.
-    We are happy with an implementation that works for small
-    non-negative integers.
-\end{quote}
+Next, we add a specification that forces our function to actually
+calculate Fibonacci numbers.
+At this stage we do not worry about invalid input or performance.  We
+are happy with an implementation that works for small non-negative
+integers.
 
 \begin{quote}
 \small
 \begin{verbatim}
--- small non-negative numbers
 newtype Small = Small Int
   deriving Show
 
 instance Arbitrary Small where
   arbitrary = Small . (`mod` 10) <$> arbitrary
-\end{verbatim}
-\end{quote}
 
-\noindent TBD: can we put some useful text here, so that the code
-example is divided into two pieces, and hence each piece is smaller?
-
-\begin{quote}
-\small
-\begin{verbatim}
 main = hspec spec
 
 spec = do
@@ -1062,7 +1046,7 @@ spec = do
 \end{verbatim}
 \end{quote}
 
-\noindent Of course this spec fails when we run it,
+\noindent This spec fails when we run it:
 
 \begin{quote}
 \small
@@ -1073,8 +1057,7 @@ fib
 \end{verbatim}
 \end{quote}
 
-\noindent so we add a working implementation.  Both Doctest and Hspec
-report success after that.
+\noindent So we add a working implementation:
 
 \begin{quote}
 \small
@@ -1085,11 +1068,12 @@ fib n = fib (n - 1) + fib (n - 2)
 \end{verbatim}
 \end{quote}
 
+\noindent Both Doctest and Hspec report success now.
 
-\subsubsection{Get it fast}
 
-As the seasoned Haskeller might have already noticed, our
-implementation is quite inefficient, as made evident by this
+\subsubsection{Getting it fast}
+
+Our implementation is quite inefficient, as made evident by this
 specification:
 
 \begin{quote}
@@ -1101,7 +1085,7 @@ it "is efficient" $ do
 \end{verbatim}
 \end{quote}
 
-\noindent When we run it, hspec tells us
+\noindent When we run it, hspec tells us:
 
 \begin{quote}
 \small
@@ -1113,7 +1097,7 @@ fib
 \end{verbatim}
 \end{quote}
 
-\noindent and we respond with an efficient implementation.
+\noindent And we respond with an efficient implementation:
 
 \begin{quote}
 \small
@@ -1124,9 +1108,9 @@ fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
 \end{verbatim}
 \end{quote}
 
-\noindent TBD: With a much more efficient implementation at hand, we
-can also adapt our definition of ``small non-negative number'', so
-that a wide range of input values is tested:
+\noindent With a much more efficient implementation at hand, we can
+now adapt our definition of small non-negative integers, so that
+a wider range of input values is tested:
 
 \begin{quote}
 \small
@@ -1139,8 +1123,8 @@ instance Arbitrary Small where
 
 \subsubsection{Handling invalid input}
 
-So far, so good.  We have an implementation of the Fibonacci function
-that swiftly calculates correct values for all non-negative integers.
+We have an implementation of the Fibonacci function
+that calculates correct values for all non-negative integers.
 But what about negative ones? Let's assume that we want our
 implementation to throw an exception in this case. We would
 specify it like this.
@@ -1161,7 +1145,7 @@ fine.
 Some time later however, the one person in our team that knows
 more about Haskell than we do, convinces us that throwing exceptions
 from pure code is considered poor design. Hence, we change the
-specification so that negative inputs should have zero as result.
+specification so that negative input values should result in zero.
 
 \begin{quote}
 \small
