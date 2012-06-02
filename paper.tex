@@ -649,7 +649,7 @@ shouldBe :: (Show a, Eq a) => a -> a -> Expectation
 \end{verbatim}
 \end{quote}
 
-\noindent Or we may expect that a value should satisfies some
+\noindent Or we may expect that a value should satisfy some
 predicate.
 
 \begin{quote}
@@ -705,7 +705,7 @@ shouldReturn :: (Show a, Eq a) => IO a -> a
 \subsubsection{Expecting exceptions}
 \label{sec:expacting-exceptions}
 
-HUnit does not provide any versatile mechanism to state that an action
+HUnit does not provide a convenient mechanism to state that an action
 should throw an exception.  So we propose a combinator for that.
 
 \begin{quote}
@@ -718,7 +718,7 @@ shouldThrow :: Exception e => IO a -> (e -> Bool)
 
 \noindent It takes an {\tt IO} action, and a predicate.  The predicate
 servers two purposes.  It selects the type of the expected exception,
-and constraints the value.  Here is an example:
+and constrains the value.  Here is an example:
 
 \begin{quote}
 \small
@@ -727,16 +727,16 @@ launchMissiles `shouldThrow` (== ExitFailure 1)
 \end{verbatim}
 \end{quote}
 
-\noindent And it can be used with predicates from {\tt
-System.IO.Error}, to require specific {\tt IOException}, e.g.  with
-{\tt isPermissionError}:
-
-\begin{quote}
-\small
-\begin{verbatim}
-launchMissiles `shouldThrow` isPermissionError
-\end{verbatim}
-\end{quote}
+%\noindent And it can be used with predicates from {\tt
+%System.IO.Error}, to require specific {\tt IOException}, e.g.  with
+%{\tt isPermissionError}:
+%
+%\begin{quote}
+%\small
+%\begin{verbatim}
+%launchMissiles `shouldThrow` isPermissionError
+%\end{verbatim}
+%\end{quote}
 
 \noindent To make it more convenient to expect any exception of a
 certain type, we provide type-restricted versions of {\tt (const
@@ -750,7 +750,7 @@ anyArithException = const True
 \end{verbatim}
 \end{quote}
 
-\noindent Which can be used like so:
+\noindent Which can be used like this:
 
 \begin{quote}
 \small
