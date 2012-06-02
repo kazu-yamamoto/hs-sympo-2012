@@ -484,8 +484,8 @@ Here is a summary of the problems:
 As we explained in Section~\ref{sec:problem},
 we use Doctest for user documentation and Hspec for code documentation.
 The following subsections explain two extensions to Haddock's markup.
-And combinators for expectations, that can be used with Hspec, are
-introduced.
+Subsequently, combinators for expectations, that can be used with
+Hspec, are introduced.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{User documentation}
@@ -499,11 +499,10 @@ Haddock comments.  For this purpose, we propose the following:
 \begin{itemize}
 \item Add markup syntax for interactive examples to Haddock
 \item Add markup syntax for properties to Haddock
-\item Bring Doctest from the Python community to the Haskell
-community and integrate it with QuickCheck.
-Examples and properties in Haddock comments are automatically
-tested by the Doctest command.
-Its implementation will be discussed in Section~\ref{sec:doctest}.
+\item
+    Implement a tool, similar to Python's Doctest, that can verify
+    examples and test properties in Haddock comments.
+    The implementation is discussed in Section~\ref{sec:doctest}.
 
 \end{itemize}
 
