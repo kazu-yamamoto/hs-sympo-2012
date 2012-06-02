@@ -509,8 +509,9 @@ Haddock comments.  For this purpose, we propose the following:
 %%%%%%%%%%%%%%%%
 \subsubsection{Markup for examples}
 
-\noindent First, we introduce new Haddock markup for interactive examples.
-In this paper, we use {\tt >>>} which is the same as Python's one.
+We introduce new Haddock markup for interactive examples.  A line
+starting with a \emph{prompt} (``{\tt >>>}'') denotes an expression.
+Lines following an expression denote the result of that expression.
 Here is an example:
 
 \begin{quote}
@@ -522,8 +523,8 @@ Here is an example:
 \end{verbatim}
 \end{quote}
 
-\noindent The first line starts with {\tt >>>} and an expression follows. The second line contains its result. We can write this by copy-and-pasting from an interpreter and modifying the prompt.
-It's worth explaining that we can specify operation sequences:
+\noindent The result ends at the next empty line, or another prompt.
+It is possible to specify example sequences:
 
 \begin{quote}
 \small
@@ -535,7 +536,9 @@ It's worth explaining that we can specify operation sequences:
 \end{verbatim}
 \end{quote}
 
-\noindent Also, we can show exceptions.
+\noindent Result is defined by what GHCi prints to stdout and stderr
+when evaluating the expression.  This, e.g. also allows to document
+exceptions:
 
 \begin{quote}
 \small
