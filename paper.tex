@@ -1243,7 +1243,8 @@ shouldSatisfyMonoidLaws t = do
 \end{quote}
 
 \noindent This can be used to document and test arbitrary Monoid
-instances, the specification from above would become:
+instances.
+The specification from above becomes:
 
 \begin{quote}
 \small
@@ -1365,6 +1366,16 @@ test-suite doctests
         {\tt
         checkers}\footnote{http://hackage.haskell.org/package/checkers})
       \item copied here from Section~\ref{sec:reuseable-pecs}:
+
+        Reusable spec is an idea to scrap boilerplate of evidence.
+        For instance, without reusable spec,
+        each developer of an instance of a type class should
+        express evidence for its laws.
+        Since instances of a type class share API,
+        we can avoid such boilerplate.
+        The following is an example to implement
+        evidence for Monoid laws:
+
         We should ensure the practicality of reusable spec and
         prepare reusable spec to cover variety of type classes.
 
