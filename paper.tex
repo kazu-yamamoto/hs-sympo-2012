@@ -1196,9 +1196,10 @@ functions in an intuitive, easy to read manner.
 \label{sec:reusable-specs}
 
 RSpec provides an explicit mechanism to facilitate reuse of pieces of
-specification.~\cite{rspec}
+specification~\cite{rspec}.
 In Haskell we get reusability for free, it does not require any
 explicit support from Hspec.
+The following example illustrates this.
 
 \begin{quote}
   TBD: not sure, if this adds anything
@@ -1206,7 +1207,6 @@ explicit support from Hspec.
 This not only shows that functional programming can deliver what OO
 has always claimed, but it is also awfully useful.
 \end{quote}
-
 Here is a specification that documents that a list is a monoid:
 
 \begin{quote}
@@ -1227,8 +1227,8 @@ spec = do
 \end{verbatim}
 \end{quote}
 
-\noindent And it is possible to to make this specification reusable,
-by abstracting over the type:
+\noindent It is possible to to make this specification reusable, by
+abstracting over the type:
 
 \begin{quote}
 \small
