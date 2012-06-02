@@ -71,9 +71,9 @@ To ease the production and enhance the value of test code, we advocate
 behavior driven development with two tools:
 Doctest integrated with QuickCheck for user documentation and
 Hspec with new mnemonic combinators for code documentation.
-Our method utilizes specification that can also be used for
-documentation and automated testing. We hope that this three-in-one
-quality motivates Haskellers to write more test code.
+Our approach can be used for design, documentation and automated
+testing.  We hope that this motivates Haskell programmers to write
+more and better tests.
 
 TBD:
 
@@ -102,6 +102,9 @@ TBD:
 \label{sec:introduction}
 
 %%%% Describe the problem.
+\begin{itemize}
+    \item ref to appendix
+\end{itemize}
 
 Haskell~\cite{haskell} has a strong type system, which ensures that most type errors are
 detected at compile time rather than runtime.  Thanks to this, we assume that
@@ -202,7 +205,7 @@ contributions are:
 \end{itemize}
 
 \noindent Our approach can be used for design, documentation and
-automated testing.  We hope that this motivates Haskellers to write
+automated testing.  We hope that this motivates Haskell programmers to write
 more and better tests.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -926,6 +929,7 @@ of specification, and how to use Doctest and Hspec in combination with
 Cabal's test feature.
 
 \subsection{Applying BDD to Haskell: An Example}
+\label{sec:bcp-example}
 This section shows how behavior driven development works in practice,
 by means of the Fibonacci function.  Of course this is a very simple
 example, but the method is also applicable to more sophisticated
@@ -1369,30 +1373,23 @@ arbitrary exceptions of a certain type is not possible.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 
-\begin{quote}
-TBD:
-    \begin{itemize}
-        \item Add "best current practice"
-        \item We showed how to reuse pieces of specifications
-    \end{itemize}
-\end{quote}
 
-This paper discussed how to apply behavior driven development to
+We showed how to apply behavior driven development to
 Haskell.  We proposed to use Doctest for user documentation and Hspec
-for code documentation. We added two markups for
-properties and examples to Haddock and implemented
-Doctest to verify examples and test properties from Haddock comments.
-We also extended a set of combinators for expectations for Hspec.
-With these two tools, specification can also be
-used for documentation and automatic testing.  We also described a
-mechanis that can automatically discover all specs of a project.  We
-think that our approach enhances the value of test code, and hope
-that three-in-one aspect will motivate Haskell programmers to write
-more and better test code.
+for code documentation. We extended Haddock's markup with support for
+examples and properties.  And we implemented Doctest, which verifies
+examples and tests properties in Haddock comments.
+We added two missing features to Hspec: Combinators to express
+expectations, and a mechanism for automatic discovery of specs.
+And we showed how to reuse pieces of specification.
+Our approach can be used for design, documentation and automated
+testing.  We hope that this motivates Haskell programmers to write
+more and better tests.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
-\section{TBD}
+\section{The final code from Section~\ref{sec:bcp-example}}
+\label{sec:appendix-code}
 
 \begin{quote}
 \small
