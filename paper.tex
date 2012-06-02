@@ -815,27 +815,16 @@ a future release of Haddock.
 \subsection{Doctest}
 \label{sec:doctest}
 
-To extract evidence from Haddock comments,
-Doctest initially used the Haddock API.
-Since each release of Haddock only supports the latest version of GHC,
-it was difficult to support old versions of GHC with Doctest.
-Doctest now uses the GHC API directly for portability.
+Doctest uses the GHC API to extract properties and examples from
+Haddock comments, and uses GHCi to test them.
+Before testing, Doctest brings the module that contains the Haddock
+comment from which the evidence was extracted into scope.
 
 \subsubsection{Testing examples}
 
-\begin{quote}
-    TBD: We read both, stdout + stderr from GHCi and compare that with the
-    expected result.  On Windows, only stdout works (IIRC, when an
-    example causes output to stderr on windows, doctest exits with an
-    error, see http://hackage.haskell.org/trac/ghc/ticket/5761).
-
-    sol: relevant?
-\end{quote}
-
-Doctest uses GHCi to verify examples.  Verification is done by
+Verification of examples is done by
 comparing the expected output given in the Haddock comment with the
-actual output of GHCi.  Since verification is based on string
-comparison, exceptions can be handled.
+actual output of GHCi.
 
 Doctest reuses the same GHCi session for all examples.
 Examples from the same Haddock comment are grouped together,
@@ -845,20 +834,17 @@ example group.
 
 \subsubsection{Testing properties}
 
-\noindent QuickCheck and GHCi are used to test properties.  Before we
-test a property, we bring the module that contains the Haddock comment
-from which we extracted the property into scope.
-
+QuickCheck is used to test properties.
 Implicitly quantified properties need to be closed before they can be
 tested.  This requires the following steps.
 \begin{enumerate}
     \item
-        Find all free variables of the property
+        Find all free variables of the property.
     \item
-        Try to lookup each free variable in the module context
+        Try to lookup each free variable in the module context.
     \item
         Close the property over all free variables, for which lookup
-        failed
+        failed.
 \end{enumerate}
 
 \noindent Here is the example from Section~\ref{sec:markup}:
@@ -881,7 +867,7 @@ term over \verb|xs|.
 \end{verbatim}
 \end{quote}
 
-The implementation is fully functional, and it will be included in the
+\noindent The implementation is fully functional, and it will be included in the
 next release of Doctest.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
