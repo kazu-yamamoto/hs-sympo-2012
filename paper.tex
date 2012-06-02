@@ -521,12 +521,6 @@ Its implementation will be discussed in Section~\ref{sec:doctest}.
 In this paper, we use {\tt >>>} which is the same as Python's one.
 Here is an example:
 
-
-\begin{quote}
-    sol: @kazu should we make the Haddock examples in this section
-    valid Haddock comments?
-\end{quote}
-
 \begin{quote}
 \small
 \begin{verbatim}
@@ -542,9 +536,10 @@ It's worth explaining that we can specify operation sequences:
 \begin{quote}
 \small
 \begin{verbatim}
->>> writeFile "tmpfile" "Hello"
->>> readFile "tmpfile"
-"Hello"
+-- |
+-- >>> writeFile "tmpfile" "Hello"
+-- >>> readFile "tmpfile"
+-- "Hello"
 \end{verbatim}
 \end{quote}
 
@@ -553,8 +548,9 @@ It's worth explaining that we can specify operation sequences:
 \begin{quote}
 \small
 \begin{verbatim}
->>> head []
-*** Exception: Prelude.head: empty list
+-- |
+-- >>> head []
+-- *** Exception: Prelude.head: empty list
 \end{verbatim}
 \end{quote}
 
@@ -568,7 +564,8 @@ use the {\tt prop>} prefix. We can write non-quantified properties as follows:
 \begin{quote}
 \small
 \begin{verbatim}
-prop> Data.Map.null empty == True
+-- |
+-- prop> Data.Map.null empty == True
 \end{verbatim}
 \end{quote}
 
@@ -579,7 +576,8 @@ can be written as:
 \begin{quote}
 \small
 \begin{alltt}
-prop> \verb|\|x -> null (takeExtension x) == \(\hookleftarrow\)
+-- |
+-- prop> \verb|\|x -> null (takeExtension x) == \(\hookleftarrow\)
             not (hasExtension x)
 \end{alltt}
 \end{quote}
@@ -592,7 +590,8 @@ specified for each parameter:
 \begin{quote}
 \small
 \begin{verbatim}
-prop> \xs -> sort xs == (sort . sort) (xs :: [Int])
+-- |
+-- prop> \xs -> sort xs == (sort . sort) (xs :: [Int])
 \end{verbatim}
 \end{quote}
 
@@ -602,7 +601,8 @@ lambda terms without the lambda prefix are also allowed:
 \begin{quote}
 \small
 \begin{verbatim}
-prop> sort xs == (sort . sort) (xs :: [Int])
+-- |
+-- prop> sort xs == (sort . sort) (xs :: [Int])
 \end{verbatim}
 \end{quote}
 
