@@ -1349,7 +1349,6 @@ import Fib
 
 -- small non-negative numbers
 newtype Small = Small Int
-  deriving Show
 
 instance Arbitrary Small where
   arbitrary = Small . (`mod` 1000) <$> arbitrary
