@@ -4,20 +4,22 @@ import Control.Applicative
 import Control.Exception
 import System.Timeout
 
+import Test.Hspec
 import Test.QuickCheck
-import Test.Hspec.ShouldBe
 
 import Fib
 
--- small non-negative numbers
+-- small non-negative integers
 newtype Small = Small Int
   deriving Show
 
 instance Arbitrary Small where
   arbitrary = Small . (`mod` 1000) <$> arbitrary
 
+main :: IO ()
 main = hspec spec
 
+spec :: Spec
 spec = do
   describe "fib" $ do
     it "calculates arbitrary Fibonacci numbers" $ do
