@@ -941,6 +941,7 @@ integers.
 \small
 \begin{verbatim}
 newtype Small = Small Int
+  deriving Show
 
 instance Arbitrary Small where
   arbitrary = Small . (`mod` 10) <$> arbitrary
