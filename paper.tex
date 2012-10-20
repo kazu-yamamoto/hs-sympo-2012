@@ -961,8 +961,17 @@ spec = do
 \small
 \begin{verbatim}
 $ runhaskell FibSpec.hs
+
 fib
  - calculates arbitrary Fibonacci numbers FAILED [1]
+
+1) fib calculates arbitrary Fibonacci numbers FAILED
+*** Falsifiable (after 1 test):
+Small 1
+
+Finished in 0.0021 seconds
+
+1 example, 1 failure
 \end{verbatim}
 \end{quote}
 
@@ -1000,9 +1009,18 @@ it "is efficient" $ do
 \small
 \begin{verbatim}
 $ runhaskell FibSpec.hs
+
 fib
  - calculates arbitrary Fibonacci numbers
  - is efficient FAILED [1]
+
+1) fib is efficient FAILED
+expected: Just 2178309
+ but got: Nothing
+
+Finished in 0.0685 seconds
+
+2 examples, 1 failure
 \end{verbatim}
 \end{quote}
 
