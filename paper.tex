@@ -41,10 +41,11 @@
 
 % These are ignored, unless 'preprint' option specified.
 %\titlebanner{A draft paper to be submitted to Haskell Symposium 2012}
-\preprintfooter{BDD in Haskell}
+\preprintfooter{Behavior-Driven Development in Haskell, a tutorial
+introduction}
 
-\title{Behavior Driven Development in Haskell}
-%\subtitle{Subtitle Text, if any}
+\title{Behavior-Driven Development in Haskell}
+\subtitle{a tutorial introduction}
 
 \authorinfo{Kazuhiko YAMAMOTO}
            {IIJ Innovation Institute Inc.}
@@ -78,7 +79,7 @@ Cabal's test feature.
 
 \subsection{Applying BDD to Haskell: An Example}
 \label{sec:bcp-example}
-This section shows how behavior driven development works in practice,
+This section shows how behavior-driven development works in practice,
 by means of the Fibonacci function.  This is a very simple
 example, but the method is also applicable to more complicated
 situations where design decisions might not be as obvious as here.
@@ -288,7 +289,7 @@ fib n | n < 0     = 0
 \end{quote}
 
 \noindent This concludes our example.  We have seen how to utilize
-behavior driven development to incrementally build a small library.
+behavior-driven development to incrementally build a small library.
 We always extend or adapt the specification first, watch it fail,  and
 then tighten the implementation.  The combinators {\tt shouldBe}, {\tt
 shouldReturn} and {\tt shouldThrow} can be used to specify behavior of
